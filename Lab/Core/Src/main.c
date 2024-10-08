@@ -1,30 +1,29 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdint.h>
-#include "global.h"
 #include "input_reading.h"
 #include "input_processing.h"
+#include "led_processing.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -59,7 +58,12 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+	if (htim->Instance == TIM2) {
+		button_reading();
+		timerRun();
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -93,21 +97,22 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Base_Start_IT(&htim2);
+	HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  HAL_GPIO_WritePin(LED_PINK_GPIO_Port, LED_PINK_Pin, 0);
-  while (1)
-  {
-	  if (HAL_GPIO_ReadPin(BTN1_GPIO_Port, BTN1_Pin) == 1)
-	  		  HAL_GPIO_TogglePin(LED_PINK_GPIO_Port, LED_PINK_Pin);
-	  HAL_Delay(200);
+	HAL_GPIO_WritePin(LED_PINK_GPIO_Port, LED_PINK_Pin, 0);
+	while (1) {
+		if (is_button_pressed(0) == 1)
+			HAL_GPIO_WritePin(LED_PINK_GPIO_Port, LED_PINK_Pin, 1);
+		else
+			HAL_GPIO_WritePin(LED_PINK_GPIO_Port, LED_PINK_Pin, 0);
+		fsm_for_traffic_light();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  }
+	}
   /* USER CODE END 3 */
 }
 
@@ -213,14 +218,14 @@ static void MX_GPIO_Init(void)
                           |SEG_3_Pin|SEG_4_Pin|SEG_5_Pin|SEG_6_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, LED_1_Pin|LED_2_Pin|LED_10_Pin|LED_11_Pin
-                          |LED_12_Pin|LED_3_Pin|LED_4_Pin|LED_5_Pin
-                          |LED_6_Pin|LED_7_Pin|LED_8_Pin|LED_9_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, LED_RED_1_Pin|LED_GREEN_1_Pin|LED_RED_4_Pin|LED_GREEN_4_Pin
+                          |LED_AMBER_4_Pin|LED_AMBER_1_Pin|LED_RED_2_Pin|LED_GREEN_2_Pin
+                          |LED_AMBER_2_Pin|LED_RED_3_Pin|LED_GREEN_3_Pin|LED_AMBER_3_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : BTN1_Pin BTN2_Pin BTN3_Pin */
   GPIO_InitStruct.Pin = BTN1_Pin|BTN2_Pin|BTN3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : EN0_Pin EN1_Pin EN2_Pin EN3_Pin
@@ -234,12 +239,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LED_1_Pin LED_2_Pin LED_10_Pin LED_11_Pin
-                           LED_12_Pin LED_3_Pin LED_4_Pin LED_5_Pin
-                           LED_6_Pin LED_7_Pin LED_8_Pin LED_9_Pin */
-  GPIO_InitStruct.Pin = LED_1_Pin|LED_2_Pin|LED_10_Pin|LED_11_Pin
-                          |LED_12_Pin|LED_3_Pin|LED_4_Pin|LED_5_Pin
-                          |LED_6_Pin|LED_7_Pin|LED_8_Pin|LED_9_Pin;
+  /*Configure GPIO pins : LED_RED_1_Pin LED_GREEN_1_Pin LED_RED_4_Pin LED_GREEN_4_Pin
+                           LED_AMBER_4_Pin LED_AMBER_1_Pin LED_RED_2_Pin LED_GREEN_2_Pin
+                           LED_AMBER_2_Pin LED_RED_3_Pin LED_GREEN_3_Pin LED_AMBER_3_Pin */
+  GPIO_InitStruct.Pin = LED_RED_1_Pin|LED_GREEN_1_Pin|LED_RED_4_Pin|LED_GREEN_4_Pin
+                          |LED_AMBER_4_Pin|LED_AMBER_1_Pin|LED_RED_2_Pin|LED_GREEN_2_Pin
+                          |LED_AMBER_2_Pin|LED_RED_3_Pin|LED_GREEN_3_Pin|LED_AMBER_3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -250,12 +255,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	if (htim->Instance == TIM2) {
-		button_reading();
 
-	}
-}
 /* USER CODE END 4 */
 
 /**
@@ -265,11 +265,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
+	/* User can add his own implementation to report the HAL error return state */
+	__disable_irq();
+	while (1) {
+	}
   /* USER CODE END Error_Handler_Debug */
 }
 

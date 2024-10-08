@@ -1,0 +1,5 @@
+../Core/Src/led_processing.c:10:6:display7SEG	11
+../Core/Src/led_processing.c:52:6:update_buffer	1
+../Core/Src/led_processing.c:58:6:scanning_led	2
+../Core/Src/led_processing.c:70:6:fsm_for_auto	18
+../Core/Src/led_processing.c:135:6:fsm_for_traffic_light	5

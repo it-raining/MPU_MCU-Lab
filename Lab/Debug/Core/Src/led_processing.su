@@ -1,0 +1,5 @@
+../Core/Src/led_processing.c:10:6:display7SEG	16	static
+../Core/Src/led_processing.c:52:6:update_buffer	16	static
+../Core/Src/led_processing.c:58:6:scanning_led	8	static
+../Core/Src/led_processing.c:70:6:fsm_for_auto	8	static
+../Core/Src/led_processing.c:135:6:fsm_for_traffic_light	8	static
