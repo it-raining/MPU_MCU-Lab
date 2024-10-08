@@ -290,15 +290,13 @@ void Ex5_TI() {
 void Ex7_Init() {
 	hour = 15, minute = 8, second = 50;
 	index_led = 0;
-	setClkTimer(23);
-	setLEDTimer(97);
+	setLEDTimer(1007);
+	setClkTimer(230);
 }
 void Ex7_Run() {
 	if (LED_Timer.flag == 1) {
 		HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
-		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 		setLEDTimer(1000);
-		second++;
 	}
 	if (second >= 60) {
 		second = 0;
@@ -318,6 +316,7 @@ void Ex7_TI() {
 	update7SEG(index_led);
 	switch (index_led) {
 	case 0:
+		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, 0);
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 1);
 		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 1);
@@ -330,6 +329,7 @@ void Ex7_TI() {
 		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, 1);
 		break;
 	case 2:
+		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, 1);
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 1);
 		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 0);
@@ -340,6 +340,7 @@ void Ex7_TI() {
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 1);
 		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 1);
 		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, 0);
+		second++;
 		break;
 	}
 	if (Clk_Timer.counter <= 0) {
@@ -354,9 +355,7 @@ void Ex8_Init() {
 void Ex8_Run() {
 	if (LED_Timer.flag == 1) {
 		HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
-		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-		setLEDTimer(1000);
-		second++;
+		setLEDTimer(500);
 	}
 	if (second >= 60) {
 		second = 0;
@@ -374,6 +373,7 @@ void Ex8_Run() {
 		update7SEG(index_led);
 		switch (index_led) {
 		case 0:
+			HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 			HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, 0);
 			HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 1);
 			HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 1);
@@ -386,6 +386,7 @@ void Ex8_Run() {
 			HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, 1);
 			break;
 		case 2:
+			HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 			HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, 1);
 			HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 1);
 			HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 0);
@@ -396,6 +397,7 @@ void Ex8_Run() {
 			HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 1);
 			HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 1);
 			HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, 0);
+			second++;
 			break;
 		}
 		index_led = (index_led + 1) % 4;

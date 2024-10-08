@@ -91,13 +91,15 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-	HAL_TIM_Base_Start_IT(&htim2);
+  HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+	Ex8_Init();
 	Ex10_Init();
 	while (1) {
+		Ex8_Run();
 		Ex10_Run();
     /* USER CODE END WHILE */
 
