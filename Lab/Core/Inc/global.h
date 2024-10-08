@@ -12,13 +12,14 @@
 #define NO_OF_7SEG 4 //fixed
 
 typedef enum {
-	INIT, AUTO, MODIFY
+	INIT, AUTO, MODIFY_RED, MODIFY_AMBER, MODIFY_GREEN
 } MODE;
 typedef enum {
 	RED, GREEN, AMBER
 } STATE;
 extern MODE mode;
 extern uint8_t led_buffer[NO_OF_7SEG];
+extern uint8_t buffer;
 extern uint8_t red_light;
 extern uint8_t amber_light;
 extern uint8_t green_light;

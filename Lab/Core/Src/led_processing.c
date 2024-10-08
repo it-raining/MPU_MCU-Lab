@@ -66,7 +66,7 @@ void scanning_led(void) {
 }
 
 // AUTOMATIC RUN DEFINE //
-int count_1, count_2;
+uint8_t count_1, count_2;
 void fsm_for_auto(void) {
 	update_buffer(count_1, count_2);
 	switch (line_1) {
@@ -131,26 +131,67 @@ void fsm_for_auto(void) {
 		setTimer(COUNTDOWN, ONE_SEC);
 	}
 }
-
+void modify_red(void) {
+	update_buffer(MODIFY_RED, buffer);
+	if (is_avail(BLINKY) == 1) {
+		HAL_GPIO_TogglePin(LED_RED_1_GPIO_Port, LED_RED_1_Pin);
+		HAL_GPIO_TogglePin(LED_RED_2_GPIO_Port, LED_RED_2_Pin);
+		HAL_GPIO_TogglePin(LED_RED_3_GPIO_Port, LED_RED_3_Pin);
+		HAL_GPIO_TogglePin(LED_RED_4_GPIO_Port, LED_RED_4_Pin);
+		setTimer(BLINKY, ONE_SEC);
+	}
+}
+void modify_amber(void) {
+	update_buffer(MODIFY_AMBER, buffer);
+	if (is_avail(BLINKY) == 1) {
+		HAL_GPIO_TogglePin(LED_AMBER_1_GPIO_Port, LED_AMBER_1_Pin);
+		HAL_GPIO_TogglePin(LED_AMBER_2_GPIO_Port, LED_AMBER_2_Pin);
+		HAL_GPIO_TogglePin(LED_AMBER_3_GPIO_Port, LED_AMBER_3_Pin);
+		HAL_GPIO_TogglePin(LED_AMBER_4_GPIO_Port, LED_AMBER_4_Pin);
+		setTimer(BLINKY, ONE_SEC);
+	}
+}
+void modify_green(void) {
+	update_buffer(MODIFY_GREEN, buffer);
+	if (is_avail(BLINKY) == 1) {
+		HAL_GPIO_TogglePin(LED_GREEN_1_GPIO_Port, LED_GREEN_1_Pin);
+		HAL_GPIO_TogglePin(LED_GREEN_2_GPIO_Port, LED_GREEN_2_Pin);
+		HAL_GPIO_TogglePin(LED_GREEN_3_GPIO_Port, LED_GREEN_3_Pin);
+		HAL_GPIO_TogglePin(LED_GREEN_4_GPIO_Port, LED_GREEN_4_Pin);
+		setTimer(BLINKY, ONE_SEC);
+	}
+}
 void fsm_for_traffic_light(void) {
 	switch (mode) {
 	case INIT:
 		setTimer(COUNTDOWN, 97);
 		setTimer(SCANNING, 253);
+		setTimer(BLINKY, 1077);
+		setTimer(HOLD, 497);
 		if (1) {
 			LED_RED_1_GPIO_Port->ODR |= ALL_LED;
 			count_1 = red_light;
 			count_2 = green_light;
+			line_1 = RED, line_2 = GREEN;
 			mode = AUTO;
 		}
 		break;
 	case AUTO:
 		fsm_for_auto();
 		break;
-	case MODIFY:
+	case MODIFY_RED:
+		modify_red();
+		break;
+	case MODIFY_AMBER:
+		modify_amber();
+		break;
+	case MODIFY_GREEN:
+		modify_green();
 		break;
 	default:
 		mode = INIT;
 	}
 	scanning_led();
+	if (is_button_pressed(0))
+		LED_RED_1_GPIO_Port->ODR |= ALL_LED;
 }

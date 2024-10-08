@@ -12,12 +12,14 @@
 #define NO_OF_TIMER 	10
 #define TIMER_CYCLE 	10 //ms
 #define ONE_SEC			1000 //ms
+#define HALF_SEC		500 //ms
 #define SCANNING_FREQ 	1 //Hz
 #define BLINKY_FREQ 	2 //Hz
 // Timer mapping
 #define COUNTDOWN 	0
 #define SCANNING	1
 #define BLINKY 		2
+#define HOLD		3
 typedef struct {
   uint8_t flag;
   uint16_t counter;

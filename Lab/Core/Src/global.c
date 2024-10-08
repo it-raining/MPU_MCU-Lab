@@ -8,6 +8,7 @@
 
 MODE mode = INIT;
 uint8_t led_buffer[NO_OF_7SEG] = {0};
+uint8_t buffer = 0;
 uint8_t red_light = 5;
 uint8_t amber_light = 2;
 uint8_t green_light = 3;

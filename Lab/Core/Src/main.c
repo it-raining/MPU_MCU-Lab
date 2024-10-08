@@ -109,6 +109,7 @@ int main(void)
 		else
 			HAL_GPIO_WritePin(LED_PINK_GPIO_Port, LED_PINK_Pin, 0);
 		fsm_for_traffic_light();
+		fsm_for_input_processing();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

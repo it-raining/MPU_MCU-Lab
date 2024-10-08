@@ -2,4 +2,7 @@
 ../Core/Src/led_processing.c:52:6:update_buffer	1
 ../Core/Src/led_processing.c:58:6:scanning_led	2
 ../Core/Src/led_processing.c:70:6:fsm_for_auto	18
-../Core/Src/led_processing.c:135:6:fsm_for_traffic_light	5
+../Core/Src/led_processing.c:134:6:modify_red	2
+../Core/Src/led_processing.c:144:6:modify_amber	2
+../Core/Src/led_processing.c:154:6:modify_green	2
+../Core/Src/led_processing.c:164:6:fsm_for_traffic_light	7

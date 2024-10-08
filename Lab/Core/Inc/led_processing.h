@@ -8,6 +8,7 @@
 #ifndef INC_LED_PROCESSING_H_
 #define INC_LED_PROCESSING_H_
 #include "main.h"
+#include "input_reading.h"
 
 #define NUM_0   (SEG_0_Pin | SEG_1_Pin | SEG_2_Pin | SEG_3_Pin | SEG_4_Pin | SEG_5_Pin)
 #define NUM_1   (SEG_1_Pin | SEG_2_Pin)
