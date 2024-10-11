@@ -21,12 +21,15 @@ void fsm_for_input_processing(void) {
 			switch (mode) {
 			case MODIFY_RED:
 				buffer = red_light;
+				setTimer(EXPIRED, EXPIRED_PERIOD);
 				break;
 			case MODIFY_AMBER:
 				buffer = amber_light;
+				setTimer(EXPIRED, EXPIRED_PERIOD);
 				break;
 			case MODIFY_GREEN:
 				buffer = green_light;
+				setTimer(EXPIRED, EXPIRED_PERIOD);
 				break;
 			default:
 			}

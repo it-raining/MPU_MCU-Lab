@@ -140,6 +140,10 @@ void modify_red(void) {
 		HAL_GPIO_TogglePin(LED_RED_4_GPIO_Port, LED_RED_4_Pin);
 		setTimer(BLINKY, ONE_SEC);
 	}
+	if (is_button_pressed(1) || is_button_pressed(2))
+		setTimer(EXPIRED, EXPIRED_PERIOD);
+	if (is_expired())
+		mode = INIT;
 }
 void modify_amber(void) {
 	update_buffer(MODIFY_AMBER, buffer);
@@ -150,6 +154,10 @@ void modify_amber(void) {
 		HAL_GPIO_TogglePin(LED_AMBER_4_GPIO_Port, LED_AMBER_4_Pin);
 		setTimer(BLINKY, ONE_SEC);
 	}
+	if (is_button_pressed(1) || is_button_pressed(2))
+		setTimer(EXPIRED, EXPIRED_PERIOD);
+	if (is_expired())
+		mode = INIT;
 }
 void modify_green(void) {
 	update_buffer(MODIFY_GREEN, buffer);
@@ -160,6 +168,10 @@ void modify_green(void) {
 		HAL_GPIO_TogglePin(LED_GREEN_4_GPIO_Port, LED_GREEN_4_Pin);
 		setTimer(BLINKY, ONE_SEC);
 	}
+	if (is_button_pressed(1) || is_button_pressed(2))
+		setTimer(EXPIRED, EXPIRED_PERIOD);
+	if (is_expired())
+		mode = INIT;
 }
 void fsm_for_traffic_light(void) {
 	switch (mode) {

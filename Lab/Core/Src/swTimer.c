@@ -25,3 +25,7 @@ void timerRun(void) {
 int is_avail(int idx) {
 	return (timer[idx].flag == 1);
 }
+
+int is_expired() {
+	return (timer[EXPIRED].flag == 1);
+}

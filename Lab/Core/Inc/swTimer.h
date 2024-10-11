@@ -13,6 +13,7 @@
 #define TIMER_CYCLE 	10 //ms
 #define ONE_SEC			1000 //ms
 #define HALF_SEC		500 //ms
+#define EXPIRED_PERIOD	10000 //ms
 #define SCANNING_FREQ 	1 //Hz
 #define BLINKY_FREQ 	2 //Hz
 // Timer mapping
@@ -20,6 +21,7 @@
 #define SCANNING	1
 #define BLINKY 		2
 #define HOLD		3
+#define EXPIRED		4
 typedef struct {
   uint8_t flag;
   uint16_t counter;
@@ -28,4 +30,5 @@ typedef struct {
 void setTimer(int idx, uint16_t duration);
 void timerRun(void);
 int is_avail(int idx);
+int is_expired();
 #endif /* INC_SWTIMER_H_ */
