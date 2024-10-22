@@ -142,8 +142,6 @@ void modify_red(void) {
 	}
 	if (is_button_pressed(1) || is_button_pressed(2))
 		setTimer(EXPIRED, EXPIRED_PERIOD);
-	if (is_expired())
-		mode = INIT;
 }
 void modify_amber(void) {
 	update_buffer(MODIFY_AMBER, buffer);
@@ -156,8 +154,6 @@ void modify_amber(void) {
 	}
 	if (is_button_pressed(1) || is_button_pressed(2))
 		setTimer(EXPIRED, EXPIRED_PERIOD);
-	if (is_expired())
-		mode = INIT;
 }
 void modify_green(void) {
 	update_buffer(MODIFY_GREEN, buffer);
@@ -170,8 +166,6 @@ void modify_green(void) {
 	}
 	if (is_button_pressed(1) || is_button_pressed(2))
 		setTimer(EXPIRED, EXPIRED_PERIOD);
-	if (is_expired())
-		mode = INIT;
 }
 void fsm_for_traffic_light(void) {
 	switch (mode) {
@@ -193,17 +187,21 @@ void fsm_for_traffic_light(void) {
 		break;
 	case MODIFY_RED:
 		modify_red();
+		if (is_expired())
+			mode = INIT;
 		break;
 	case MODIFY_AMBER:
 		modify_amber();
+		if (is_expired())
+			mode = INIT;
 		break;
 	case MODIFY_GREEN:
 		modify_green();
+		if (is_expired())
+			mode = INIT;
 		break;
 	default:
 		mode = INIT;
 	}
 	scanning_led();
-	if (is_button_pressed(0))
-		LED_RED_1_GPIO_Port->ODR |= ALL_LED;
 }
