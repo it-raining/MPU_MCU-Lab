@@ -176,6 +176,7 @@ void fsm_for_traffic_light(void) {
 		setTimer(HOLD, 497);
 		if (1) {
 			LED_RED_1_GPIO_Port->ODR |= ALL_LED;
+			red_light = green_light + amber_light; // adjust timing
 			count_1 = red_light;
 			count_2 = green_light;
 			line_1 = RED, line_2 = GREEN;
