@@ -7,15 +7,6 @@
 #include "scheduler.h"
 Tasks_t tasks;
 
-static void Reorder_Tasks(void) {
-	uint32_t sumDelay = 0;
-	TaskNode *current = tasks.head;
-	for (int i = 0; i < tasks.nTasks && current; i++) {
-		current->delay -= sumDelay;
-		sumDelay += current->delay;
-		current = current->next;
-	}
-}
 int is_avail(TaskNode *task) {
 	return (task->runMe == 1);
 }
@@ -40,25 +31,26 @@ uint32_t Scheduler_Add_Task(void (*pF)(void), const uint32_t DELAY,
 		return ADD_TASK_ERROR;
 
 	newTask->pTask = pF;
-	newTask->delay = DELAY;
-	newTask->period = PERIOD;
+	newTask->delay = DELAY / TICK;
+	newTask->period = PERIOD / TICK;
 	newTask->runMe = 0;
 	newTask->TaskID = tasks.nTasks + 1;
 	newTask->next = NULL;
 
 	if (!tasks.head || DELAY < tasks.head->delay) {
+		// add at head
+		if (tasks.head) {
+			tasks.head->delay -= DELAY;
+		}
 		newTask->next = tasks.head;
 		tasks.head = newTask;
 	} else {
+		// add at middle
 		uint32_t sumDelay = 0;
-		TaskNode *current = tasks.head; //at least one task
+		TaskNode *current = tasks.head;
 		TaskNode *prev = NULL;
 		for (int i = 0; i < tasks.nTasks; i++) {
 			sumDelay += current->delay;
-			if (!current) {
-				newTask->delay = DELAY - sumDelay;
-				prev->next = newTask;
-			}
 			if (sumDelay >= DELAY) {
 				newTask->delay = DELAY - (sumDelay - current->delay);
 				current->delay -= newTask->delay;
@@ -71,6 +63,11 @@ uint32_t Scheduler_Add_Task(void (*pF)(void), const uint32_t DELAY,
 			prev = current;
 			current = current->next;
 		}
+		// add at bottom
+		if (!current && prev) {
+			newTask->delay = DELAY - sumDelay;
+			prev->next = newTask;
+		}
 	}
 	tasks.nTasks++;
 	return newTask->TaskID;
@@ -79,10 +76,10 @@ uint32_t Scheduler_Add_Task(void (*pF)(void), const uint32_t DELAY,
 void Scheduler_Update(void) {
 	if (!tasks.head)
 		return;
-	tasks.head->delay--;
-	if (tasks.head->delay == 0) {
+	if (tasks.head->delay <= 0) {
 		tasks.head->runMe = 1;
-	}
+	} else
+		tasks.head->delay--;
 }
 
 void Scheduler_Dispatch_Tasks(void) {
@@ -93,18 +90,10 @@ void Scheduler_Dispatch_Tasks(void) {
 		task->pTask();
 		if (task->period > 0) {
 			task->delay = task->period;
-			tasks.head = task->next;
-			tasks.nTasks--;
-			Scheduler_Add_Task(task->pTask, task->delay, task->period);
-			free(task);
-		} else {
-			tasks.head = task->next;
-			free(task);
-			tasks.nTasks--;
+			Scheduler_Add_Task(task->pTask, task->delay * TICK, task->period * TICK);
 		}
+		Scheduler_Remove_Task(task->TaskID);
 	}
-
-	Reorder_Tasks();
 }
 
 uint8_t Scheduler_Remove_Task(uint32_t TaskID) {

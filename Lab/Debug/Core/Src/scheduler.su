@@ -1,7 +1,6 @@
-../Core/Src/scheduler.c:10:13:Reorder_Tasks	24	static
-../Core/Src/scheduler.c:19:5:is_avail	16	static
-../Core/Src/scheduler.c:22:6:Scheduler_Init	24	static
-../Core/Src/scheduler.c:36:10:Scheduler_Add_Task	48	static
-../Core/Src/scheduler.c:79:6:Scheduler_Update	4	static
-../Core/Src/scheduler.c:88:6:Scheduler_Dispatch_Tasks	16	static
-../Core/Src/scheduler.c:110:9:Scheduler_Remove_Task	32	static
+../Core/Src/scheduler.c:10:5:is_avail	16	static
+../Core/Src/scheduler.c:13:6:Scheduler_Init	24	static
+../Core/Src/scheduler.c:27:10:Scheduler_Add_Task	48	static
+../Core/Src/scheduler.c:76:6:Scheduler_Update	4	static
+../Core/Src/scheduler.c:85:6:Scheduler_Dispatch_Tasks	16	static
+../Core/Src/scheduler.c:99:9:Scheduler_Remove_Task	32	static
