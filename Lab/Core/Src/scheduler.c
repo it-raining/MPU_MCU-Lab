@@ -29,7 +29,6 @@ uint32_t Scheduler_Add_Task(void (*pF)(void), const uint32_t DELAY,
 	TaskNode *newTask = (TaskNode*) malloc(sizeof(TaskNode));
 	if (tasks.nTasks >= MAX_TASKS || !newTask)
 		return ADD_TASK_ERROR;
-
 	newTask->pTask = pF;
 	newTask->delay = DELAY / TICK;
 	newTask->period = PERIOD / TICK;
@@ -37,10 +36,10 @@ uint32_t Scheduler_Add_Task(void (*pF)(void), const uint32_t DELAY,
 	newTask->TaskID = tasks.nTasks + 1;
 	newTask->next = NULL;
 
-	if (!tasks.head || DELAY < tasks.head->delay) {
+	if (!tasks.head || newTask->delay < tasks.head->delay) {
 		// add at head
 		if (tasks.head) {
-			tasks.head->delay -= DELAY;
+			tasks.head->delay -= newTask->delay;
 		}
 		newTask->next = tasks.head;
 		tasks.head = newTask;
@@ -51,8 +50,8 @@ uint32_t Scheduler_Add_Task(void (*pF)(void), const uint32_t DELAY,
 		TaskNode *prev = NULL;
 		for (int i = 0; i < tasks.nTasks; i++) {
 			sumDelay += current->delay;
-			if (sumDelay >= DELAY) {
-				newTask->delay = DELAY - (sumDelay - current->delay);
+			if (sumDelay > newTask->delay) {
+				newTask->delay = newTask->delay - (sumDelay - current->delay);
 				current->delay -= newTask->delay;
 				newTask->next = current;
 				if (prev) {
@@ -65,7 +64,7 @@ uint32_t Scheduler_Add_Task(void (*pF)(void), const uint32_t DELAY,
 		}
 		// add at bottom
 		if (!current && prev) {
-			newTask->delay = DELAY - sumDelay;
+			newTask->delay = newTask->delay - sumDelay;
 			prev->next = newTask;
 		}
 	}
@@ -90,7 +89,8 @@ void Scheduler_Dispatch_Tasks(void) {
 		task->pTask();
 		if (task->period > 0) {
 			task->delay = task->period;
-			Scheduler_Add_Task(task->pTask, task->delay * TICK, task->period * TICK);
+			Scheduler_Add_Task(task->pTask, task->delay * TICK,
+					task->period * TICK);
 		}
 		Scheduler_Remove_Task(task->TaskID);
 	}

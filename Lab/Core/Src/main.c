@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <fsm_traffic_light.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -99,12 +99,13 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   HAL_TIM_Base_Start_IT(&htim2);
   Scheduler_Init();
-//  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
   // Add tasks here
-  Scheduler_Add_Task(BlinkyLED, 100, 100);
+  Scheduler_Add_Task(BlinkyLED, ONE_SEC, ONE_SEC / BLINKY_FREQ);
+//  Scheduler_Add_Task(scanning_led, 23, (1000 / NO_OF_7SEG) / SCANNING_FREQ);
   while (1)
   {
 	  Scheduler_Dispatch_Tasks();
+//	  fsm_for_traffic_light();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -206,16 +207,45 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, EN0_Pin|EN1_Pin|EN2_Pin|EN3_Pin
+                          |LED_RED_Pin|SEG_0_Pin|SEG_1_Pin|SEG_2_Pin
+                          |SEG_3_Pin|SEG_4_Pin|SEG_5_Pin|SEG_6_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : LED_RED_Pin */
-  GPIO_InitStruct.Pin = LED_RED_Pin;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, LED_RED_1_Pin|LED_GREEN_1_Pin|LED_RED_4_Pin|LED_GREEN_4_Pin
+                          |LED_AMBER_4_Pin|LED_AMBER_1_Pin|LED_RED_2_Pin|LED_GREEN_2_Pin
+                          |LED_AMBER_2_Pin|LED_RED_3_Pin|LED_GREEN_3_Pin|LED_AMBER_3_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : EN0_Pin EN1_Pin EN2_Pin EN3_Pin
+                           LED_RED_Pin SEG_0_Pin SEG_1_Pin SEG_2_Pin
+                           SEG_3_Pin SEG_4_Pin SEG_5_Pin SEG_6_Pin */
+  GPIO_InitStruct.Pin = EN0_Pin|EN1_Pin|EN2_Pin|EN3_Pin
+                          |LED_RED_Pin|SEG_0_Pin|SEG_1_Pin|SEG_2_Pin
+                          |SEG_3_Pin|SEG_4_Pin|SEG_5_Pin|SEG_6_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LED_RED_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : BTN1_Pin BTN2_Pin BTN3_Pin */
+  GPIO_InitStruct.Pin = BTN1_Pin|BTN2_Pin|BTN3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : LED_RED_1_Pin LED_GREEN_1_Pin LED_RED_4_Pin LED_GREEN_4_Pin
+                           LED_AMBER_4_Pin LED_AMBER_1_Pin LED_RED_2_Pin LED_GREEN_2_Pin
+                           LED_AMBER_2_Pin LED_RED_3_Pin LED_GREEN_3_Pin LED_AMBER_3_Pin */
+  GPIO_InitStruct.Pin = LED_RED_1_Pin|LED_GREEN_1_Pin|LED_RED_4_Pin|LED_GREEN_4_Pin
+                          |LED_AMBER_4_Pin|LED_AMBER_1_Pin|LED_RED_2_Pin|LED_GREEN_2_Pin
+                          |LED_AMBER_2_Pin|LED_RED_3_Pin|LED_GREEN_3_Pin|LED_AMBER_3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
