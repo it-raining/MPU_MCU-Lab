@@ -21,25 +21,28 @@ void Scheduler_Init(void) {
 			current = current->next;
 			free(tmp);
 		}
+		tasks.head = NULL;
 	}
 }
 
-uint32_t Scheduler_Add_Task(void (*pF)(void), const uint32_t DELAY,
-		const uint32_t PERIOD) {
+uint32_t Scheduler_Add_Task(void (*pF)(void), uint32_t taskID, uint32_t DELAY,
+		uint32_t PERIOD) {
+	DELAY = DELAY / TICK;
+	PERIOD = PERIOD / TICK;
 	TaskNode *newTask = (TaskNode*) malloc(sizeof(TaskNode));
 	if (tasks.nTasks >= MAX_TASKS || !newTask)
 		return ADD_TASK_ERROR;
 	newTask->pTask = pF;
-	newTask->delay = DELAY / TICK;
-	newTask->period = PERIOD / TICK;
+	newTask->delay = DELAY;
+	newTask->period = PERIOD;
 	newTask->runMe = 0;
-	newTask->TaskID = tasks.nTasks + 1;
+	newTask->TaskID = taskID;
 	newTask->next = NULL;
 
-	if (!tasks.head || newTask->delay < tasks.head->delay) {
+	if (!tasks.head || DELAY <= tasks.head->delay) {
 		// add at head
 		if (tasks.head) {
-			tasks.head->delay -= newTask->delay;
+			tasks.head->delay -= DELAY;
 		}
 		newTask->next = tasks.head;
 		tasks.head = newTask;
@@ -50,8 +53,8 @@ uint32_t Scheduler_Add_Task(void (*pF)(void), const uint32_t DELAY,
 		TaskNode *prev = NULL;
 		for (int i = 0; i < tasks.nTasks; i++) {
 			sumDelay += current->delay;
-			if (sumDelay > newTask->delay) {
-				newTask->delay = newTask->delay - (sumDelay - current->delay);
+			if (sumDelay > DELAY) {
+				newTask->delay = DELAY - (sumDelay - current->delay);
 				current->delay -= newTask->delay;
 				newTask->next = current;
 				if (prev) {
@@ -64,7 +67,7 @@ uint32_t Scheduler_Add_Task(void (*pF)(void), const uint32_t DELAY,
 		}
 		// add at bottom
 		if (!current && prev) {
-			newTask->delay = newTask->delay - sumDelay;
+			newTask->delay = DELAY - sumDelay;
 			prev->next = newTask;
 		}
 	}
@@ -88,10 +91,11 @@ void Scheduler_Dispatch_Tasks(void) {
 	if (is_avail(task)) {
 		task->pTask();
 		if (task->period > 0) {
-			task->delay = task->period;
-			Scheduler_Add_Task(task->pTask, task->delay * TICK,
+			Scheduler_Add_Task(task->pTask, task->TaskID, task->period * TICK,
 					task->period * TICK);
 		}
+//		tasks.head = task->next;
+//		free(task);
 		Scheduler_Remove_Task(task->TaskID);
 	}
 }
@@ -99,10 +103,9 @@ void Scheduler_Dispatch_Tasks(void) {
 uint8_t Scheduler_Remove_Task(uint32_t TaskID) {
 	if (!tasks.head)
 		return NOT_VALID_TASK_ID;
-
 	TaskNode *current = tasks.head, *prev = NULL;
 
-	for (int i = 0; i < tasks.nTasks; i++) {
+	for (uint32_t i = 0; i < tasks.nTasks; i++) {
 		if (current->TaskID == TaskID) {
 			if (prev) {
 				prev->next = current->next;

@@ -17,5 +17,5 @@ typedef enum {
 
 extern MODE mode;
 extern STATE line_1, line_2;
-extern uint16_t state_ID;
+extern uint32_t state_ID;
 #endif /* INC_GLOBAL_H_ */

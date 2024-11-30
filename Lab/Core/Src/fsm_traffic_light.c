@@ -67,35 +67,16 @@ void scanning_led(void) {
 	EN0_GPIO_Port->ODR &= ~(EN_Pin[scanning_idx]);
 	scanning_idx = (scanning_idx + 1) % NO_OF_7SEG;
 }
-void increase_mode() {
-	LED_RED_1_GPIO_Port->ODR |= ALL_LED;
-	mode = (mode + 1) % 5;
-	switch (mode) {
-	case MODIFY_RED:
-		buffer = red_light;
-//		setTimer(EXPIRED, EXPIRED_PERIOD);
-		break;
-	case MODIFY_AMBER:
-		buffer = amber_light;
-//		setTimer(EXPIRED, EXPIRED_PERIOD);
-		break;
-	case MODIFY_GREEN:
-		buffer = green_light;
-//		setTimer(EXPIRED, EXPIRED_PERIOD);
-		break;
-	default:
-	}
-}
 
 // AUTOMATIC RUN DEFINE //
 uint8_t count_1, count_2;
 void fsm_for_auto(void) {
 	update_buffer(count_1, count_2);
+	LED_RED_1_GPIO_Port->ODR |= ALL_LED;
 	switch (line_1) {
 	case RED:
 		LED_RED_1_GPIO_Port->ODR &= ~(LED_RED_1_Pin | LED_RED_3_Pin);
 		if (count_1 <= 0) {
-			LED_RED_1_GPIO_Port->ODR |= ALL_LED;
 			line_1 = GREEN;
 			count_1 = green_light;
 		}
@@ -103,7 +84,6 @@ void fsm_for_auto(void) {
 	case GREEN:
 		LED_GREEN_1_GPIO_Port->ODR &= ~(LED_GREEN_1_Pin | LED_GREEN_3_Pin);
 		if (count_1 <= 0) {
-			LED_RED_1_GPIO_Port->ODR |= ALL_LED;
 			line_1 = AMBER;
 			count_1 = amber_light;
 		}
@@ -111,18 +91,16 @@ void fsm_for_auto(void) {
 	case AMBER:
 		LED_AMBER_1_GPIO_Port->ODR &= ~(LED_AMBER_1_Pin | LED_AMBER_3_Pin);
 		if (count_1 <= 0) {
-			LED_RED_1_GPIO_Port->ODR |= ALL_LED;
 			line_1 = RED;
 			count_1 = red_light;
 		}
 		break;
 	}
-
+//	LED_RED_2_GPIO_Port->ODR |= ALL_LED;
 	switch (line_2) {
 	case RED:
 		LED_RED_2_GPIO_Port->ODR &= ~(LED_RED_2_Pin | LED_RED_4_Pin);
 		if (count_2 <= 0) {
-			LED_RED_2_GPIO_Port->ODR |= ALL_LED;
 			line_2 = GREEN;
 			count_2 = green_light;
 		}
@@ -130,7 +108,6 @@ void fsm_for_auto(void) {
 	case GREEN:
 		LED_RED_2_GPIO_Port->ODR &= ~(LED_GREEN_2_Pin | LED_GREEN_4_Pin);
 		if (count_2 <= 0) {
-			LED_RED_2_GPIO_Port->ODR |= ALL_LED;
 			line_2 = AMBER;
 			count_2 = amber_light;
 		}
@@ -138,7 +115,6 @@ void fsm_for_auto(void) {
 	case AMBER:
 		LED_RED_2_GPIO_Port->ODR &= ~(LED_AMBER_2_Pin | LED_AMBER_4_Pin);
 		if (count_2 <= 0) {
-			LED_RED_2_GPIO_Port->ODR |= ALL_LED;
 			line_2 = RED;
 			count_2 = red_light;
 		}
@@ -179,61 +155,62 @@ void modify_green(void) {
 //	if (is_button_pressed(1) || is_button_pressed(2))
 //		setTimer(EXPIRED, EXPIRED_PERIOD);
 }
-void fsm_for_traffic_light(void) {
+void increase_mode() {
+	LED_RED_1_GPIO_Port->ODR |= ALL_LED;
+	mode = (mode + 1) % 5;
 	switch (mode) {
-	case INIT:
-		if (1) {
-			state_ID = Scheduler_Add_Task(fsm_for_auto, 0, ONE_SEC);
-			LED_RED_1_GPIO_Port->ODR |= ALL_LED;
-			red_light = green_light + amber_light; // adjust timing
-			count_1 = red_light;
-			count_2 = green_light;
-			line_1 = RED, line_2 = GREEN;
-			mode = AUTO;
-		}
-		break;
-	case AUTO:
-		if (is_button_pressed(MODIFY_BUTTON)) {
-			Scheduler_Remove_Task(state_ID);
-			state_ID = Scheduler_Add_Task(modify_red, 0, ONE_SEC);
-			increase_mode();
-			button_state[MODIFY_BUTTON] = BUTTON_RELEASED;
-		}
-		break;
 	case MODIFY_RED:
-		if (is_button_pressed(MODIFY_BUTTON)) {
-			Scheduler_Remove_Task(state_ID);
-			state_ID = Scheduler_Add_Task(modify_amber, 0, ONE_SEC);
-			increase_mode();
-			button_state[MODIFY_BUTTON] = BUTTON_RELEASED;
-		}
-//		if (is_expired())
-//			mode = INIT;
+		buffer = red_light;
+		state_ID = Scheduler_Add_Task(modify_red, MODE_MODR, ONE_SEC, ONE_SEC);
+//		setTimer(EXPIRED, EXPIRED_PERIOD);
 		break;
 	case MODIFY_AMBER:
-		if (is_button_pressed(MODIFY_BUTTON)) {
-			Scheduler_Remove_Task(state_ID);
-			state_ID = Scheduler_Add_Task(modify_green, 0, ONE_SEC);
-			increase_mode();
-			button_state[MODIFY_BUTTON] = BUTTON_RELEASED;
-		}
-//		if (is_expired())
-//			mode = INIT;
+		buffer = amber_light;
+		state_ID = Scheduler_Add_Task(modify_amber, MODE_MODY, ONE_SEC, ONE_SEC);
+//		setTimer(EXPIRED, EXPIRED_PERIOD);
 		break;
 	case MODIFY_GREEN:
+		buffer = green_light;
+		state_ID = Scheduler_Add_Task(modify_green, MODE_MODG, ONE_SEC, ONE_SEC);
+//		setTimer(EXPIRED, EXPIRED_PERIOD);
+		break;
+	default:
+	}
+}
+void fsm_for_traffic_light(void) {
+	if (mode == INIT) {
+		LED_RED_1_GPIO_Port->ODR |= ALL_LED;
+		red_light = green_light + amber_light; // adjust timing
+		count_1 = red_light;
+		count_2 = green_light;
+		line_1 = RED, line_2 = GREEN;
+		state_ID = Scheduler_Add_Task(fsm_for_auto, MODE_AUTO, ONE_SEC,
+				ONE_SEC);
+		mode = AUTO;
+	}
+	switch (button_state[MODIFY_BUTTON]) {
+	case BUTTON_RELEASED:
 		if (is_button_pressed(MODIFY_BUTTON)) {
 			Scheduler_Remove_Task(state_ID);
 			increase_mode();
+			button_state[MODIFY_BUTTON] = BUTTON_PRESSED;
+		}
+		break;
+	case BUTTON_PRESSED:
+		if (!is_button_pressed(MODIFY_BUTTON)) {
+			button_state[MODIFY_BUTTON] = BUTTON_RELEASED;
+		} else {
+			if (is_button_pressed_1s(MODIFY_BUTTON)) {
+				button_state[MODIFY_BUTTON] = BUTTON_PRESSED_MORE_THAN_1_SECOND;
+			}
+		}
+		break;
+	case BUTTON_PRESSED_MORE_THAN_1_SECOND:
+		if (!is_button_pressed(MODIFY_BUTTON)) {
 			button_state[MODIFY_BUTTON] = BUTTON_RELEASED;
 		}
-//		if (is_expired())
-//			mode = INIT;
 		break;
-	default:
-		mode = INIT;
 	}
-
-	// MODIFY BUTTON
 	switch (button_state[INCREASE_BUTTON]) {
 	case BUTTON_RELEASED:
 		if (is_button_pressed(INCREASE_BUTTON)) {

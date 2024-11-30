@@ -11,11 +11,18 @@
 
 #define NO_OF_7SEG 4 	//fixed
 #define SCANNING_FREQ 	1 //Hz
-#define BLINKY_FREQ 	2 //Hz
+#define BLINKY_FREQ 	1 //Hz
 #define EXPIRED_PERIOD	10000 //ms
 enum ButtonState {
 	BUTTON_RELEASED, BUTTON_PRESSED, BUTTON_PRESSED_MORE_THAN_1_SECOND
 };
+// Task ID
+#define BLINK 999
+#define SCANNING_LED 110
+#define MODE_AUTO 111
+#define MODE_MODR 112
+#define MODE_MODY 113
+#define MODE_MODG 114
 
 #define NUM_0   (SEG_0_Pin | SEG_1_Pin | SEG_2_Pin | SEG_3_Pin | SEG_4_Pin | SEG_5_Pin)
 #define NUM_1   (SEG_1_Pin | SEG_2_Pin)

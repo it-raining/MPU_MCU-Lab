@@ -1,9 +1,9 @@
 ../Core/Src/fsm_traffic_light.c:18:6:display7SEG	16	static
 ../Core/Src/fsm_traffic_light.c:58:6:update_buffer	16	static
 ../Core/Src/fsm_traffic_light.c:64:6:scanning_led	8	static
-../Core/Src/fsm_traffic_light.c:70:6:increase_mode	4	static
-../Core/Src/fsm_traffic_light.c:92:6:fsm_for_auto	8	static
-../Core/Src/fsm_traffic_light.c:152:6:modify_red	8	static
-../Core/Src/fsm_traffic_light.c:162:6:modify_amber	8	static
-../Core/Src/fsm_traffic_light.c:172:6:modify_green	8	static
-../Core/Src/fsm_traffic_light.c:182:6:fsm_for_traffic_light	8	static
+../Core/Src/fsm_traffic_light.c:73:6:fsm_for_auto	8	static
+../Core/Src/fsm_traffic_light.c:128:6:modify_red	8	static
+../Core/Src/fsm_traffic_light.c:138:6:modify_amber	8	static
+../Core/Src/fsm_traffic_light.c:148:6:modify_green	8	static
+../Core/Src/fsm_traffic_light.c:158:6:increase_mode	8	static
+../Core/Src/fsm_traffic_light.c:180:6:fsm_for_traffic_light	8	static

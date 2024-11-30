@@ -36,7 +36,7 @@ typedef struct {
 void Scheduler_Init(void);
 void Scheduler_Update(void);
 void Scheduler_Dispatch_Tasks(void);
-uint32_t Scheduler_Add_Task(void (*pF)(void), const uint32_t DELAY, const uint32_t PERIOD);
+uint32_t Scheduler_Add_Task(void (*pF)(void),uint32_t taskID, uint32_t DELAY, const uint32_t PERIOD);
 uint8_t Scheduler_Remove_Task(uint32_t TaskID);
 
 
