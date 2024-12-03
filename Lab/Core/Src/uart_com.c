@@ -15,7 +15,7 @@ uint8_t index_buffer = 0;
 uint8_t buffer_flag = 0;
 
 CMD_FLAG command_flag = 0;
-uint8_t command_data = 0;
+int command_data = 0;
 
 void User_Init(UART_HandleTypeDef *UART_pointer, ADC_HandleTypeDef *ADC_pointer) {
 	huart = UART_pointer;
@@ -49,15 +49,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	}
 }
 
-void send_data(void) {
-	HAL_UART_Transmit(huart, (void*) str,
-			sprintf(str, "!ADC=%d#\r\n", command_data), 1000);
-}
 void command_parser_fsm(void) {
 	if (!strcmp(buffer, "!RST#")) {
 		HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
 		command_flag = START;
-		command_data = (uint8_t) HAL_ADC_GetValue(hadc);
+		command_data = HAL_ADC_GetValue(hadc);
 	}
 	if (!strcmp(buffer, "!OK#")) {
 		HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
@@ -66,6 +62,10 @@ void command_parser_fsm(void) {
 	}
 }
 
+void send_data(void) {
+	HAL_UART_Transmit(huart, (void*) str,
+			sprintf(str, "!ADC=%d#\r\n", command_data), 1000);
+}
 void uart_communiation_fsm(void) {
 	switch (command_flag) {
 	case START:

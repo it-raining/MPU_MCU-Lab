@@ -21,9 +21,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   8 .data         0000005c  20000000  08004000  00005000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000294  2000005c  0800405c  0000505c  2**2
+  9 .bss          00000298  2000005c  0800405c  0000505c  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  200002f0  0800405c  000052f0  2**0
+ 10 ._user_heap_stack 00000604  200002f4  0800405c  000052f4  2**0
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0000505c  2**0
                   CONTENTS, READONLY
@@ -37,11 +37,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00018926  00000000  00000000  00016bc4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000109f2  00000000  00000000  0002f4ea  2**0
+ 17 .debug_line   000109f0  00000000  00000000  0002f4ea  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0008d211  00000000  00000000  0003fedc  2**0
+ 18 .debug_str    0008d211  00000000  00000000  0003feda  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000cd0ed  2**0
+ 19 .comment      00000043  00000000  00000000  000cd0eb  2**0
                   CONTENTS, READONLY
  20 .debug_frame  00003d74  00000000  00000000  000cd130  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -148,7 +148,7 @@ int main(void)
  8000190:	d105      	bne.n	800019e <main+0x3e>
 			command_parser_fsm(&hadc1);
  8000192:	4805      	ldr	r0, [pc, #20]	@ (80001a8 <main+0x48>)
- 8000194:	f000 fbc6 	bl	8000924 <command_parser_fsm>
+ 8000194:	f000 fba8 	bl	80008e8 <command_parser_fsm>
 			buffer_flag = 0;
  8000198:	4b05      	ldr	r3, [pc, #20]	@ (80001b0 <main+0x50>)
  800019a:	2200      	movs	r2, #0
@@ -1382,7 +1382,7 @@ void *_sbrk(ptrdiff_t incr)
  80007ac:	20002800 	.word	0x20002800
  80007b0:	00000400 	.word	0x00000400
  80007b4:	2000013c 	.word	0x2000013c
- 80007b8:	200002f0 	.word	0x200002f0
+ 80007b8:	200002f8 	.word	0x200002f8
 
 080007bc <SystemInit>:
   * @note   This function should be used only after reset.
@@ -1408,7 +1408,7 @@ void SystemInit (void)
 uint8_t buffer_flag = 0;
 
 CMD_FLAG command_flag = 0;
-uint8_t command_data = 0;
+int command_data = 0;
 
 void User_Init(UART_HandleTypeDef *UART_pointer, ADC_HandleTypeDef *ADC_pointer) {
  80007c8:	b580      	push	{r7, lr}
@@ -1573,101 +1573,101 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
  80008e0:	2000019f 	.word	0x2000019f
  80008e4:	08003f70 	.word	0x08003f70
 
-080008e8 <send_data>:
+080008e8 <command_parser_fsm>:
 
-void send_data(void) {
- 80008e8:	b598      	push	{r3, r4, r7, lr}
- 80008ea:	af00      	add	r7, sp, #0
-	HAL_UART_Transmit(huart, (void*) str,
- 80008ec:	4b09      	ldr	r3, [pc, #36]	@ (8000914 <send_data+0x2c>)
- 80008ee:	681c      	ldr	r4, [r3, #0]
-			sprintf(str, "!ADC=%d#\r\n", command_data), 1000);
- 80008f0:	4b09      	ldr	r3, [pc, #36]	@ (8000918 <send_data+0x30>)
- 80008f2:	781b      	ldrb	r3, [r3, #0]
- 80008f4:	461a      	mov	r2, r3
- 80008f6:	4909      	ldr	r1, [pc, #36]	@ (800091c <send_data+0x34>)
- 80008f8:	4809      	ldr	r0, [pc, #36]	@ (8000920 <send_data+0x38>)
- 80008fa:	f002 fe7d 	bl	80035f8 <siprintf>
- 80008fe:	4603      	mov	r3, r0
-	HAL_UART_Transmit(huart, (void*) str,
- 8000900:	b29a      	uxth	r2, r3
- 8000902:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
- 8000906:	4906      	ldr	r1, [pc, #24]	@ (8000920 <send_data+0x38>)
- 8000908:	4620      	mov	r0, r4
- 800090a:	f002 f85b 	bl	80029c4 <HAL_UART_Transmit>
-}
- 800090e:	bf00      	nop
- 8000910:	bd98      	pop	{r3, r4, r7, pc}
- 8000912:	bf00      	nop
- 8000914:	20000140 	.word	0x20000140
- 8000918:	200001a1 	.word	0x200001a1
- 800091c:	08003f74 	.word	0x08003f74
- 8000920:	2000016c 	.word	0x2000016c
-
-08000924 <command_parser_fsm>:
 void command_parser_fsm(void) {
- 8000924:	b580      	push	{r7, lr}
- 8000926:	af00      	add	r7, sp, #0
+ 80008e8:	b580      	push	{r7, lr}
+ 80008ea:	af00      	add	r7, sp, #0
 	if (!strcmp(buffer, "!RST#")) {
- 8000928:	4915      	ldr	r1, [pc, #84]	@ (8000980 <command_parser_fsm+0x5c>)
- 800092a:	4816      	ldr	r0, [pc, #88]	@ (8000984 <command_parser_fsm+0x60>)
- 800092c:	f7ff fc0e 	bl	800014c <strcmp>
- 8000930:	4603      	mov	r3, r0
- 8000932:	2b00      	cmp	r3, #0
- 8000934:	d110      	bne.n	8000958 <command_parser_fsm+0x34>
+ 80008ec:	4915      	ldr	r1, [pc, #84]	@ (8000944 <command_parser_fsm+0x5c>)
+ 80008ee:	4816      	ldr	r0, [pc, #88]	@ (8000948 <command_parser_fsm+0x60>)
+ 80008f0:	f7ff fc2c 	bl	800014c <strcmp>
+ 80008f4:	4603      	mov	r3, r0
+ 80008f6:	2b00      	cmp	r3, #0
+ 80008f8:	d110      	bne.n	800091c <command_parser_fsm+0x34>
 		HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
- 8000936:	2201      	movs	r2, #1
- 8000938:	2120      	movs	r1, #32
- 800093a:	4813      	ldr	r0, [pc, #76]	@ (8000988 <command_parser_fsm+0x64>)
- 800093c:	f000 ff38 	bl	80017b0 <HAL_GPIO_WritePin>
+ 80008fa:	2201      	movs	r2, #1
+ 80008fc:	2120      	movs	r1, #32
+ 80008fe:	4813      	ldr	r0, [pc, #76]	@ (800094c <command_parser_fsm+0x64>)
+ 8000900:	f000 ff56 	bl	80017b0 <HAL_GPIO_WritePin>
 		command_flag = START;
- 8000940:	4b12      	ldr	r3, [pc, #72]	@ (800098c <command_parser_fsm+0x68>)
- 8000942:	2201      	movs	r2, #1
- 8000944:	701a      	strb	r2, [r3, #0]
-		command_data = (uint8_t) HAL_ADC_GetValue(hadc);
- 8000946:	4b12      	ldr	r3, [pc, #72]	@ (8000990 <command_parser_fsm+0x6c>)
- 8000948:	681b      	ldr	r3, [r3, #0]
- 800094a:	4618      	mov	r0, r3
- 800094c:	f000 fa54 	bl	8000df8 <HAL_ADC_GetValue>
- 8000950:	4603      	mov	r3, r0
- 8000952:	b2da      	uxtb	r2, r3
- 8000954:	4b0f      	ldr	r3, [pc, #60]	@ (8000994 <command_parser_fsm+0x70>)
- 8000956:	701a      	strb	r2, [r3, #0]
+ 8000904:	4b12      	ldr	r3, [pc, #72]	@ (8000950 <command_parser_fsm+0x68>)
+ 8000906:	2201      	movs	r2, #1
+ 8000908:	701a      	strb	r2, [r3, #0]
+		command_data = HAL_ADC_GetValue(hadc);
+ 800090a:	4b12      	ldr	r3, [pc, #72]	@ (8000954 <command_parser_fsm+0x6c>)
+ 800090c:	681b      	ldr	r3, [r3, #0]
+ 800090e:	4618      	mov	r0, r3
+ 8000910:	f000 fa72 	bl	8000df8 <HAL_ADC_GetValue>
+ 8000914:	4603      	mov	r3, r0
+ 8000916:	461a      	mov	r2, r3
+ 8000918:	4b0f      	ldr	r3, [pc, #60]	@ (8000958 <command_parser_fsm+0x70>)
+ 800091a:	601a      	str	r2, [r3, #0]
 	}
 	if (!strcmp(buffer, "!OK#")) {
- 8000958:	490f      	ldr	r1, [pc, #60]	@ (8000998 <command_parser_fsm+0x74>)
- 800095a:	480a      	ldr	r0, [pc, #40]	@ (8000984 <command_parser_fsm+0x60>)
- 800095c:	f7ff fbf6 	bl	800014c <strcmp>
- 8000960:	4603      	mov	r3, r0
- 8000962:	2b00      	cmp	r3, #0
- 8000964:	d10a      	bne.n	800097c <command_parser_fsm+0x58>
+ 800091c:	490f      	ldr	r1, [pc, #60]	@ (800095c <command_parser_fsm+0x74>)
+ 800091e:	480a      	ldr	r0, [pc, #40]	@ (8000948 <command_parser_fsm+0x60>)
+ 8000920:	f7ff fc14 	bl	800014c <strcmp>
+ 8000924:	4603      	mov	r3, r0
+ 8000926:	2b00      	cmp	r3, #0
+ 8000928:	d10a      	bne.n	8000940 <command_parser_fsm+0x58>
 		HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
- 8000966:	2200      	movs	r2, #0
- 8000968:	2120      	movs	r1, #32
- 800096a:	4807      	ldr	r0, [pc, #28]	@ (8000988 <command_parser_fsm+0x64>)
- 800096c:	f000 ff20 	bl	80017b0 <HAL_GPIO_WritePin>
+ 800092a:	2200      	movs	r2, #0
+ 800092c:	2120      	movs	r1, #32
+ 800092e:	4807      	ldr	r0, [pc, #28]	@ (800094c <command_parser_fsm+0x64>)
+ 8000930:	f000 ff3e 	bl	80017b0 <HAL_GPIO_WritePin>
 		command_flag = STOP;
- 8000970:	4b06      	ldr	r3, [pc, #24]	@ (800098c <command_parser_fsm+0x68>)
- 8000972:	2200      	movs	r2, #0
- 8000974:	701a      	strb	r2, [r3, #0]
+ 8000934:	4b06      	ldr	r3, [pc, #24]	@ (8000950 <command_parser_fsm+0x68>)
+ 8000936:	2200      	movs	r2, #0
+ 8000938:	701a      	strb	r2, [r3, #0]
 		command_data = 0; //reset value
- 8000976:	4b07      	ldr	r3, [pc, #28]	@ (8000994 <command_parser_fsm+0x70>)
- 8000978:	2200      	movs	r2, #0
- 800097a:	701a      	strb	r2, [r3, #0]
+ 800093a:	4b07      	ldr	r3, [pc, #28]	@ (8000958 <command_parser_fsm+0x70>)
+ 800093c:	2200      	movs	r2, #0
+ 800093e:	601a      	str	r2, [r3, #0]
 	}
 }
- 800097c:	bf00      	nop
- 800097e:	bd80      	pop	{r7, pc}
- 8000980:	08003f80 	.word	0x08003f80
- 8000984:	2000014c 	.word	0x2000014c
- 8000988:	40010800 	.word	0x40010800
- 800098c:	200001a0 	.word	0x200001a0
- 8000990:	20000144 	.word	0x20000144
- 8000994:	200001a1 	.word	0x200001a1
- 8000998:	08003f88 	.word	0x08003f88
+ 8000940:	bf00      	nop
+ 8000942:	bd80      	pop	{r7, pc}
+ 8000944:	08003f74 	.word	0x08003f74
+ 8000948:	2000014c 	.word	0x2000014c
+ 800094c:	40010800 	.word	0x40010800
+ 8000950:	200001a0 	.word	0x200001a0
+ 8000954:	20000144 	.word	0x20000144
+ 8000958:	200001a4 	.word	0x200001a4
+ 800095c:	08003f7c 	.word	0x08003f7c
+
+08000960 <send_data>:
+
+void send_data(void) {
+ 8000960:	b598      	push	{r3, r4, r7, lr}
+ 8000962:	af00      	add	r7, sp, #0
+	HAL_UART_Transmit(huart, (void*) str,
+ 8000964:	4b09      	ldr	r3, [pc, #36]	@ (800098c <send_data+0x2c>)
+ 8000966:	681c      	ldr	r4, [r3, #0]
+			sprintf(str, "!ADC=%d#\r\n", command_data), 1000);
+ 8000968:	4b09      	ldr	r3, [pc, #36]	@ (8000990 <send_data+0x30>)
+ 800096a:	681b      	ldr	r3, [r3, #0]
+ 800096c:	461a      	mov	r2, r3
+ 800096e:	4909      	ldr	r1, [pc, #36]	@ (8000994 <send_data+0x34>)
+ 8000970:	4809      	ldr	r0, [pc, #36]	@ (8000998 <send_data+0x38>)
+ 8000972:	f002 fe41 	bl	80035f8 <siprintf>
+ 8000976:	4603      	mov	r3, r0
+	HAL_UART_Transmit(huart, (void*) str,
+ 8000978:	b29a      	uxth	r2, r3
+ 800097a:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
+ 800097e:	4906      	ldr	r1, [pc, #24]	@ (8000998 <send_data+0x38>)
+ 8000980:	4620      	mov	r0, r4
+ 8000982:	f002 f81f 	bl	80029c4 <HAL_UART_Transmit>
+}
+ 8000986:	bf00      	nop
+ 8000988:	bd98      	pop	{r3, r4, r7, pc}
+ 800098a:	bf00      	nop
+ 800098c:	20000140 	.word	0x20000140
+ 8000990:	200001a4 	.word	0x200001a4
+ 8000994:	08003f84 	.word	0x08003f84
+ 8000998:	2000016c 	.word	0x2000016c
 
 0800099c <uart_communiation_fsm>:
-
 void uart_communiation_fsm(void) {
  800099c:	b580      	push	{r7, lr}
  800099e:	af00      	add	r7, sp, #0
@@ -1686,7 +1686,7 @@ void uart_communiation_fsm(void) {
  80009b4:	2b00      	cmp	r3, #0
  80009b6:	d00b      	beq.n	80009d0 <uart_communiation_fsm+0x34>
 			send_data();
- 80009b8:	f7ff ff96 	bl	80008e8 <send_data>
+ 80009b8:	f7ff ffd2 	bl	8000960 <send_data>
 			setTimer(0, CALLBACK_PERIOD);
  80009bc:	f640 31b8 	movw	r1, #3000	@ 0xbb8
  80009c0:	2000      	movs	r0, #0
@@ -1795,7 +1795,7 @@ LoopFillZerobss:
   ldr r2, =_sbss
  8000a1c:	2000005c 	.word	0x2000005c
   ldr r4, =_ebss
- 8000a20:	200002f0 	.word	0x200002f0
+ 8000a20:	200002f4 	.word	0x200002f4
 
 08000a24 <ADC1_2_IRQHandler>:
  * @retval : None
@@ -1943,7 +1943,7 @@ __weak void HAL_IncTick(void)
  8000acc:	bc80      	pop	{r7}
  8000ace:	4770      	bx	lr
  8000ad0:	20000008 	.word	0x20000008
- 8000ad4:	200001a4 	.word	0x200001a4
+ 8000ad4:	200001a8 	.word	0x200001a8
 
 08000ad8 <HAL_GetTick>:
   * @note  This function is declared as __weak to be overwritten in case of other
@@ -1962,7 +1962,7 @@ __weak uint32_t HAL_GetTick(void)
  8000ae2:	46bd      	mov	sp, r7
  8000ae4:	bc80      	pop	{r7}
  8000ae6:	4770      	bx	lr
- 8000ae8:	200001a4 	.word	0x200001a4
+ 8000ae8:	200001a8 	.word	0x200001a8
 
 08000aec <HAL_ADC_Init>:
   *         of structure "ADC_InitTypeDef".
@@ -9904,7 +9904,7 @@ static void UART_SetConfig(UART_HandleTypeDef *huart)
  8003726:	6054      	str	r4, [r2, #4]
  8003728:	e7cb      	b.n	80036c2 <_free_r+0x22>
  800372a:	bd38      	pop	{r3, r4, r5, pc}
- 800372c:	200002ec 	.word	0x200002ec
+ 800372c:	200002f0 	.word	0x200002f0
 
 08003730 <sbrk_aligned>:
  8003730:	b570      	push	{r4, r5, r6, lr}
@@ -9934,7 +9934,7 @@ static void UART_SetConfig(UART_HandleTypeDef *huart)
  800376a:	d1f2      	bne.n	8003752 <sbrk_aligned+0x22>
  800376c:	e7ef      	b.n	800374e <sbrk_aligned+0x1e>
  800376e:	bf00      	nop
- 8003770:	200002e8 	.word	0x200002e8
+ 8003770:	200002ec 	.word	0x200002ec
 
 08003774 <_malloc_r>:
  8003774:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -10044,19 +10044,19 @@ static void UART_SetConfig(UART_HandleTypeDef *huart)
  800386a:	6005      	str	r5, [r0, #0]
  800386c:	e7d6      	b.n	800381c <_malloc_r+0xa8>
  800386e:	bf00      	nop
- 8003870:	200002ec 	.word	0x200002ec
+ 8003870:	200002f0 	.word	0x200002f0
 
 08003874 <__malloc_lock>:
  8003874:	4801      	ldr	r0, [pc, #4]	@ (800387c <__malloc_lock+0x8>)
  8003876:	f7ff bf11 	b.w	800369c <__retarget_lock_acquire_recursive>
  800387a:	bf00      	nop
- 800387c:	200002e4 	.word	0x200002e4
+ 800387c:	200002e8 	.word	0x200002e8
 
 08003880 <__malloc_unlock>:
  8003880:	4801      	ldr	r0, [pc, #4]	@ (8003888 <__malloc_unlock+0x8>)
  8003882:	f7ff bf0c 	b.w	800369e <__retarget_lock_release_recursive>
  8003886:	bf00      	nop
- 8003888:	200002e4 	.word	0x200002e4
+ 8003888:	200002e8 	.word	0x200002e8
 
 0800388c <__ssputs_r>:
  800388c:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -10709,7 +10709,7 @@ static void UART_SetConfig(UART_HandleTypeDef *huart)
  8003eaa:	b103      	cbz	r3, 8003eae <_sbrk_r+0x1a>
  8003eac:	6023      	str	r3, [r4, #0]
  8003eae:	bd38      	pop	{r3, r4, r5, pc}
- 8003eb0:	200002e0 	.word	0x200002e0
+ 8003eb0:	200002e4 	.word	0x200002e4
 
 08003eb4 <memchr>:
  8003eb4:	4603      	mov	r3, r0

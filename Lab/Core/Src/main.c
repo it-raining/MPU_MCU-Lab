@@ -106,12 +106,6 @@ int main(void)
 	HAL_TIM_Base_Start_IT(&htim2);
 	User_Init(&huart2, &hadc1);
 	while (1) {
-//		if (temp == 13) {
-//			HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-//		}
-//		else {
-//			HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-//		}
 		if (buffer_flag == 1) {
 			command_parser_fsm(&hadc1);
 			buffer_flag = 0;
