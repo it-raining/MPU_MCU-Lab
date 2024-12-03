@@ -161,17 +161,17 @@ void increase_mode() {
 	switch (mode) {
 	case MODIFY_RED:
 		buffer = red_light;
-		state_ID = Scheduler_Add_Task(modify_red, MODE_MODR, ONE_SEC, ONE_SEC);
+		state_ID = Scheduler_Add_Task(modify_red, ONE_SEC, ONE_SEC);
 //		setTimer(EXPIRED, EXPIRED_PERIOD);
 		break;
 	case MODIFY_AMBER:
 		buffer = amber_light;
-		state_ID = Scheduler_Add_Task(modify_amber, MODE_MODY, ONE_SEC, ONE_SEC);
+		state_ID = Scheduler_Add_Task(modify_amber, ONE_SEC, ONE_SEC);
 //		setTimer(EXPIRED, EXPIRED_PERIOD);
 		break;
 	case MODIFY_GREEN:
 		buffer = green_light;
-		state_ID = Scheduler_Add_Task(modify_green, MODE_MODG, ONE_SEC, ONE_SEC);
+		state_ID = Scheduler_Add_Task(modify_green, ONE_SEC, ONE_SEC);
 //		setTimer(EXPIRED, EXPIRED_PERIOD);
 		break;
 	default:
@@ -184,8 +184,8 @@ void fsm_for_traffic_light(void) {
 		count_1 = red_light;
 		count_2 = green_light;
 		line_1 = RED, line_2 = GREEN;
-		state_ID = Scheduler_Add_Task(fsm_for_auto, MODE_AUTO, ONE_SEC,
-				ONE_SEC);
+		state_ID = Scheduler_Add_Task(fsm_for_auto, ONE_SEC,
+		ONE_SEC);
 		mode = AUTO;
 	}
 	switch (button_state[MODIFY_BUTTON]) {

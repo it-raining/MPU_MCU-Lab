@@ -100,8 +100,8 @@ int main(void) {
 	Scheduler_Init();
 	// Add tasks here
 //  Scheduler_Add_Task(button_reading, ONE_SEC, 10);
-	Scheduler_Add_Task(BlinkyLED, BLINK, ONE_SEC, ONE_SEC / BLINKY_FREQ);
-	Scheduler_Add_Task(scanning_led, SCANNING_LED, ONE_SEC,
+	Scheduler_Add_Task(BlinkyLED, ONE_SEC, ONE_SEC);
+	Scheduler_Add_Task(scanning_led, ONE_SEC,
 			(ONE_SEC / NO_OF_7SEG) / SCANNING_FREQ);
 	while (1) {
 		fsm_for_traffic_light();

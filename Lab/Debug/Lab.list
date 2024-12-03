@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  00004084  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000877e  00000000  00000000  000040ad  2**0
+ 12 .debug_info   000087b6  00000000  00000000  000040ad  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00001bc4  00000000  00000000  0000c82b  2**0
+ 13 .debug_abbrev 00001bc5  00000000  00000000  0000c863  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000a48  00000000  00000000  0000e3f0  2**3
+ 14 .debug_aranges 00000a50  00000000  00000000  0000e428  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 000007c9  00000000  00000000  0000ee38  2**0
+ 15 .debug_rnglists 000007cf  00000000  00000000  0000ee78  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00017db0  00000000  00000000  0000f601  2**0
+ 16 .debug_macro  00017db0  00000000  00000000  0000f647  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000caf2  00000000  00000000  000273b1  2**0
+ 17 .debug_line   0000ca82  00000000  00000000  000273f7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000861f3  00000000  00000000  00033ea3  2**0
+ 18 .debug_str    00086209  00000000  00000000  00033e79  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000ba096  2**0
+ 19 .comment      00000043  00000000  00000000  000ba082  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00002c0c  00000000  00000000  000ba0dc  2**2
+ 20 .debug_frame  00002c2c  00000000  00000000  000ba0c8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000004b  00000000  00000000  000bcce8  2**0
+ 21 .debug_line_str 0000004b  00000000  00000000  000bccf4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -689,17 +689,17 @@ void increase_mode() {
  8000560:	b580      	push	{r7, lr}
  8000562:	af00      	add	r7, sp, #0
 	LED_RED_1_GPIO_Port->ODR |= ALL_LED;
- 8000564:	4b2a      	ldr	r3, [pc, #168]	@ (8000610 <increase_mode+0xb0>)
+ 8000564:	4b28      	ldr	r3, [pc, #160]	@ (8000608 <increase_mode+0xa8>)
  8000566:	68db      	ldr	r3, [r3, #12]
- 8000568:	4a29      	ldr	r2, [pc, #164]	@ (8000610 <increase_mode+0xb0>)
+ 8000568:	4a27      	ldr	r2, [pc, #156]	@ (8000608 <increase_mode+0xa8>)
  800056a:	f443 53ff 	orr.w	r3, r3, #8160	@ 0x1fe0
  800056e:	f043 031e 	orr.w	r3, r3, #30
  8000572:	60d3      	str	r3, [r2, #12]
 	mode = (mode + 1) % 5;
- 8000574:	4b27      	ldr	r3, [pc, #156]	@ (8000614 <increase_mode+0xb4>)
+ 8000574:	4b25      	ldr	r3, [pc, #148]	@ (800060c <increase_mode+0xac>)
  8000576:	781b      	ldrb	r3, [r3, #0]
  8000578:	1c5a      	adds	r2, r3, #1
- 800057a:	4b27      	ldr	r3, [pc, #156]	@ (8000618 <increase_mode+0xb8>)
+ 800057a:	4b25      	ldr	r3, [pc, #148]	@ (8000610 <increase_mode+0xb0>)
  800057c:	fb83 1302 	smull	r1, r3, r3, r2
  8000580:	1059      	asrs	r1, r3, #1
  8000582:	17d3      	asrs	r3, r2, #31
@@ -709,1528 +709,1529 @@ void increase_mode() {
  800058a:	440b      	add	r3, r1
  800058c:	1ad1      	subs	r1, r2, r3
  800058e:	b2ca      	uxtb	r2, r1
- 8000590:	4b20      	ldr	r3, [pc, #128]	@ (8000614 <increase_mode+0xb4>)
+ 8000590:	4b1e      	ldr	r3, [pc, #120]	@ (800060c <increase_mode+0xac>)
  8000592:	701a      	strb	r2, [r3, #0]
 	switch (mode) {
- 8000594:	4b1f      	ldr	r3, [pc, #124]	@ (8000614 <increase_mode+0xb4>)
+ 8000594:	4b1d      	ldr	r3, [pc, #116]	@ (800060c <increase_mode+0xac>)
  8000596:	781b      	ldrb	r3, [r3, #0]
  8000598:	2b04      	cmp	r3, #4
- 800059a:	d026      	beq.n	80005ea <increase_mode+0x8a>
+ 800059a:	d024      	beq.n	80005e6 <increase_mode+0x86>
  800059c:	2b04      	cmp	r3, #4
- 800059e:	dc34      	bgt.n	800060a <increase_mode+0xaa>
+ 800059e:	dc31      	bgt.n	8000604 <increase_mode+0xa4>
  80005a0:	2b02      	cmp	r3, #2
  80005a2:	d002      	beq.n	80005aa <increase_mode+0x4a>
  80005a4:	2b03      	cmp	r3, #3
- 80005a6:	d010      	beq.n	80005ca <increase_mode+0x6a>
-		state_ID = Scheduler_Add_Task(modify_green, MODE_MODG, ONE_SEC, ONE_SEC);
+ 80005a6:	d00f      	beq.n	80005c8 <increase_mode+0x68>
+		state_ID = Scheduler_Add_Task(modify_green, ONE_SEC, ONE_SEC);
 //		setTimer(EXPIRED, EXPIRED_PERIOD);
 		break;
 	default:
 	}
 }
- 80005a8:	e02f      	b.n	800060a <increase_mode+0xaa>
+ 80005a8:	e02c      	b.n	8000604 <increase_mode+0xa4>
 		buffer = red_light;
- 80005aa:	4b1c      	ldr	r3, [pc, #112]	@ (800061c <increase_mode+0xbc>)
+ 80005aa:	4b1a      	ldr	r3, [pc, #104]	@ (8000614 <increase_mode+0xb4>)
  80005ac:	781a      	ldrb	r2, [r3, #0]
- 80005ae:	4b1c      	ldr	r3, [pc, #112]	@ (8000620 <increase_mode+0xc0>)
+ 80005ae:	4b1a      	ldr	r3, [pc, #104]	@ (8000618 <increase_mode+0xb8>)
  80005b0:	701a      	strb	r2, [r3, #0]
-		state_ID = Scheduler_Add_Task(modify_red, MODE_MODR, ONE_SEC, ONE_SEC);
- 80005b2:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
- 80005b6:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
- 80005ba:	2170      	movs	r1, #112	@ 0x70
- 80005bc:	4819      	ldr	r0, [pc, #100]	@ (8000624 <increase_mode+0xc4>)
- 80005be:	f000 fb7b 	bl	8000cb8 <Scheduler_Add_Task>
- 80005c2:	4603      	mov	r3, r0
- 80005c4:	4a18      	ldr	r2, [pc, #96]	@ (8000628 <increase_mode+0xc8>)
- 80005c6:	6013      	str	r3, [r2, #0]
+		state_ID = Scheduler_Add_Task(modify_red, ONE_SEC, ONE_SEC);
+ 80005b2:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
+ 80005b6:	f44f 717a 	mov.w	r1, #1000	@ 0x3e8
+ 80005ba:	4818      	ldr	r0, [pc, #96]	@ (800061c <increase_mode+0xbc>)
+ 80005bc:	f000 fc10 	bl	8000de0 <Scheduler_Add_Task>
+ 80005c0:	4603      	mov	r3, r0
+ 80005c2:	4a17      	ldr	r2, [pc, #92]	@ (8000620 <increase_mode+0xc0>)
+ 80005c4:	6013      	str	r3, [r2, #0]
 		break;
- 80005c8:	e01f      	b.n	800060a <increase_mode+0xaa>
+ 80005c6:	e01d      	b.n	8000604 <increase_mode+0xa4>
 		buffer = amber_light;
- 80005ca:	4b18      	ldr	r3, [pc, #96]	@ (800062c <increase_mode+0xcc>)
- 80005cc:	781a      	ldrb	r2, [r3, #0]
- 80005ce:	4b14      	ldr	r3, [pc, #80]	@ (8000620 <increase_mode+0xc0>)
- 80005d0:	701a      	strb	r2, [r3, #0]
-		state_ID = Scheduler_Add_Task(modify_amber, MODE_MODY, ONE_SEC, ONE_SEC);
- 80005d2:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
- 80005d6:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
- 80005da:	2171      	movs	r1, #113	@ 0x71
- 80005dc:	4814      	ldr	r0, [pc, #80]	@ (8000630 <increase_mode+0xd0>)
- 80005de:	f000 fb6b 	bl	8000cb8 <Scheduler_Add_Task>
- 80005e2:	4603      	mov	r3, r0
- 80005e4:	4a10      	ldr	r2, [pc, #64]	@ (8000628 <increase_mode+0xc8>)
- 80005e6:	6013      	str	r3, [r2, #0]
+ 80005c8:	4b16      	ldr	r3, [pc, #88]	@ (8000624 <increase_mode+0xc4>)
+ 80005ca:	781a      	ldrb	r2, [r3, #0]
+ 80005cc:	4b12      	ldr	r3, [pc, #72]	@ (8000618 <increase_mode+0xb8>)
+ 80005ce:	701a      	strb	r2, [r3, #0]
+		state_ID = Scheduler_Add_Task(modify_amber, ONE_SEC, ONE_SEC);
+ 80005d0:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
+ 80005d4:	f44f 717a 	mov.w	r1, #1000	@ 0x3e8
+ 80005d8:	4813      	ldr	r0, [pc, #76]	@ (8000628 <increase_mode+0xc8>)
+ 80005da:	f000 fc01 	bl	8000de0 <Scheduler_Add_Task>
+ 80005de:	4603      	mov	r3, r0
+ 80005e0:	4a0f      	ldr	r2, [pc, #60]	@ (8000620 <increase_mode+0xc0>)
+ 80005e2:	6013      	str	r3, [r2, #0]
 		break;
- 80005e8:	e00f      	b.n	800060a <increase_mode+0xaa>
+ 80005e4:	e00e      	b.n	8000604 <increase_mode+0xa4>
 		buffer = green_light;
- 80005ea:	4b12      	ldr	r3, [pc, #72]	@ (8000634 <increase_mode+0xd4>)
- 80005ec:	781a      	ldrb	r2, [r3, #0]
- 80005ee:	4b0c      	ldr	r3, [pc, #48]	@ (8000620 <increase_mode+0xc0>)
- 80005f0:	701a      	strb	r2, [r3, #0]
-		state_ID = Scheduler_Add_Task(modify_green, MODE_MODG, ONE_SEC, ONE_SEC);
- 80005f2:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
- 80005f6:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
- 80005fa:	2172      	movs	r1, #114	@ 0x72
- 80005fc:	480e      	ldr	r0, [pc, #56]	@ (8000638 <increase_mode+0xd8>)
- 80005fe:	f000 fb5b 	bl	8000cb8 <Scheduler_Add_Task>
- 8000602:	4603      	mov	r3, r0
- 8000604:	4a08      	ldr	r2, [pc, #32]	@ (8000628 <increase_mode+0xc8>)
- 8000606:	6013      	str	r3, [r2, #0]
+ 80005e6:	4b11      	ldr	r3, [pc, #68]	@ (800062c <increase_mode+0xcc>)
+ 80005e8:	781a      	ldrb	r2, [r3, #0]
+ 80005ea:	4b0b      	ldr	r3, [pc, #44]	@ (8000618 <increase_mode+0xb8>)
+ 80005ec:	701a      	strb	r2, [r3, #0]
+		state_ID = Scheduler_Add_Task(modify_green, ONE_SEC, ONE_SEC);
+ 80005ee:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
+ 80005f2:	f44f 717a 	mov.w	r1, #1000	@ 0x3e8
+ 80005f6:	480e      	ldr	r0, [pc, #56]	@ (8000630 <increase_mode+0xd0>)
+ 80005f8:	f000 fbf2 	bl	8000de0 <Scheduler_Add_Task>
+ 80005fc:	4603      	mov	r3, r0
+ 80005fe:	4a08      	ldr	r2, [pc, #32]	@ (8000620 <increase_mode+0xc0>)
+ 8000600:	6013      	str	r3, [r2, #0]
 		break;
- 8000608:	bf00      	nop
+ 8000602:	bf00      	nop
 }
- 800060a:	bf00      	nop
- 800060c:	bd80      	pop	{r7, pc}
- 800060e:	bf00      	nop
- 8000610:	40010c00 	.word	0x40010c00
- 8000614:	200000ad 	.word	0x200000ad
- 8000618:	66666667 	.word	0x66666667
- 800061c:	20000000 	.word	0x20000000
- 8000620:	200000a4 	.word	0x200000a4
- 8000624:	080004a1 	.word	0x080004a1
- 8000628:	200000b0 	.word	0x200000b0
- 800062c:	20000001 	.word	0x20000001
- 8000630:	080004e1 	.word	0x080004e1
- 8000634:	20000002 	.word	0x20000002
- 8000638:	08000521 	.word	0x08000521
+ 8000604:	bf00      	nop
+ 8000606:	bd80      	pop	{r7, pc}
+ 8000608:	40010c00 	.word	0x40010c00
+ 800060c:	200000ad 	.word	0x200000ad
+ 8000610:	66666667 	.word	0x66666667
+ 8000614:	20000000 	.word	0x20000000
+ 8000618:	200000a4 	.word	0x200000a4
+ 800061c:	080004a1 	.word	0x080004a1
+ 8000620:	200000b0 	.word	0x200000b0
+ 8000624:	20000001 	.word	0x20000001
+ 8000628:	080004e1 	.word	0x080004e1
+ 800062c:	20000002 	.word	0x20000002
+ 8000630:	08000521 	.word	0x08000521
 
-0800063c <fsm_for_traffic_light>:
+08000634 <fsm_for_traffic_light>:
 void fsm_for_traffic_light(void) {
- 800063c:	b580      	push	{r7, lr}
- 800063e:	af00      	add	r7, sp, #0
+ 8000634:	b580      	push	{r7, lr}
+ 8000636:	af00      	add	r7, sp, #0
 	if (mode == INIT) {
- 8000640:	4b85      	ldr	r3, [pc, #532]	@ (8000858 <fsm_for_traffic_light+0x21c>)
- 8000642:	781b      	ldrb	r3, [r3, #0]
- 8000644:	2b00      	cmp	r3, #0
- 8000646:	d12b      	bne.n	80006a0 <fsm_for_traffic_light+0x64>
+ 8000638:	4b84      	ldr	r3, [pc, #528]	@ (800084c <fsm_for_traffic_light+0x218>)
+ 800063a:	781b      	ldrb	r3, [r3, #0]
+ 800063c:	2b00      	cmp	r3, #0
+ 800063e:	d12a      	bne.n	8000696 <fsm_for_traffic_light+0x62>
 		LED_RED_1_GPIO_Port->ODR |= ALL_LED;
- 8000648:	4b84      	ldr	r3, [pc, #528]	@ (800085c <fsm_for_traffic_light+0x220>)
- 800064a:	68db      	ldr	r3, [r3, #12]
- 800064c:	4a83      	ldr	r2, [pc, #524]	@ (800085c <fsm_for_traffic_light+0x220>)
- 800064e:	f443 53ff 	orr.w	r3, r3, #8160	@ 0x1fe0
- 8000652:	f043 031e 	orr.w	r3, r3, #30
- 8000656:	60d3      	str	r3, [r2, #12]
+ 8000640:	4b83      	ldr	r3, [pc, #524]	@ (8000850 <fsm_for_traffic_light+0x21c>)
+ 8000642:	68db      	ldr	r3, [r3, #12]
+ 8000644:	4a82      	ldr	r2, [pc, #520]	@ (8000850 <fsm_for_traffic_light+0x21c>)
+ 8000646:	f443 53ff 	orr.w	r3, r3, #8160	@ 0x1fe0
+ 800064a:	f043 031e 	orr.w	r3, r3, #30
+ 800064e:	60d3      	str	r3, [r2, #12]
 		red_light = green_light + amber_light; // adjust timing
- 8000658:	4b81      	ldr	r3, [pc, #516]	@ (8000860 <fsm_for_traffic_light+0x224>)
- 800065a:	781a      	ldrb	r2, [r3, #0]
- 800065c:	4b81      	ldr	r3, [pc, #516]	@ (8000864 <fsm_for_traffic_light+0x228>)
- 800065e:	781b      	ldrb	r3, [r3, #0]
- 8000660:	4413      	add	r3, r2
- 8000662:	b2da      	uxtb	r2, r3
- 8000664:	4b80      	ldr	r3, [pc, #512]	@ (8000868 <fsm_for_traffic_light+0x22c>)
- 8000666:	701a      	strb	r2, [r3, #0]
+ 8000650:	4b80      	ldr	r3, [pc, #512]	@ (8000854 <fsm_for_traffic_light+0x220>)
+ 8000652:	781a      	ldrb	r2, [r3, #0]
+ 8000654:	4b80      	ldr	r3, [pc, #512]	@ (8000858 <fsm_for_traffic_light+0x224>)
+ 8000656:	781b      	ldrb	r3, [r3, #0]
+ 8000658:	4413      	add	r3, r2
+ 800065a:	b2da      	uxtb	r2, r3
+ 800065c:	4b7f      	ldr	r3, [pc, #508]	@ (800085c <fsm_for_traffic_light+0x228>)
+ 800065e:	701a      	strb	r2, [r3, #0]
 		count_1 = red_light;
- 8000668:	4b7f      	ldr	r3, [pc, #508]	@ (8000868 <fsm_for_traffic_light+0x22c>)
- 800066a:	781a      	ldrb	r2, [r3, #0]
- 800066c:	4b7f      	ldr	r3, [pc, #508]	@ (800086c <fsm_for_traffic_light+0x230>)
- 800066e:	701a      	strb	r2, [r3, #0]
+ 8000660:	4b7e      	ldr	r3, [pc, #504]	@ (800085c <fsm_for_traffic_light+0x228>)
+ 8000662:	781a      	ldrb	r2, [r3, #0]
+ 8000664:	4b7e      	ldr	r3, [pc, #504]	@ (8000860 <fsm_for_traffic_light+0x22c>)
+ 8000666:	701a      	strb	r2, [r3, #0]
 		count_2 = green_light;
- 8000670:	4b7b      	ldr	r3, [pc, #492]	@ (8000860 <fsm_for_traffic_light+0x224>)
- 8000672:	781a      	ldrb	r2, [r3, #0]
- 8000674:	4b7e      	ldr	r3, [pc, #504]	@ (8000870 <fsm_for_traffic_light+0x234>)
- 8000676:	701a      	strb	r2, [r3, #0]
+ 8000668:	4b7a      	ldr	r3, [pc, #488]	@ (8000854 <fsm_for_traffic_light+0x220>)
+ 800066a:	781a      	ldrb	r2, [r3, #0]
+ 800066c:	4b7d      	ldr	r3, [pc, #500]	@ (8000864 <fsm_for_traffic_light+0x230>)
+ 800066e:	701a      	strb	r2, [r3, #0]
 		line_1 = RED, line_2 = GREEN;
- 8000678:	4b7e      	ldr	r3, [pc, #504]	@ (8000874 <fsm_for_traffic_light+0x238>)
- 800067a:	2200      	movs	r2, #0
- 800067c:	701a      	strb	r2, [r3, #0]
- 800067e:	4b7e      	ldr	r3, [pc, #504]	@ (8000878 <fsm_for_traffic_light+0x23c>)
- 8000680:	2201      	movs	r2, #1
- 8000682:	701a      	strb	r2, [r3, #0]
-		state_ID = Scheduler_Add_Task(fsm_for_auto, MODE_AUTO, ONE_SEC,
- 8000684:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
- 8000688:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
- 800068c:	216f      	movs	r1, #111	@ 0x6f
- 800068e:	487b      	ldr	r0, [pc, #492]	@ (800087c <fsm_for_traffic_light+0x240>)
- 8000690:	f000 fb12 	bl	8000cb8 <Scheduler_Add_Task>
- 8000694:	4603      	mov	r3, r0
- 8000696:	4a7a      	ldr	r2, [pc, #488]	@ (8000880 <fsm_for_traffic_light+0x244>)
- 8000698:	6013      	str	r3, [r2, #0]
-				ONE_SEC);
+ 8000670:	4b7d      	ldr	r3, [pc, #500]	@ (8000868 <fsm_for_traffic_light+0x234>)
+ 8000672:	2200      	movs	r2, #0
+ 8000674:	701a      	strb	r2, [r3, #0]
+ 8000676:	4b7d      	ldr	r3, [pc, #500]	@ (800086c <fsm_for_traffic_light+0x238>)
+ 8000678:	2201      	movs	r2, #1
+ 800067a:	701a      	strb	r2, [r3, #0]
+		state_ID = Scheduler_Add_Task(fsm_for_auto, ONE_SEC,
+ 800067c:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
+ 8000680:	f44f 717a 	mov.w	r1, #1000	@ 0x3e8
+ 8000684:	487a      	ldr	r0, [pc, #488]	@ (8000870 <fsm_for_traffic_light+0x23c>)
+ 8000686:	f000 fbab 	bl	8000de0 <Scheduler_Add_Task>
+ 800068a:	4603      	mov	r3, r0
+ 800068c:	4a79      	ldr	r2, [pc, #484]	@ (8000874 <fsm_for_traffic_light+0x240>)
+ 800068e:	6013      	str	r3, [r2, #0]
+		ONE_SEC);
 		mode = AUTO;
- 800069a:	4b6f      	ldr	r3, [pc, #444]	@ (8000858 <fsm_for_traffic_light+0x21c>)
- 800069c:	2201      	movs	r2, #1
- 800069e:	701a      	strb	r2, [r3, #0]
+ 8000690:	4b6e      	ldr	r3, [pc, #440]	@ (800084c <fsm_for_traffic_light+0x218>)
+ 8000692:	2201      	movs	r2, #1
+ 8000694:	701a      	strb	r2, [r3, #0]
 	}
 	switch (button_state[MODIFY_BUTTON]) {
- 80006a0:	4b78      	ldr	r3, [pc, #480]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 80006a2:	781b      	ldrb	r3, [r3, #0]
- 80006a4:	2b02      	cmp	r3, #2
- 80006a6:	d02b      	beq.n	8000700 <fsm_for_traffic_light+0xc4>
- 80006a8:	2b02      	cmp	r3, #2
- 80006aa:	dc38      	bgt.n	800071e <fsm_for_traffic_light+0xe2>
- 80006ac:	2b00      	cmp	r3, #0
- 80006ae:	d002      	beq.n	80006b6 <fsm_for_traffic_light+0x7a>
- 80006b0:	2b01      	cmp	r3, #1
- 80006b2:	d011      	beq.n	80006d8 <fsm_for_traffic_light+0x9c>
- 80006b4:	e033      	b.n	800071e <fsm_for_traffic_light+0xe2>
+ 8000696:	4b78      	ldr	r3, [pc, #480]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 8000698:	781b      	ldrb	r3, [r3, #0]
+ 800069a:	2b02      	cmp	r3, #2
+ 800069c:	d02b      	beq.n	80006f6 <fsm_for_traffic_light+0xc2>
+ 800069e:	2b02      	cmp	r3, #2
+ 80006a0:	dc38      	bgt.n	8000714 <fsm_for_traffic_light+0xe0>
+ 80006a2:	2b00      	cmp	r3, #0
+ 80006a4:	d002      	beq.n	80006ac <fsm_for_traffic_light+0x78>
+ 80006a6:	2b01      	cmp	r3, #1
+ 80006a8:	d011      	beq.n	80006ce <fsm_for_traffic_light+0x9a>
+ 80006aa:	e033      	b.n	8000714 <fsm_for_traffic_light+0xe0>
 	case BUTTON_RELEASED:
 		if (is_button_pressed(MODIFY_BUTTON)) {
- 80006b6:	2000      	movs	r0, #0
- 80006b8:	f000 f952 	bl	8000960 <is_button_pressed>
- 80006bc:	4603      	mov	r3, r0
- 80006be:	2b00      	cmp	r3, #0
- 80006c0:	d028      	beq.n	8000714 <fsm_for_traffic_light+0xd8>
+ 80006ac:	2000      	movs	r0, #0
+ 80006ae:	f000 f951 	bl	8000954 <is_button_pressed>
+ 80006b2:	4603      	mov	r3, r0
+ 80006b4:	2b00      	cmp	r3, #0
+ 80006b6:	d028      	beq.n	800070a <fsm_for_traffic_light+0xd6>
 			Scheduler_Remove_Task(state_ID);
- 80006c2:	4b6f      	ldr	r3, [pc, #444]	@ (8000880 <fsm_for_traffic_light+0x244>)
- 80006c4:	681b      	ldr	r3, [r3, #0]
- 80006c6:	4618      	mov	r0, r3
- 80006c8:	f000 fbf4 	bl	8000eb4 <Scheduler_Remove_Task>
+ 80006b8:	4b6e      	ldr	r3, [pc, #440]	@ (8000874 <fsm_for_traffic_light+0x240>)
+ 80006ba:	681b      	ldr	r3, [r3, #0]
+ 80006bc:	4618      	mov	r0, r3
+ 80006be:	f000 fbf9 	bl	8000eb4 <Scheduler_Remove_Task>
 			increase_mode();
- 80006cc:	f7ff ff48 	bl	8000560 <increase_mode>
+ 80006c2:	f7ff ff4d 	bl	8000560 <increase_mode>
 			button_state[MODIFY_BUTTON] = BUTTON_PRESSED;
- 80006d0:	4b6c      	ldr	r3, [pc, #432]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 80006d2:	2201      	movs	r2, #1
- 80006d4:	701a      	strb	r2, [r3, #0]
+ 80006c6:	4b6c      	ldr	r3, [pc, #432]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 80006c8:	2201      	movs	r2, #1
+ 80006ca:	701a      	strb	r2, [r3, #0]
 		}
 		break;
- 80006d6:	e01d      	b.n	8000714 <fsm_for_traffic_light+0xd8>
+ 80006cc:	e01d      	b.n	800070a <fsm_for_traffic_light+0xd6>
 	case BUTTON_PRESSED:
 		if (!is_button_pressed(MODIFY_BUTTON)) {
- 80006d8:	2000      	movs	r0, #0
- 80006da:	f000 f941 	bl	8000960 <is_button_pressed>
- 80006de:	4603      	mov	r3, r0
- 80006e0:	2b00      	cmp	r3, #0
- 80006e2:	d103      	bne.n	80006ec <fsm_for_traffic_light+0xb0>
+ 80006ce:	2000      	movs	r0, #0
+ 80006d0:	f000 f940 	bl	8000954 <is_button_pressed>
+ 80006d4:	4603      	mov	r3, r0
+ 80006d6:	2b00      	cmp	r3, #0
+ 80006d8:	d103      	bne.n	80006e2 <fsm_for_traffic_light+0xae>
 			button_state[MODIFY_BUTTON] = BUTTON_RELEASED;
- 80006e4:	4b67      	ldr	r3, [pc, #412]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 80006e6:	2200      	movs	r2, #0
- 80006e8:	701a      	strb	r2, [r3, #0]
+ 80006da:	4b67      	ldr	r3, [pc, #412]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 80006dc:	2200      	movs	r2, #0
+ 80006de:	701a      	strb	r2, [r3, #0]
 		} else {
 			if (is_button_pressed_1s(MODIFY_BUTTON)) {
 				button_state[MODIFY_BUTTON] = BUTTON_PRESSED_MORE_THAN_1_SECOND;
 			}
 		}
 		break;
- 80006ea:	e015      	b.n	8000718 <fsm_for_traffic_light+0xdc>
+ 80006e0:	e015      	b.n	800070e <fsm_for_traffic_light+0xda>
 			if (is_button_pressed_1s(MODIFY_BUTTON)) {
- 80006ec:	2000      	movs	r0, #0
- 80006ee:	f000 f951 	bl	8000994 <is_button_pressed_1s>
- 80006f2:	4603      	mov	r3, r0
- 80006f4:	2b00      	cmp	r3, #0
- 80006f6:	d00f      	beq.n	8000718 <fsm_for_traffic_light+0xdc>
+ 80006e2:	2000      	movs	r0, #0
+ 80006e4:	f000 f950 	bl	8000988 <is_button_pressed_1s>
+ 80006e8:	4603      	mov	r3, r0
+ 80006ea:	2b00      	cmp	r3, #0
+ 80006ec:	d00f      	beq.n	800070e <fsm_for_traffic_light+0xda>
 				button_state[MODIFY_BUTTON] = BUTTON_PRESSED_MORE_THAN_1_SECOND;
- 80006f8:	4b62      	ldr	r3, [pc, #392]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 80006fa:	2202      	movs	r2, #2
- 80006fc:	701a      	strb	r2, [r3, #0]
+ 80006ee:	4b62      	ldr	r3, [pc, #392]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 80006f0:	2202      	movs	r2, #2
+ 80006f2:	701a      	strb	r2, [r3, #0]
 		break;
- 80006fe:	e00b      	b.n	8000718 <fsm_for_traffic_light+0xdc>
+ 80006f4:	e00b      	b.n	800070e <fsm_for_traffic_light+0xda>
 	case BUTTON_PRESSED_MORE_THAN_1_SECOND:
 		if (!is_button_pressed(MODIFY_BUTTON)) {
- 8000700:	2000      	movs	r0, #0
- 8000702:	f000 f92d 	bl	8000960 <is_button_pressed>
- 8000706:	4603      	mov	r3, r0
- 8000708:	2b00      	cmp	r3, #0
- 800070a:	d107      	bne.n	800071c <fsm_for_traffic_light+0xe0>
+ 80006f6:	2000      	movs	r0, #0
+ 80006f8:	f000 f92c 	bl	8000954 <is_button_pressed>
+ 80006fc:	4603      	mov	r3, r0
+ 80006fe:	2b00      	cmp	r3, #0
+ 8000700:	d107      	bne.n	8000712 <fsm_for_traffic_light+0xde>
 			button_state[MODIFY_BUTTON] = BUTTON_RELEASED;
- 800070c:	4b5d      	ldr	r3, [pc, #372]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 800070e:	2200      	movs	r2, #0
- 8000710:	701a      	strb	r2, [r3, #0]
+ 8000702:	4b5d      	ldr	r3, [pc, #372]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 8000704:	2200      	movs	r2, #0
+ 8000706:	701a      	strb	r2, [r3, #0]
 		}
 		break;
- 8000712:	e003      	b.n	800071c <fsm_for_traffic_light+0xe0>
+ 8000708:	e003      	b.n	8000712 <fsm_for_traffic_light+0xde>
 		break;
- 8000714:	bf00      	nop
- 8000716:	e002      	b.n	800071e <fsm_for_traffic_light+0xe2>
+ 800070a:	bf00      	nop
+ 800070c:	e002      	b.n	8000714 <fsm_for_traffic_light+0xe0>
 		break;
- 8000718:	bf00      	nop
- 800071a:	e000      	b.n	800071e <fsm_for_traffic_light+0xe2>
+ 800070e:	bf00      	nop
+ 8000710:	e000      	b.n	8000714 <fsm_for_traffic_light+0xe0>
 		break;
- 800071c:	bf00      	nop
+ 8000712:	bf00      	nop
 	}
 	switch (button_state[INCREASE_BUTTON]) {
- 800071e:	4b59      	ldr	r3, [pc, #356]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 8000720:	785b      	ldrb	r3, [r3, #1]
- 8000722:	2b02      	cmp	r3, #2
- 8000724:	d034      	beq.n	8000790 <fsm_for_traffic_light+0x154>
- 8000726:	2b02      	cmp	r3, #2
- 8000728:	dc41      	bgt.n	80007ae <fsm_for_traffic_light+0x172>
- 800072a:	2b00      	cmp	r3, #0
- 800072c:	d002      	beq.n	8000734 <fsm_for_traffic_light+0xf8>
- 800072e:	2b01      	cmp	r3, #1
- 8000730:	d01a      	beq.n	8000768 <fsm_for_traffic_light+0x12c>
- 8000732:	e03c      	b.n	80007ae <fsm_for_traffic_light+0x172>
+ 8000714:	4b58      	ldr	r3, [pc, #352]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 8000716:	785b      	ldrb	r3, [r3, #1]
+ 8000718:	2b02      	cmp	r3, #2
+ 800071a:	d034      	beq.n	8000786 <fsm_for_traffic_light+0x152>
+ 800071c:	2b02      	cmp	r3, #2
+ 800071e:	dc41      	bgt.n	80007a4 <fsm_for_traffic_light+0x170>
+ 8000720:	2b00      	cmp	r3, #0
+ 8000722:	d002      	beq.n	800072a <fsm_for_traffic_light+0xf6>
+ 8000724:	2b01      	cmp	r3, #1
+ 8000726:	d01a      	beq.n	800075e <fsm_for_traffic_light+0x12a>
+ 8000728:	e03c      	b.n	80007a4 <fsm_for_traffic_light+0x170>
 	case BUTTON_RELEASED:
 		if (is_button_pressed(INCREASE_BUTTON)) {
- 8000734:	2001      	movs	r0, #1
- 8000736:	f000 f913 	bl	8000960 <is_button_pressed>
- 800073a:	4603      	mov	r3, r0
- 800073c:	2b00      	cmp	r3, #0
- 800073e:	d031      	beq.n	80007a4 <fsm_for_traffic_light+0x168>
+ 800072a:	2001      	movs	r0, #1
+ 800072c:	f000 f912 	bl	8000954 <is_button_pressed>
+ 8000730:	4603      	mov	r3, r0
+ 8000732:	2b00      	cmp	r3, #0
+ 8000734:	d031      	beq.n	800079a <fsm_for_traffic_light+0x166>
 			buffer = (buffer + 1) % 100;
- 8000740:	4b51      	ldr	r3, [pc, #324]	@ (8000888 <fsm_for_traffic_light+0x24c>)
- 8000742:	781b      	ldrb	r3, [r3, #0]
- 8000744:	3301      	adds	r3, #1
- 8000746:	4a51      	ldr	r2, [pc, #324]	@ (800088c <fsm_for_traffic_light+0x250>)
- 8000748:	fb82 1203 	smull	r1, r2, r2, r3
- 800074c:	1151      	asrs	r1, r2, #5
- 800074e:	17da      	asrs	r2, r3, #31
- 8000750:	1a8a      	subs	r2, r1, r2
- 8000752:	2164      	movs	r1, #100	@ 0x64
- 8000754:	fb01 f202 	mul.w	r2, r1, r2
- 8000758:	1a9a      	subs	r2, r3, r2
- 800075a:	b2d2      	uxtb	r2, r2
- 800075c:	4b4a      	ldr	r3, [pc, #296]	@ (8000888 <fsm_for_traffic_light+0x24c>)
- 800075e:	701a      	strb	r2, [r3, #0]
+ 8000736:	4b51      	ldr	r3, [pc, #324]	@ (800087c <fsm_for_traffic_light+0x248>)
+ 8000738:	781b      	ldrb	r3, [r3, #0]
+ 800073a:	3301      	adds	r3, #1
+ 800073c:	4a50      	ldr	r2, [pc, #320]	@ (8000880 <fsm_for_traffic_light+0x24c>)
+ 800073e:	fb82 1203 	smull	r1, r2, r2, r3
+ 8000742:	1151      	asrs	r1, r2, #5
+ 8000744:	17da      	asrs	r2, r3, #31
+ 8000746:	1a8a      	subs	r2, r1, r2
+ 8000748:	2164      	movs	r1, #100	@ 0x64
+ 800074a:	fb01 f202 	mul.w	r2, r1, r2
+ 800074e:	1a9a      	subs	r2, r3, r2
+ 8000750:	b2d2      	uxtb	r2, r2
+ 8000752:	4b4a      	ldr	r3, [pc, #296]	@ (800087c <fsm_for_traffic_light+0x248>)
+ 8000754:	701a      	strb	r2, [r3, #0]
 			button_state[INCREASE_BUTTON] = BUTTON_PRESSED;
- 8000760:	4b48      	ldr	r3, [pc, #288]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 8000762:	2201      	movs	r2, #1
- 8000764:	705a      	strb	r2, [r3, #1]
+ 8000756:	4b48      	ldr	r3, [pc, #288]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 8000758:	2201      	movs	r2, #1
+ 800075a:	705a      	strb	r2, [r3, #1]
 		}
 		break;
- 8000766:	e01d      	b.n	80007a4 <fsm_for_traffic_light+0x168>
+ 800075c:	e01d      	b.n	800079a <fsm_for_traffic_light+0x166>
 	case BUTTON_PRESSED:
 		if (!is_button_pressed(INCREASE_BUTTON)) {
- 8000768:	2001      	movs	r0, #1
- 800076a:	f000 f8f9 	bl	8000960 <is_button_pressed>
- 800076e:	4603      	mov	r3, r0
- 8000770:	2b00      	cmp	r3, #0
- 8000772:	d103      	bne.n	800077c <fsm_for_traffic_light+0x140>
+ 800075e:	2001      	movs	r0, #1
+ 8000760:	f000 f8f8 	bl	8000954 <is_button_pressed>
+ 8000764:	4603      	mov	r3, r0
+ 8000766:	2b00      	cmp	r3, #0
+ 8000768:	d103      	bne.n	8000772 <fsm_for_traffic_light+0x13e>
 			button_state[INCREASE_BUTTON] = BUTTON_RELEASED;
- 8000774:	4b43      	ldr	r3, [pc, #268]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 8000776:	2200      	movs	r2, #0
- 8000778:	705a      	strb	r2, [r3, #1]
+ 800076a:	4b43      	ldr	r3, [pc, #268]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 800076c:	2200      	movs	r2, #0
+ 800076e:	705a      	strb	r2, [r3, #1]
 			if (is_button_pressed_1s(INCREASE_BUTTON)) {
 				button_state[INCREASE_BUTTON] =
 						BUTTON_PRESSED_MORE_THAN_1_SECOND;
 			}
 		}
 		break;
- 800077a:	e015      	b.n	80007a8 <fsm_for_traffic_light+0x16c>
+ 8000770:	e015      	b.n	800079e <fsm_for_traffic_light+0x16a>
 			if (is_button_pressed_1s(INCREASE_BUTTON)) {
- 800077c:	2001      	movs	r0, #1
- 800077e:	f000 f909 	bl	8000994 <is_button_pressed_1s>
- 8000782:	4603      	mov	r3, r0
- 8000784:	2b00      	cmp	r3, #0
- 8000786:	d00f      	beq.n	80007a8 <fsm_for_traffic_light+0x16c>
+ 8000772:	2001      	movs	r0, #1
+ 8000774:	f000 f908 	bl	8000988 <is_button_pressed_1s>
+ 8000778:	4603      	mov	r3, r0
+ 800077a:	2b00      	cmp	r3, #0
+ 800077c:	d00f      	beq.n	800079e <fsm_for_traffic_light+0x16a>
 				button_state[INCREASE_BUTTON] =
- 8000788:	4b3e      	ldr	r3, [pc, #248]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 800078a:	2202      	movs	r2, #2
- 800078c:	705a      	strb	r2, [r3, #1]
+ 800077e:	4b3e      	ldr	r3, [pc, #248]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 8000780:	2202      	movs	r2, #2
+ 8000782:	705a      	strb	r2, [r3, #1]
 		break;
- 800078e:	e00b      	b.n	80007a8 <fsm_for_traffic_light+0x16c>
+ 8000784:	e00b      	b.n	800079e <fsm_for_traffic_light+0x16a>
 	case BUTTON_PRESSED_MORE_THAN_1_SECOND:
 		if (!is_button_pressed(INCREASE_BUTTON)) {
- 8000790:	2001      	movs	r0, #1
- 8000792:	f000 f8e5 	bl	8000960 <is_button_pressed>
- 8000796:	4603      	mov	r3, r0
- 8000798:	2b00      	cmp	r3, #0
- 800079a:	d107      	bne.n	80007ac <fsm_for_traffic_light+0x170>
+ 8000786:	2001      	movs	r0, #1
+ 8000788:	f000 f8e4 	bl	8000954 <is_button_pressed>
+ 800078c:	4603      	mov	r3, r0
+ 800078e:	2b00      	cmp	r3, #0
+ 8000790:	d107      	bne.n	80007a2 <fsm_for_traffic_light+0x16e>
 			button_state[INCREASE_BUTTON] = BUTTON_RELEASED;
- 800079c:	4b39      	ldr	r3, [pc, #228]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 800079e:	2200      	movs	r2, #0
- 80007a0:	705a      	strb	r2, [r3, #1]
+ 8000792:	4b39      	ldr	r3, [pc, #228]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 8000794:	2200      	movs	r2, #0
+ 8000796:	705a      	strb	r2, [r3, #1]
 		}
 //		if (is_avail(HOLD) == 1) {
 //			buffer = (buffer + 1) % 100;
 //			setTimer(HOLD, HALF_SEC);
 //		}
 		break;
- 80007a2:	e003      	b.n	80007ac <fsm_for_traffic_light+0x170>
+ 8000798:	e003      	b.n	80007a2 <fsm_for_traffic_light+0x16e>
 		break;
- 80007a4:	bf00      	nop
- 80007a6:	e002      	b.n	80007ae <fsm_for_traffic_light+0x172>
+ 800079a:	bf00      	nop
+ 800079c:	e002      	b.n	80007a4 <fsm_for_traffic_light+0x170>
 		break;
- 80007a8:	bf00      	nop
- 80007aa:	e000      	b.n	80007ae <fsm_for_traffic_light+0x172>
+ 800079e:	bf00      	nop
+ 80007a0:	e000      	b.n	80007a4 <fsm_for_traffic_light+0x170>
 		break;
- 80007ac:	bf00      	nop
+ 80007a2:	bf00      	nop
 	}
 	switch (button_state[SET_BUTTON]) {
- 80007ae:	4b35      	ldr	r3, [pc, #212]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 80007b0:	789b      	ldrb	r3, [r3, #2]
- 80007b2:	2b02      	cmp	r3, #2
- 80007b4:	d03e      	beq.n	8000834 <fsm_for_traffic_light+0x1f8>
- 80007b6:	2b02      	cmp	r3, #2
- 80007b8:	dc4b      	bgt.n	8000852 <fsm_for_traffic_light+0x216>
- 80007ba:	2b00      	cmp	r3, #0
- 80007bc:	d002      	beq.n	80007c4 <fsm_for_traffic_light+0x188>
- 80007be:	2b01      	cmp	r3, #1
- 80007c0:	d024      	beq.n	800080c <fsm_for_traffic_light+0x1d0>
+ 80007a4:	4b34      	ldr	r3, [pc, #208]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 80007a6:	789b      	ldrb	r3, [r3, #2]
+ 80007a8:	2b02      	cmp	r3, #2
+ 80007aa:	d03e      	beq.n	800082a <fsm_for_traffic_light+0x1f6>
+ 80007ac:	2b02      	cmp	r3, #2
+ 80007ae:	dc4b      	bgt.n	8000848 <fsm_for_traffic_light+0x214>
+ 80007b0:	2b00      	cmp	r3, #0
+ 80007b2:	d002      	beq.n	80007ba <fsm_for_traffic_light+0x186>
+ 80007b4:	2b01      	cmp	r3, #1
+ 80007b6:	d024      	beq.n	8000802 <fsm_for_traffic_light+0x1ce>
 		if (!is_button_pressed(SET_BUTTON)) {
 			button_state[SET_BUTTON] = BUTTON_RELEASED;
 		}
 		break;
 	}
 }
- 80007c2:	e046      	b.n	8000852 <fsm_for_traffic_light+0x216>
+ 80007b8:	e046      	b.n	8000848 <fsm_for_traffic_light+0x214>
 		if (is_button_pressed(SET_BUTTON)) {
- 80007c4:	2002      	movs	r0, #2
- 80007c6:	f000 f8cb 	bl	8000960 <is_button_pressed>
- 80007ca:	4603      	mov	r3, r0
- 80007cc:	2b00      	cmp	r3, #0
- 80007ce:	d03b      	beq.n	8000848 <fsm_for_traffic_light+0x20c>
+ 80007ba:	2002      	movs	r0, #2
+ 80007bc:	f000 f8ca 	bl	8000954 <is_button_pressed>
+ 80007c0:	4603      	mov	r3, r0
+ 80007c2:	2b00      	cmp	r3, #0
+ 80007c4:	d03b      	beq.n	800083e <fsm_for_traffic_light+0x20a>
 			switch (mode) {
- 80007d0:	4b21      	ldr	r3, [pc, #132]	@ (8000858 <fsm_for_traffic_light+0x21c>)
- 80007d2:	781b      	ldrb	r3, [r3, #0]
- 80007d4:	2b04      	cmp	r3, #4
- 80007d6:	d010      	beq.n	80007fa <fsm_for_traffic_light+0x1be>
- 80007d8:	2b04      	cmp	r3, #4
- 80007da:	dc13      	bgt.n	8000804 <fsm_for_traffic_light+0x1c8>
- 80007dc:	2b02      	cmp	r3, #2
- 80007de:	d002      	beq.n	80007e6 <fsm_for_traffic_light+0x1aa>
- 80007e0:	2b03      	cmp	r3, #3
- 80007e2:	d005      	beq.n	80007f0 <fsm_for_traffic_light+0x1b4>
- 80007e4:	e00e      	b.n	8000804 <fsm_for_traffic_light+0x1c8>
+ 80007c6:	4b21      	ldr	r3, [pc, #132]	@ (800084c <fsm_for_traffic_light+0x218>)
+ 80007c8:	781b      	ldrb	r3, [r3, #0]
+ 80007ca:	2b04      	cmp	r3, #4
+ 80007cc:	d010      	beq.n	80007f0 <fsm_for_traffic_light+0x1bc>
+ 80007ce:	2b04      	cmp	r3, #4
+ 80007d0:	dc13      	bgt.n	80007fa <fsm_for_traffic_light+0x1c6>
+ 80007d2:	2b02      	cmp	r3, #2
+ 80007d4:	d002      	beq.n	80007dc <fsm_for_traffic_light+0x1a8>
+ 80007d6:	2b03      	cmp	r3, #3
+ 80007d8:	d005      	beq.n	80007e6 <fsm_for_traffic_light+0x1b2>
+ 80007da:	e00e      	b.n	80007fa <fsm_for_traffic_light+0x1c6>
 				red_light = buffer;
- 80007e6:	4b28      	ldr	r3, [pc, #160]	@ (8000888 <fsm_for_traffic_light+0x24c>)
+ 80007dc:	4b27      	ldr	r3, [pc, #156]	@ (800087c <fsm_for_traffic_light+0x248>)
+ 80007de:	781a      	ldrb	r2, [r3, #0]
+ 80007e0:	4b1e      	ldr	r3, [pc, #120]	@ (800085c <fsm_for_traffic_light+0x228>)
+ 80007e2:	701a      	strb	r2, [r3, #0]
+				break;
+ 80007e4:	e009      	b.n	80007fa <fsm_for_traffic_light+0x1c6>
+				amber_light = buffer;
+ 80007e6:	4b25      	ldr	r3, [pc, #148]	@ (800087c <fsm_for_traffic_light+0x248>)
  80007e8:	781a      	ldrb	r2, [r3, #0]
- 80007ea:	4b1f      	ldr	r3, [pc, #124]	@ (8000868 <fsm_for_traffic_light+0x22c>)
+ 80007ea:	4b1b      	ldr	r3, [pc, #108]	@ (8000858 <fsm_for_traffic_light+0x224>)
  80007ec:	701a      	strb	r2, [r3, #0]
 				break;
- 80007ee:	e009      	b.n	8000804 <fsm_for_traffic_light+0x1c8>
-				amber_light = buffer;
- 80007f0:	4b25      	ldr	r3, [pc, #148]	@ (8000888 <fsm_for_traffic_light+0x24c>)
+ 80007ee:	e004      	b.n	80007fa <fsm_for_traffic_light+0x1c6>
+				green_light = buffer;
+ 80007f0:	4b22      	ldr	r3, [pc, #136]	@ (800087c <fsm_for_traffic_light+0x248>)
  80007f2:	781a      	ldrb	r2, [r3, #0]
- 80007f4:	4b1b      	ldr	r3, [pc, #108]	@ (8000864 <fsm_for_traffic_light+0x228>)
+ 80007f4:	4b17      	ldr	r3, [pc, #92]	@ (8000854 <fsm_for_traffic_light+0x220>)
  80007f6:	701a      	strb	r2, [r3, #0]
 				break;
- 80007f8:	e004      	b.n	8000804 <fsm_for_traffic_light+0x1c8>
-				green_light = buffer;
- 80007fa:	4b23      	ldr	r3, [pc, #140]	@ (8000888 <fsm_for_traffic_light+0x24c>)
- 80007fc:	781a      	ldrb	r2, [r3, #0]
- 80007fe:	4b18      	ldr	r3, [pc, #96]	@ (8000860 <fsm_for_traffic_light+0x224>)
- 8000800:	701a      	strb	r2, [r3, #0]
-				break;
- 8000802:	bf00      	nop
+ 80007f8:	bf00      	nop
 			button_state[SET_BUTTON] = BUTTON_PRESSED;
- 8000804:	4b1f      	ldr	r3, [pc, #124]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 8000806:	2201      	movs	r2, #1
- 8000808:	709a      	strb	r2, [r3, #2]
+ 80007fa:	4b1f      	ldr	r3, [pc, #124]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 80007fc:	2201      	movs	r2, #1
+ 80007fe:	709a      	strb	r2, [r3, #2]
 		break;
- 800080a:	e01d      	b.n	8000848 <fsm_for_traffic_light+0x20c>
+ 8000800:	e01d      	b.n	800083e <fsm_for_traffic_light+0x20a>
 		if (!is_button_pressed(SET_BUTTON)) {
- 800080c:	2002      	movs	r0, #2
- 800080e:	f000 f8a7 	bl	8000960 <is_button_pressed>
- 8000812:	4603      	mov	r3, r0
- 8000814:	2b00      	cmp	r3, #0
- 8000816:	d103      	bne.n	8000820 <fsm_for_traffic_light+0x1e4>
+ 8000802:	2002      	movs	r0, #2
+ 8000804:	f000 f8a6 	bl	8000954 <is_button_pressed>
+ 8000808:	4603      	mov	r3, r0
+ 800080a:	2b00      	cmp	r3, #0
+ 800080c:	d103      	bne.n	8000816 <fsm_for_traffic_light+0x1e2>
 			button_state[SET_BUTTON] = BUTTON_RELEASED;
- 8000818:	4b1a      	ldr	r3, [pc, #104]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 800081a:	2200      	movs	r2, #0
- 800081c:	709a      	strb	r2, [r3, #2]
+ 800080e:	4b1a      	ldr	r3, [pc, #104]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 8000810:	2200      	movs	r2, #0
+ 8000812:	709a      	strb	r2, [r3, #2]
 		break;
- 800081e:	e015      	b.n	800084c <fsm_for_traffic_light+0x210>
+ 8000814:	e015      	b.n	8000842 <fsm_for_traffic_light+0x20e>
 			if (is_button_pressed_1s(SET_BUTTON)) {
- 8000820:	2002      	movs	r0, #2
- 8000822:	f000 f8b7 	bl	8000994 <is_button_pressed_1s>
- 8000826:	4603      	mov	r3, r0
- 8000828:	2b00      	cmp	r3, #0
- 800082a:	d00f      	beq.n	800084c <fsm_for_traffic_light+0x210>
+ 8000816:	2002      	movs	r0, #2
+ 8000818:	f000 f8b6 	bl	8000988 <is_button_pressed_1s>
+ 800081c:	4603      	mov	r3, r0
+ 800081e:	2b00      	cmp	r3, #0
+ 8000820:	d00f      	beq.n	8000842 <fsm_for_traffic_light+0x20e>
 				button_state[SET_BUTTON] = BUTTON_PRESSED_MORE_THAN_1_SECOND;
- 800082c:	4b15      	ldr	r3, [pc, #84]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 800082e:	2202      	movs	r2, #2
- 8000830:	709a      	strb	r2, [r3, #2]
+ 8000822:	4b15      	ldr	r3, [pc, #84]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 8000824:	2202      	movs	r2, #2
+ 8000826:	709a      	strb	r2, [r3, #2]
 		break;
- 8000832:	e00b      	b.n	800084c <fsm_for_traffic_light+0x210>
+ 8000828:	e00b      	b.n	8000842 <fsm_for_traffic_light+0x20e>
 		if (!is_button_pressed(SET_BUTTON)) {
- 8000834:	2002      	movs	r0, #2
- 8000836:	f000 f893 	bl	8000960 <is_button_pressed>
- 800083a:	4603      	mov	r3, r0
- 800083c:	2b00      	cmp	r3, #0
- 800083e:	d107      	bne.n	8000850 <fsm_for_traffic_light+0x214>
+ 800082a:	2002      	movs	r0, #2
+ 800082c:	f000 f892 	bl	8000954 <is_button_pressed>
+ 8000830:	4603      	mov	r3, r0
+ 8000832:	2b00      	cmp	r3, #0
+ 8000834:	d107      	bne.n	8000846 <fsm_for_traffic_light+0x212>
 			button_state[SET_BUTTON] = BUTTON_RELEASED;
- 8000840:	4b10      	ldr	r3, [pc, #64]	@ (8000884 <fsm_for_traffic_light+0x248>)
- 8000842:	2200      	movs	r2, #0
- 8000844:	709a      	strb	r2, [r3, #2]
+ 8000836:	4b10      	ldr	r3, [pc, #64]	@ (8000878 <fsm_for_traffic_light+0x244>)
+ 8000838:	2200      	movs	r2, #0
+ 800083a:	709a      	strb	r2, [r3, #2]
 		break;
- 8000846:	e003      	b.n	8000850 <fsm_for_traffic_light+0x214>
+ 800083c:	e003      	b.n	8000846 <fsm_for_traffic_light+0x212>
 		break;
- 8000848:	bf00      	nop
- 800084a:	e002      	b.n	8000852 <fsm_for_traffic_light+0x216>
+ 800083e:	bf00      	nop
+ 8000840:	e002      	b.n	8000848 <fsm_for_traffic_light+0x214>
 		break;
- 800084c:	bf00      	nop
- 800084e:	e000      	b.n	8000852 <fsm_for_traffic_light+0x216>
+ 8000842:	bf00      	nop
+ 8000844:	e000      	b.n	8000848 <fsm_for_traffic_light+0x214>
 		break;
- 8000850:	bf00      	nop
+ 8000846:	bf00      	nop
 }
- 8000852:	bf00      	nop
- 8000854:	bd80      	pop	{r7, pc}
- 8000856:	bf00      	nop
- 8000858:	200000ad 	.word	0x200000ad
- 800085c:	40010c00 	.word	0x40010c00
- 8000860:	20000002 	.word	0x20000002
- 8000864:	20000001 	.word	0x20000001
- 8000868:	20000000 	.word	0x20000000
- 800086c:	200000ab 	.word	0x200000ab
- 8000870:	200000ac 	.word	0x200000ac
- 8000874:	200000ae 	.word	0x200000ae
- 8000878:	2000000c 	.word	0x2000000c
- 800087c:	08000319 	.word	0x08000319
- 8000880:	200000b0 	.word	0x200000b0
- 8000884:	200000a8 	.word	0x200000a8
- 8000888:	200000a4 	.word	0x200000a4
- 800088c:	51eb851f 	.word	0x51eb851f
+ 8000848:	bf00      	nop
+ 800084a:	bd80      	pop	{r7, pc}
+ 800084c:	200000ad 	.word	0x200000ad
+ 8000850:	40010c00 	.word	0x40010c00
+ 8000854:	20000002 	.word	0x20000002
+ 8000858:	20000001 	.word	0x20000001
+ 800085c:	20000000 	.word	0x20000000
+ 8000860:	200000ab 	.word	0x200000ab
+ 8000864:	200000ac 	.word	0x200000ac
+ 8000868:	200000ae 	.word	0x200000ae
+ 800086c:	2000000c 	.word	0x2000000c
+ 8000870:	08000319 	.word	0x08000319
+ 8000874:	200000b0 	.word	0x200000b0
+ 8000878:	200000a8 	.word	0x200000a8
+ 800087c:	200000a4 	.word	0x200000a4
+ 8000880:	51eb851f 	.word	0x51eb851f
 
-08000890 <button_reading>:
+08000884 <button_reading>:
 static uint16_t counterForButtonPress1s[NO_OF_BUTTONS] = { 0 };
 GPIO_TypeDef *BTN_Port[NO_OF_BUTTONS] = { BTN1_GPIO_Port, BTN2_GPIO_Port,
 		BTN3_GPIO_Port };
 uint16_t BTN_Pin[NO_OF_BUTTONS] = { BTN1_Pin, BTN2_Pin, BTN3_Pin };
 
 void button_reading(void) {
- 8000890:	b590      	push	{r4, r7, lr}
- 8000892:	b083      	sub	sp, #12
- 8000894:	af00      	add	r7, sp, #0
+ 8000884:	b590      	push	{r4, r7, lr}
+ 8000886:	b083      	sub	sp, #12
+ 8000888:	af00      	add	r7, sp, #0
 	for (uint8_t i = 0; i < NO_OF_BUTTONS; i++) {
- 8000896:	2300      	movs	r3, #0
- 8000898:	71fb      	strb	r3, [r7, #7]
- 800089a:	e04a      	b.n	8000932 <button_reading+0xa2>
+ 800088a:	2300      	movs	r3, #0
+ 800088c:	71fb      	strb	r3, [r7, #7]
+ 800088e:	e04a      	b.n	8000926 <button_reading+0xa2>
 //		buttonBuffer[i] = GPIO_PIN_SET;
 		debounceButtonBuffer2[i] = debounceButtonBuffer1[i];
- 800089c:	79fa      	ldrb	r2, [r7, #7]
- 800089e:	79fb      	ldrb	r3, [r7, #7]
- 80008a0:	4928      	ldr	r1, [pc, #160]	@ (8000944 <button_reading+0xb4>)
- 80008a2:	5c89      	ldrb	r1, [r1, r2]
- 80008a4:	4a28      	ldr	r2, [pc, #160]	@ (8000948 <button_reading+0xb8>)
- 80008a6:	54d1      	strb	r1, [r2, r3]
+ 8000890:	79fa      	ldrb	r2, [r7, #7]
+ 8000892:	79fb      	ldrb	r3, [r7, #7]
+ 8000894:	4928      	ldr	r1, [pc, #160]	@ (8000938 <button_reading+0xb4>)
+ 8000896:	5c89      	ldrb	r1, [r1, r2]
+ 8000898:	4a28      	ldr	r2, [pc, #160]	@ (800093c <button_reading+0xb8>)
+ 800089a:	54d1      	strb	r1, [r2, r3]
 		debounceButtonBuffer1[i] = HAL_GPIO_ReadPin(BTN_Port[i], BTN_Pin[i]);
- 80008a8:	79fb      	ldrb	r3, [r7, #7]
- 80008aa:	4a28      	ldr	r2, [pc, #160]	@ (800094c <button_reading+0xbc>)
- 80008ac:	f852 2023 	ldr.w	r2, [r2, r3, lsl #2]
- 80008b0:	79fb      	ldrb	r3, [r7, #7]
- 80008b2:	4927      	ldr	r1, [pc, #156]	@ (8000950 <button_reading+0xc0>)
- 80008b4:	f831 3013 	ldrh.w	r3, [r1, r3, lsl #1]
- 80008b8:	79fc      	ldrb	r4, [r7, #7]
- 80008ba:	4619      	mov	r1, r3
- 80008bc:	4610      	mov	r0, r2
- 80008be:	f000 ff15 	bl	80016ec <HAL_GPIO_ReadPin>
- 80008c2:	4603      	mov	r3, r0
- 80008c4:	461a      	mov	r2, r3
- 80008c6:	4b1f      	ldr	r3, [pc, #124]	@ (8000944 <button_reading+0xb4>)
- 80008c8:	551a      	strb	r2, [r3, r4]
+ 800089c:	79fb      	ldrb	r3, [r7, #7]
+ 800089e:	4a28      	ldr	r2, [pc, #160]	@ (8000940 <button_reading+0xbc>)
+ 80008a0:	f852 2023 	ldr.w	r2, [r2, r3, lsl #2]
+ 80008a4:	79fb      	ldrb	r3, [r7, #7]
+ 80008a6:	4927      	ldr	r1, [pc, #156]	@ (8000944 <button_reading+0xc0>)
+ 80008a8:	f831 3013 	ldrh.w	r3, [r1, r3, lsl #1]
+ 80008ac:	79fc      	ldrb	r4, [r7, #7]
+ 80008ae:	4619      	mov	r1, r3
+ 80008b0:	4610      	mov	r0, r2
+ 80008b2:	f000 ff1b 	bl	80016ec <HAL_GPIO_ReadPin>
+ 80008b6:	4603      	mov	r3, r0
+ 80008b8:	461a      	mov	r2, r3
+ 80008ba:	4b1f      	ldr	r3, [pc, #124]	@ (8000938 <button_reading+0xb4>)
+ 80008bc:	551a      	strb	r2, [r3, r4]
 		if (debounceButtonBuffer1[i] == debounceButtonBuffer2[i])
- 80008ca:	79fb      	ldrb	r3, [r7, #7]
- 80008cc:	4a1d      	ldr	r2, [pc, #116]	@ (8000944 <button_reading+0xb4>)
- 80008ce:	5cd2      	ldrb	r2, [r2, r3]
- 80008d0:	79fb      	ldrb	r3, [r7, #7]
- 80008d2:	491d      	ldr	r1, [pc, #116]	@ (8000948 <button_reading+0xb8>)
- 80008d4:	5ccb      	ldrb	r3, [r1, r3]
- 80008d6:	429a      	cmp	r2, r3
- 80008d8:	d105      	bne.n	80008e6 <button_reading+0x56>
+ 80008be:	79fb      	ldrb	r3, [r7, #7]
+ 80008c0:	4a1d      	ldr	r2, [pc, #116]	@ (8000938 <button_reading+0xb4>)
+ 80008c2:	5cd2      	ldrb	r2, [r2, r3]
+ 80008c4:	79fb      	ldrb	r3, [r7, #7]
+ 80008c6:	491d      	ldr	r1, [pc, #116]	@ (800093c <button_reading+0xb8>)
+ 80008c8:	5ccb      	ldrb	r3, [r1, r3]
+ 80008ca:	429a      	cmp	r2, r3
+ 80008cc:	d105      	bne.n	80008da <button_reading+0x56>
 			buttonBuffer[i] = debounceButtonBuffer2[i];
- 80008da:	79fa      	ldrb	r2, [r7, #7]
- 80008dc:	79fb      	ldrb	r3, [r7, #7]
- 80008de:	491a      	ldr	r1, [pc, #104]	@ (8000948 <button_reading+0xb8>)
- 80008e0:	5c89      	ldrb	r1, [r1, r2]
- 80008e2:	4a1c      	ldr	r2, [pc, #112]	@ (8000954 <button_reading+0xc4>)
- 80008e4:	54d1      	strb	r1, [r2, r3]
+ 80008ce:	79fa      	ldrb	r2, [r7, #7]
+ 80008d0:	79fb      	ldrb	r3, [r7, #7]
+ 80008d2:	491a      	ldr	r1, [pc, #104]	@ (800093c <button_reading+0xb8>)
+ 80008d4:	5c89      	ldrb	r1, [r1, r2]
+ 80008d6:	4a1c      	ldr	r2, [pc, #112]	@ (8000948 <button_reading+0xc4>)
+ 80008d8:	54d1      	strb	r1, [r2, r3]
 		if (buttonBuffer[i] == BUTTON_IS_PRESSED) {
- 80008e6:	79fb      	ldrb	r3, [r7, #7]
- 80008e8:	4a1a      	ldr	r2, [pc, #104]	@ (8000954 <button_reading+0xc4>)
- 80008ea:	5cd3      	ldrb	r3, [r2, r3]
- 80008ec:	2b00      	cmp	r3, #0
- 80008ee:	d114      	bne.n	800091a <button_reading+0x8a>
+ 80008da:	79fb      	ldrb	r3, [r7, #7]
+ 80008dc:	4a1a      	ldr	r2, [pc, #104]	@ (8000948 <button_reading+0xc4>)
+ 80008de:	5cd3      	ldrb	r3, [r2, r3]
+ 80008e0:	2b00      	cmp	r3, #0
+ 80008e2:	d114      	bne.n	800090e <button_reading+0x8a>
 			// if a button is pressed , we start counting
 			if (counterForButtonPress1s[i] < DURATION_FOR_AUTO_INCREASING) {
- 80008f0:	79fb      	ldrb	r3, [r7, #7]
- 80008f2:	4a19      	ldr	r2, [pc, #100]	@ (8000958 <button_reading+0xc8>)
- 80008f4:	f832 3013 	ldrh.w	r3, [r2, r3, lsl #1]
- 80008f8:	2b63      	cmp	r3, #99	@ 0x63
- 80008fa:	d809      	bhi.n	8000910 <button_reading+0x80>
+ 80008e4:	79fb      	ldrb	r3, [r7, #7]
+ 80008e6:	4a19      	ldr	r2, [pc, #100]	@ (800094c <button_reading+0xc8>)
+ 80008e8:	f832 3013 	ldrh.w	r3, [r2, r3, lsl #1]
+ 80008ec:	2b63      	cmp	r3, #99	@ 0x63
+ 80008ee:	d809      	bhi.n	8000904 <button_reading+0x80>
 				counterForButtonPress1s[i]++;
- 80008fc:	79fb      	ldrb	r3, [r7, #7]
- 80008fe:	4a16      	ldr	r2, [pc, #88]	@ (8000958 <button_reading+0xc8>)
- 8000900:	f832 2013 	ldrh.w	r2, [r2, r3, lsl #1]
- 8000904:	3201      	adds	r2, #1
- 8000906:	b291      	uxth	r1, r2
- 8000908:	4a13      	ldr	r2, [pc, #76]	@ (8000958 <button_reading+0xc8>)
- 800090a:	f822 1013 	strh.w	r1, [r2, r3, lsl #1]
- 800090e:	e00d      	b.n	800092c <button_reading+0x9c>
+ 80008f0:	79fb      	ldrb	r3, [r7, #7]
+ 80008f2:	4a16      	ldr	r2, [pc, #88]	@ (800094c <button_reading+0xc8>)
+ 80008f4:	f832 2013 	ldrh.w	r2, [r2, r3, lsl #1]
+ 80008f8:	3201      	adds	r2, #1
+ 80008fa:	b291      	uxth	r1, r2
+ 80008fc:	4a13      	ldr	r2, [pc, #76]	@ (800094c <button_reading+0xc8>)
+ 80008fe:	f822 1013 	strh.w	r1, [r2, r3, lsl #1]
+ 8000902:	e00d      	b.n	8000920 <button_reading+0x9c>
 			} else {
 				flagForButtonPress1s[i] = 1;
- 8000910:	79fb      	ldrb	r3, [r7, #7]
- 8000912:	4a12      	ldr	r2, [pc, #72]	@ (800095c <button_reading+0xcc>)
- 8000914:	2101      	movs	r1, #1
- 8000916:	54d1      	strb	r1, [r2, r3]
- 8000918:	e008      	b.n	800092c <button_reading+0x9c>
+ 8000904:	79fb      	ldrb	r3, [r7, #7]
+ 8000906:	4a12      	ldr	r2, [pc, #72]	@ (8000950 <button_reading+0xcc>)
+ 8000908:	2101      	movs	r1, #1
+ 800090a:	54d1      	strb	r1, [r2, r3]
+ 800090c:	e008      	b.n	8000920 <button_reading+0x9c>
 				// todo
 			}
 		} else {
 			counterForButtonPress1s[i] = 0;
- 800091a:	79fb      	ldrb	r3, [r7, #7]
- 800091c:	4a0e      	ldr	r2, [pc, #56]	@ (8000958 <button_reading+0xc8>)
- 800091e:	2100      	movs	r1, #0
- 8000920:	f822 1013 	strh.w	r1, [r2, r3, lsl #1]
+ 800090e:	79fb      	ldrb	r3, [r7, #7]
+ 8000910:	4a0e      	ldr	r2, [pc, #56]	@ (800094c <button_reading+0xc8>)
+ 8000912:	2100      	movs	r1, #0
+ 8000914:	f822 1013 	strh.w	r1, [r2, r3, lsl #1]
 			flagForButtonPress1s[i] = 0;
- 8000924:	79fb      	ldrb	r3, [r7, #7]
- 8000926:	4a0d      	ldr	r2, [pc, #52]	@ (800095c <button_reading+0xcc>)
- 8000928:	2100      	movs	r1, #0
- 800092a:	54d1      	strb	r1, [r2, r3]
+ 8000918:	79fb      	ldrb	r3, [r7, #7]
+ 800091a:	4a0d      	ldr	r2, [pc, #52]	@ (8000950 <button_reading+0xcc>)
+ 800091c:	2100      	movs	r1, #0
+ 800091e:	54d1      	strb	r1, [r2, r3]
 	for (uint8_t i = 0; i < NO_OF_BUTTONS; i++) {
- 800092c:	79fb      	ldrb	r3, [r7, #7]
- 800092e:	3301      	adds	r3, #1
- 8000930:	71fb      	strb	r3, [r7, #7]
- 8000932:	79fb      	ldrb	r3, [r7, #7]
- 8000934:	2b02      	cmp	r3, #2
- 8000936:	d9b1      	bls.n	800089c <button_reading+0xc>
+ 8000920:	79fb      	ldrb	r3, [r7, #7]
+ 8000922:	3301      	adds	r3, #1
+ 8000924:	71fb      	strb	r3, [r7, #7]
+ 8000926:	79fb      	ldrb	r3, [r7, #7]
+ 8000928:	2b02      	cmp	r3, #2
+ 800092a:	d9b1      	bls.n	8000890 <button_reading+0xc>
 		}
 	}
 }
- 8000938:	bf00      	nop
- 800093a:	bf00      	nop
- 800093c:	370c      	adds	r7, #12
- 800093e:	46bd      	mov	sp, r7
- 8000940:	bd90      	pop	{r4, r7, pc}
- 8000942:	bf00      	nop
- 8000944:	200000b4 	.word	0x200000b4
- 8000948:	200000b8 	.word	0x200000b8
- 800094c:	20000014 	.word	0x20000014
- 8000950:	20000020 	.word	0x20000020
- 8000954:	20000010 	.word	0x20000010
- 8000958:	200000c0 	.word	0x200000c0
- 800095c:	200000bc 	.word	0x200000bc
+ 800092c:	bf00      	nop
+ 800092e:	bf00      	nop
+ 8000930:	370c      	adds	r7, #12
+ 8000932:	46bd      	mov	sp, r7
+ 8000934:	bd90      	pop	{r4, r7, pc}
+ 8000936:	bf00      	nop
+ 8000938:	200000b4 	.word	0x200000b4
+ 800093c:	200000b8 	.word	0x200000b8
+ 8000940:	20000014 	.word	0x20000014
+ 8000944:	20000020 	.word	0x20000020
+ 8000948:	20000010 	.word	0x20000010
+ 800094c:	200000c0 	.word	0x200000c0
+ 8000950:	200000bc 	.word	0x200000bc
 
-08000960 <is_button_pressed>:
+08000954 <is_button_pressed>:
 unsigned char is_button_pressed(uint8_t index) {
- 8000960:	b480      	push	{r7}
- 8000962:	b083      	sub	sp, #12
- 8000964:	af00      	add	r7, sp, #0
- 8000966:	4603      	mov	r3, r0
- 8000968:	71fb      	strb	r3, [r7, #7]
+ 8000954:	b480      	push	{r7}
+ 8000956:	b083      	sub	sp, #12
+ 8000958:	af00      	add	r7, sp, #0
+ 800095a:	4603      	mov	r3, r0
+ 800095c:	71fb      	strb	r3, [r7, #7]
 	if (index >= NO_OF_BUTTONS)
- 800096a:	79fb      	ldrb	r3, [r7, #7]
- 800096c:	2b02      	cmp	r3, #2
- 800096e:	d901      	bls.n	8000974 <is_button_pressed+0x14>
+ 800095e:	79fb      	ldrb	r3, [r7, #7]
+ 8000960:	2b02      	cmp	r3, #2
+ 8000962:	d901      	bls.n	8000968 <is_button_pressed+0x14>
 		return 0;
- 8000970:	2300      	movs	r3, #0
- 8000972:	e007      	b.n	8000984 <is_button_pressed+0x24>
+ 8000964:	2300      	movs	r3, #0
+ 8000966:	e007      	b.n	8000978 <is_button_pressed+0x24>
 	return (buttonBuffer[index] == BUTTON_IS_PRESSED);
- 8000974:	79fb      	ldrb	r3, [r7, #7]
- 8000976:	4a06      	ldr	r2, [pc, #24]	@ (8000990 <is_button_pressed+0x30>)
- 8000978:	5cd3      	ldrb	r3, [r2, r3]
- 800097a:	2b00      	cmp	r3, #0
- 800097c:	bf0c      	ite	eq
- 800097e:	2301      	moveq	r3, #1
- 8000980:	2300      	movne	r3, #0
- 8000982:	b2db      	uxtb	r3, r3
+ 8000968:	79fb      	ldrb	r3, [r7, #7]
+ 800096a:	4a06      	ldr	r2, [pc, #24]	@ (8000984 <is_button_pressed+0x30>)
+ 800096c:	5cd3      	ldrb	r3, [r2, r3]
+ 800096e:	2b00      	cmp	r3, #0
+ 8000970:	bf0c      	ite	eq
+ 8000972:	2301      	moveq	r3, #1
+ 8000974:	2300      	movne	r3, #0
+ 8000976:	b2db      	uxtb	r3, r3
 }
- 8000984:	4618      	mov	r0, r3
- 8000986:	370c      	adds	r7, #12
- 8000988:	46bd      	mov	sp, r7
- 800098a:	bc80      	pop	{r7}
- 800098c:	4770      	bx	lr
- 800098e:	bf00      	nop
- 8000990:	20000010 	.word	0x20000010
+ 8000978:	4618      	mov	r0, r3
+ 800097a:	370c      	adds	r7, #12
+ 800097c:	46bd      	mov	sp, r7
+ 800097e:	bc80      	pop	{r7}
+ 8000980:	4770      	bx	lr
+ 8000982:	bf00      	nop
+ 8000984:	20000010 	.word	0x20000010
 
-08000994 <is_button_pressed_1s>:
+08000988 <is_button_pressed_1s>:
 unsigned char is_button_pressed_1s(unsigned char index) {
- 8000994:	b480      	push	{r7}
- 8000996:	b083      	sub	sp, #12
- 8000998:	af00      	add	r7, sp, #0
- 800099a:	4603      	mov	r3, r0
- 800099c:	71fb      	strb	r3, [r7, #7]
+ 8000988:	b480      	push	{r7}
+ 800098a:	b083      	sub	sp, #12
+ 800098c:	af00      	add	r7, sp, #0
+ 800098e:	4603      	mov	r3, r0
+ 8000990:	71fb      	strb	r3, [r7, #7]
 	if (index >= NO_OF_BUTTONS)
- 800099e:	79fb      	ldrb	r3, [r7, #7]
- 80009a0:	2b02      	cmp	r3, #2
- 80009a2:	d901      	bls.n	80009a8 <is_button_pressed_1s+0x14>
+ 8000992:	79fb      	ldrb	r3, [r7, #7]
+ 8000994:	2b02      	cmp	r3, #2
+ 8000996:	d901      	bls.n	800099c <is_button_pressed_1s+0x14>
 		return 0xff;
- 80009a4:	23ff      	movs	r3, #255	@ 0xff
- 80009a6:	e007      	b.n	80009b8 <is_button_pressed_1s+0x24>
+ 8000998:	23ff      	movs	r3, #255	@ 0xff
+ 800099a:	e007      	b.n	80009ac <is_button_pressed_1s+0x24>
 	return (flagForButtonPress1s[index] == 1);
- 80009a8:	79fb      	ldrb	r3, [r7, #7]
- 80009aa:	4a06      	ldr	r2, [pc, #24]	@ (80009c4 <is_button_pressed_1s+0x30>)
- 80009ac:	5cd3      	ldrb	r3, [r2, r3]
- 80009ae:	2b01      	cmp	r3, #1
- 80009b0:	bf0c      	ite	eq
- 80009b2:	2301      	moveq	r3, #1
- 80009b4:	2300      	movne	r3, #0
- 80009b6:	b2db      	uxtb	r3, r3
+ 800099c:	79fb      	ldrb	r3, [r7, #7]
+ 800099e:	4a06      	ldr	r2, [pc, #24]	@ (80009b8 <is_button_pressed_1s+0x30>)
+ 80009a0:	5cd3      	ldrb	r3, [r2, r3]
+ 80009a2:	2b01      	cmp	r3, #1
+ 80009a4:	bf0c      	ite	eq
+ 80009a6:	2301      	moveq	r3, #1
+ 80009a8:	2300      	movne	r3, #0
+ 80009aa:	b2db      	uxtb	r3, r3
 }
- 80009b8:	4618      	mov	r0, r3
- 80009ba:	370c      	adds	r7, #12
- 80009bc:	46bd      	mov	sp, r7
- 80009be:	bc80      	pop	{r7}
- 80009c0:	4770      	bx	lr
- 80009c2:	bf00      	nop
- 80009c4:	200000bc 	.word	0x200000bc
+ 80009ac:	4618      	mov	r0, r3
+ 80009ae:	370c      	adds	r7, #12
+ 80009b0:	46bd      	mov	sp, r7
+ 80009b2:	bc80      	pop	{r7}
+ 80009b4:	4770      	bx	lr
+ 80009b6:	bf00      	nop
+ 80009b8:	200000bc 	.word	0x200000bc
 
-080009c8 <BlinkyLED>:
+080009bc <BlinkyLED>:
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 void BlinkyLED(void) {
- 80009c8:	b580      	push	{r7, lr}
- 80009ca:	af00      	add	r7, sp, #0
+ 80009bc:	b580      	push	{r7, lr}
+ 80009be:	af00      	add	r7, sp, #0
 	HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
- 80009cc:	f44f 7180 	mov.w	r1, #256	@ 0x100
- 80009d0:	4802      	ldr	r0, [pc, #8]	@ (80009dc <BlinkyLED+0x14>)
- 80009d2:	f000 feba 	bl	800174a <HAL_GPIO_TogglePin>
+ 80009c0:	f44f 7180 	mov.w	r1, #256	@ 0x100
+ 80009c4:	4802      	ldr	r0, [pc, #8]	@ (80009d0 <BlinkyLED+0x14>)
+ 80009c6:	f000 fec0 	bl	800174a <HAL_GPIO_TogglePin>
 }
- 80009d6:	bf00      	nop
- 80009d8:	bd80      	pop	{r7, pc}
- 80009da:	bf00      	nop
- 80009dc:	40010800 	.word	0x40010800
+ 80009ca:	bf00      	nop
+ 80009cc:	bd80      	pop	{r7, pc}
+ 80009ce:	bf00      	nop
+ 80009d0:	40010800 	.word	0x40010800
 
-080009e0 <main>:
+080009d4 <main>:
 
 /**
  * @brief  The application entry point.
  * @retval int
  */
 int main(void) {
- 80009e0:	b580      	push	{r7, lr}
- 80009e2:	af00      	add	r7, sp, #0
+ 80009d4:	b580      	push	{r7, lr}
+ 80009d6:	af00      	add	r7, sp, #0
 	/* USER CODE END 1 */
 
 	/* MCU Configuration--------------------------------------------------------*/
 
 	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
 	HAL_Init();
- 80009e4:	f000 fb96 	bl	8001114 <HAL_Init>
+ 80009d8:	f000 fb9c 	bl	8001114 <HAL_Init>
 	/* USER CODE BEGIN Init */
 
 	/* USER CODE END Init */
 
 	/* Configure the system clock */
 	SystemClock_Config();
- 80009e8:	f000 f826 	bl	8000a38 <SystemClock_Config>
+ 80009dc:	f000 f822 	bl	8000a24 <SystemClock_Config>
 	/* USER CODE BEGIN SysInit */
 
 	/* USER CODE END SysInit */
 
 	/* Initialize all configured peripherals */
 	MX_GPIO_Init();
- 80009ec:	f000 f8ac 	bl	8000b48 <MX_GPIO_Init>
+ 80009e0:	f000 f8a8 	bl	8000b34 <MX_GPIO_Init>
 	MX_TIM2_Init();
- 80009f0:	f000 f85e 	bl	8000ab0 <MX_TIM2_Init>
+ 80009e4:	f000 f85a 	bl	8000a9c <MX_TIM2_Init>
 
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 	HAL_TIM_Base_Start_IT(&htim2);
- 80009f4:	480d      	ldr	r0, [pc, #52]	@ (8000a2c <main+0x4c>)
- 80009f6:	f001 faef 	bl	8001fd8 <HAL_TIM_Base_Start_IT>
+ 80009e8:	480b      	ldr	r0, [pc, #44]	@ (8000a18 <main+0x44>)
+ 80009ea:	f001 faf5 	bl	8001fd8 <HAL_TIM_Base_Start_IT>
 	Scheduler_Init();
- 80009fa:	f000 f92f 	bl	8000c5c <Scheduler_Init>
+ 80009ee:	f000 f92d 	bl	8000c4c <Scheduler_Init>
 	// Add tasks here
 //  Scheduler_Add_Task(button_reading, ONE_SEC, 10);
-	Scheduler_Add_Task(BlinkyLED, BLINK, ONE_SEC, ONE_SEC / BLINKY_FREQ);
- 80009fe:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
- 8000a02:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
- 8000a06:	f240 31e7 	movw	r1, #999	@ 0x3e7
- 8000a0a:	4809      	ldr	r0, [pc, #36]	@ (8000a30 <main+0x50>)
- 8000a0c:	f000 f954 	bl	8000cb8 <Scheduler_Add_Task>
-	Scheduler_Add_Task(scanning_led, SCANNING_LED, ONE_SEC,
- 8000a10:	23fa      	movs	r3, #250	@ 0xfa
- 8000a12:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
- 8000a16:	216e      	movs	r1, #110	@ 0x6e
- 8000a18:	4806      	ldr	r0, [pc, #24]	@ (8000a34 <main+0x54>)
- 8000a1a:	f000 f94d 	bl	8000cb8 <Scheduler_Add_Task>
+	Scheduler_Add_Task(BlinkyLED, ONE_SEC, ONE_SEC);
+ 80009f2:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
+ 80009f6:	f44f 717a 	mov.w	r1, #1000	@ 0x3e8
+ 80009fa:	4808      	ldr	r0, [pc, #32]	@ (8000a1c <main+0x48>)
+ 80009fc:	f000 f9f0 	bl	8000de0 <Scheduler_Add_Task>
+	Scheduler_Add_Task(scanning_led, ONE_SEC,
+ 8000a00:	22fa      	movs	r2, #250	@ 0xfa
+ 8000a02:	f44f 717a 	mov.w	r1, #1000	@ 0x3e8
+ 8000a06:	4806      	ldr	r0, [pc, #24]	@ (8000a20 <main+0x4c>)
+ 8000a08:	f000 f9ea 	bl	8000de0 <Scheduler_Add_Task>
 			(ONE_SEC / NO_OF_7SEG) / SCANNING_FREQ);
 	while (1) {
 		fsm_for_traffic_light();
- 8000a1e:	f7ff fe0d 	bl	800063c <fsm_for_traffic_light>
+ 8000a0c:	f7ff fe12 	bl	8000634 <fsm_for_traffic_light>
 		Scheduler_Dispatch_Tasks();
- 8000a22:	f000 fa0f 	bl	8000e44 <Scheduler_Dispatch_Tasks>
+ 8000a10:	f000 fa20 	bl	8000e54 <Scheduler_Dispatch_Tasks>
 		fsm_for_traffic_light();
- 8000a26:	bf00      	nop
- 8000a28:	e7f9      	b.n	8000a1e <main+0x3e>
- 8000a2a:	bf00      	nop
- 8000a2c:	200000c8 	.word	0x200000c8
- 8000a30:	080009c9 	.word	0x080009c9
- 8000a34:	080002b1 	.word	0x080002b1
+ 8000a14:	bf00      	nop
+ 8000a16:	e7f9      	b.n	8000a0c <main+0x38>
+ 8000a18:	200000c8 	.word	0x200000c8
+ 8000a1c:	080009bd 	.word	0x080009bd
+ 8000a20:	080002b1 	.word	0x080002b1
 
-08000a38 <SystemClock_Config>:
+08000a24 <SystemClock_Config>:
 
 /**
  * @brief System Clock Configuration
  * @retval None
  */
 void SystemClock_Config(void) {
- 8000a38:	b580      	push	{r7, lr}
- 8000a3a:	b090      	sub	sp, #64	@ 0x40
- 8000a3c:	af00      	add	r7, sp, #0
+ 8000a24:	b580      	push	{r7, lr}
+ 8000a26:	b090      	sub	sp, #64	@ 0x40
+ 8000a28:	af00      	add	r7, sp, #0
 	RCC_OscInitTypeDef RCC_OscInitStruct = { 0 };
- 8000a3e:	f107 0318 	add.w	r3, r7, #24
- 8000a42:	2228      	movs	r2, #40	@ 0x28
- 8000a44:	2100      	movs	r1, #0
- 8000a46:	4618      	mov	r0, r3
- 8000a48:	f001 ff10 	bl	800286c <memset>
+ 8000a2a:	f107 0318 	add.w	r3, r7, #24
+ 8000a2e:	2228      	movs	r2, #40	@ 0x28
+ 8000a30:	2100      	movs	r1, #0
+ 8000a32:	4618      	mov	r0, r3
+ 8000a34:	f001 ff1a 	bl	800286c <memset>
 	RCC_ClkInitTypeDef RCC_ClkInitStruct = { 0 };
- 8000a4c:	1d3b      	adds	r3, r7, #4
- 8000a4e:	2200      	movs	r2, #0
- 8000a50:	601a      	str	r2, [r3, #0]
- 8000a52:	605a      	str	r2, [r3, #4]
- 8000a54:	609a      	str	r2, [r3, #8]
- 8000a56:	60da      	str	r2, [r3, #12]
- 8000a58:	611a      	str	r2, [r3, #16]
+ 8000a38:	1d3b      	adds	r3, r7, #4
+ 8000a3a:	2200      	movs	r2, #0
+ 8000a3c:	601a      	str	r2, [r3, #0]
+ 8000a3e:	605a      	str	r2, [r3, #4]
+ 8000a40:	609a      	str	r2, [r3, #8]
+ 8000a42:	60da      	str	r2, [r3, #12]
+ 8000a44:	611a      	str	r2, [r3, #16]
 
 	/** Initializes the RCC Oscillators according to the specified parameters
 	 * in the RCC_OscInitTypeDef structure.
 	 */
 	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
- 8000a5a:	2302      	movs	r3, #2
- 8000a5c:	61bb      	str	r3, [r7, #24]
+ 8000a46:	2302      	movs	r3, #2
+ 8000a48:	61bb      	str	r3, [r7, #24]
 	RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 8000a5e:	2301      	movs	r3, #1
- 8000a60:	62bb      	str	r3, [r7, #40]	@ 0x28
+ 8000a4a:	2301      	movs	r3, #1
+ 8000a4c:	62bb      	str	r3, [r7, #40]	@ 0x28
 	RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
- 8000a62:	2310      	movs	r3, #16
- 8000a64:	62fb      	str	r3, [r7, #44]	@ 0x2c
+ 8000a4e:	2310      	movs	r3, #16
+ 8000a50:	62fb      	str	r3, [r7, #44]	@ 0x2c
 	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
- 8000a66:	2300      	movs	r3, #0
- 8000a68:	637b      	str	r3, [r7, #52]	@ 0x34
+ 8000a52:	2300      	movs	r3, #0
+ 8000a54:	637b      	str	r3, [r7, #52]	@ 0x34
 	if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
- 8000a6a:	f107 0318 	add.w	r3, r7, #24
- 8000a6e:	4618      	mov	r0, r3
- 8000a70:	f000 fe84 	bl	800177c <HAL_RCC_OscConfig>
- 8000a74:	4603      	mov	r3, r0
- 8000a76:	2b00      	cmp	r3, #0
- 8000a78:	d001      	beq.n	8000a7e <SystemClock_Config+0x46>
+ 8000a56:	f107 0318 	add.w	r3, r7, #24
+ 8000a5a:	4618      	mov	r0, r3
+ 8000a5c:	f000 fe8e 	bl	800177c <HAL_RCC_OscConfig>
+ 8000a60:	4603      	mov	r3, r0
+ 8000a62:	2b00      	cmp	r3, #0
+ 8000a64:	d001      	beq.n	8000a6a <SystemClock_Config+0x46>
 		Error_Handler();
- 8000a7a:	f000 f8d8 	bl	8000c2e <Error_Handler>
+ 8000a66:	f000 f8d8 	bl	8000c1a <Error_Handler>
 	}
 
 	/** Initializes the CPU, AHB and APB buses clocks
 	 */
 	RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK
- 8000a7e:	230f      	movs	r3, #15
- 8000a80:	607b      	str	r3, [r7, #4]
+ 8000a6a:	230f      	movs	r3, #15
+ 8000a6c:	607b      	str	r3, [r7, #4]
 			| RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
 	RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
- 8000a82:	2300      	movs	r3, #0
- 8000a84:	60bb      	str	r3, [r7, #8]
+ 8000a6e:	2300      	movs	r3, #0
+ 8000a70:	60bb      	str	r3, [r7, #8]
 	RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 8000a86:	2300      	movs	r3, #0
- 8000a88:	60fb      	str	r3, [r7, #12]
+ 8000a72:	2300      	movs	r3, #0
+ 8000a74:	60fb      	str	r3, [r7, #12]
 	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
- 8000a8a:	2300      	movs	r3, #0
- 8000a8c:	613b      	str	r3, [r7, #16]
+ 8000a76:	2300      	movs	r3, #0
+ 8000a78:	613b      	str	r3, [r7, #16]
 	RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 8000a8e:	2300      	movs	r3, #0
- 8000a90:	617b      	str	r3, [r7, #20]
+ 8000a7a:	2300      	movs	r3, #0
+ 8000a7c:	617b      	str	r3, [r7, #20]
 
 	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK) {
- 8000a92:	1d3b      	adds	r3, r7, #4
- 8000a94:	2100      	movs	r1, #0
- 8000a96:	4618      	mov	r0, r3
- 8000a98:	f001 f8f2 	bl	8001c80 <HAL_RCC_ClockConfig>
- 8000a9c:	4603      	mov	r3, r0
- 8000a9e:	2b00      	cmp	r3, #0
- 8000aa0:	d001      	beq.n	8000aa6 <SystemClock_Config+0x6e>
+ 8000a7e:	1d3b      	adds	r3, r7, #4
+ 8000a80:	2100      	movs	r1, #0
+ 8000a82:	4618      	mov	r0, r3
+ 8000a84:	f001 f8fc 	bl	8001c80 <HAL_RCC_ClockConfig>
+ 8000a88:	4603      	mov	r3, r0
+ 8000a8a:	2b00      	cmp	r3, #0
+ 8000a8c:	d001      	beq.n	8000a92 <SystemClock_Config+0x6e>
 		Error_Handler();
- 8000aa2:	f000 f8c4 	bl	8000c2e <Error_Handler>
+ 8000a8e:	f000 f8c4 	bl	8000c1a <Error_Handler>
 	}
 }
- 8000aa6:	bf00      	nop
- 8000aa8:	3740      	adds	r7, #64	@ 0x40
- 8000aaa:	46bd      	mov	sp, r7
- 8000aac:	bd80      	pop	{r7, pc}
+ 8000a92:	bf00      	nop
+ 8000a94:	3740      	adds	r7, #64	@ 0x40
+ 8000a96:	46bd      	mov	sp, r7
+ 8000a98:	bd80      	pop	{r7, pc}
 	...
 
-08000ab0 <MX_TIM2_Init>:
+08000a9c <MX_TIM2_Init>:
 /**
  * @brief TIM2 Initialization Function
  * @param None
  * @retval None
  */
 static void MX_TIM2_Init(void) {
- 8000ab0:	b580      	push	{r7, lr}
- 8000ab2:	b086      	sub	sp, #24
- 8000ab4:	af00      	add	r7, sp, #0
+ 8000a9c:	b580      	push	{r7, lr}
+ 8000a9e:	b086      	sub	sp, #24
+ 8000aa0:	af00      	add	r7, sp, #0
 
 	/* USER CODE BEGIN TIM2_Init 0 */
 
 	/* USER CODE END TIM2_Init 0 */
 
 	TIM_ClockConfigTypeDef sClockSourceConfig = { 0 };
- 8000ab6:	f107 0308 	add.w	r3, r7, #8
- 8000aba:	2200      	movs	r2, #0
- 8000abc:	601a      	str	r2, [r3, #0]
- 8000abe:	605a      	str	r2, [r3, #4]
- 8000ac0:	609a      	str	r2, [r3, #8]
- 8000ac2:	60da      	str	r2, [r3, #12]
+ 8000aa2:	f107 0308 	add.w	r3, r7, #8
+ 8000aa6:	2200      	movs	r2, #0
+ 8000aa8:	601a      	str	r2, [r3, #0]
+ 8000aaa:	605a      	str	r2, [r3, #4]
+ 8000aac:	609a      	str	r2, [r3, #8]
+ 8000aae:	60da      	str	r2, [r3, #12]
 	TIM_MasterConfigTypeDef sMasterConfig = { 0 };
- 8000ac4:	463b      	mov	r3, r7
- 8000ac6:	2200      	movs	r2, #0
- 8000ac8:	601a      	str	r2, [r3, #0]
- 8000aca:	605a      	str	r2, [r3, #4]
+ 8000ab0:	463b      	mov	r3, r7
+ 8000ab2:	2200      	movs	r2, #0
+ 8000ab4:	601a      	str	r2, [r3, #0]
+ 8000ab6:	605a      	str	r2, [r3, #4]
 
 	/* USER CODE BEGIN TIM2_Init 1 */
 
 	/* USER CODE END TIM2_Init 1 */
 	htim2.Instance = TIM2;
- 8000acc:	4b1d      	ldr	r3, [pc, #116]	@ (8000b44 <MX_TIM2_Init+0x94>)
- 8000ace:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
- 8000ad2:	601a      	str	r2, [r3, #0]
+ 8000ab8:	4b1d      	ldr	r3, [pc, #116]	@ (8000b30 <MX_TIM2_Init+0x94>)
+ 8000aba:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 8000abe:	601a      	str	r2, [r3, #0]
 	htim2.Init.Prescaler = 7999;
- 8000ad4:	4b1b      	ldr	r3, [pc, #108]	@ (8000b44 <MX_TIM2_Init+0x94>)
- 8000ad6:	f641 723f 	movw	r2, #7999	@ 0x1f3f
- 8000ada:	605a      	str	r2, [r3, #4]
+ 8000ac0:	4b1b      	ldr	r3, [pc, #108]	@ (8000b30 <MX_TIM2_Init+0x94>)
+ 8000ac2:	f641 723f 	movw	r2, #7999	@ 0x1f3f
+ 8000ac6:	605a      	str	r2, [r3, #4]
 	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
- 8000adc:	4b19      	ldr	r3, [pc, #100]	@ (8000b44 <MX_TIM2_Init+0x94>)
- 8000ade:	2200      	movs	r2, #0
- 8000ae0:	609a      	str	r2, [r3, #8]
+ 8000ac8:	4b19      	ldr	r3, [pc, #100]	@ (8000b30 <MX_TIM2_Init+0x94>)
+ 8000aca:	2200      	movs	r2, #0
+ 8000acc:	609a      	str	r2, [r3, #8]
 	htim2.Init.Period = 9;
- 8000ae2:	4b18      	ldr	r3, [pc, #96]	@ (8000b44 <MX_TIM2_Init+0x94>)
- 8000ae4:	2209      	movs	r2, #9
- 8000ae6:	60da      	str	r2, [r3, #12]
+ 8000ace:	4b18      	ldr	r3, [pc, #96]	@ (8000b30 <MX_TIM2_Init+0x94>)
+ 8000ad0:	2209      	movs	r2, #9
+ 8000ad2:	60da      	str	r2, [r3, #12]
 	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
- 8000ae8:	4b16      	ldr	r3, [pc, #88]	@ (8000b44 <MX_TIM2_Init+0x94>)
- 8000aea:	2200      	movs	r2, #0
- 8000aec:	611a      	str	r2, [r3, #16]
+ 8000ad4:	4b16      	ldr	r3, [pc, #88]	@ (8000b30 <MX_TIM2_Init+0x94>)
+ 8000ad6:	2200      	movs	r2, #0
+ 8000ad8:	611a      	str	r2, [r3, #16]
 	htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
- 8000aee:	4b15      	ldr	r3, [pc, #84]	@ (8000b44 <MX_TIM2_Init+0x94>)
- 8000af0:	2200      	movs	r2, #0
- 8000af2:	619a      	str	r2, [r3, #24]
+ 8000ada:	4b15      	ldr	r3, [pc, #84]	@ (8000b30 <MX_TIM2_Init+0x94>)
+ 8000adc:	2200      	movs	r2, #0
+ 8000ade:	619a      	str	r2, [r3, #24]
 	if (HAL_TIM_Base_Init(&htim2) != HAL_OK) {
- 8000af4:	4813      	ldr	r0, [pc, #76]	@ (8000b44 <MX_TIM2_Init+0x94>)
- 8000af6:	f001 fa1f 	bl	8001f38 <HAL_TIM_Base_Init>
- 8000afa:	4603      	mov	r3, r0
- 8000afc:	2b00      	cmp	r3, #0
- 8000afe:	d001      	beq.n	8000b04 <MX_TIM2_Init+0x54>
+ 8000ae0:	4813      	ldr	r0, [pc, #76]	@ (8000b30 <MX_TIM2_Init+0x94>)
+ 8000ae2:	f001 fa29 	bl	8001f38 <HAL_TIM_Base_Init>
+ 8000ae6:	4603      	mov	r3, r0
+ 8000ae8:	2b00      	cmp	r3, #0
+ 8000aea:	d001      	beq.n	8000af0 <MX_TIM2_Init+0x54>
 		Error_Handler();
- 8000b00:	f000 f895 	bl	8000c2e <Error_Handler>
+ 8000aec:	f000 f895 	bl	8000c1a <Error_Handler>
 	}
 	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
- 8000b04:	f44f 5380 	mov.w	r3, #4096	@ 0x1000
- 8000b08:	60bb      	str	r3, [r7, #8]
+ 8000af0:	f44f 5380 	mov.w	r3, #4096	@ 0x1000
+ 8000af4:	60bb      	str	r3, [r7, #8]
 	if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK) {
- 8000b0a:	f107 0308 	add.w	r3, r7, #8
- 8000b0e:	4619      	mov	r1, r3
- 8000b10:	480c      	ldr	r0, [pc, #48]	@ (8000b44 <MX_TIM2_Init+0x94>)
- 8000b12:	f001 fb9d 	bl	8002250 <HAL_TIM_ConfigClockSource>
- 8000b16:	4603      	mov	r3, r0
- 8000b18:	2b00      	cmp	r3, #0
- 8000b1a:	d001      	beq.n	8000b20 <MX_TIM2_Init+0x70>
+ 8000af6:	f107 0308 	add.w	r3, r7, #8
+ 8000afa:	4619      	mov	r1, r3
+ 8000afc:	480c      	ldr	r0, [pc, #48]	@ (8000b30 <MX_TIM2_Init+0x94>)
+ 8000afe:	f001 fba7 	bl	8002250 <HAL_TIM_ConfigClockSource>
+ 8000b02:	4603      	mov	r3, r0
+ 8000b04:	2b00      	cmp	r3, #0
+ 8000b06:	d001      	beq.n	8000b0c <MX_TIM2_Init+0x70>
 		Error_Handler();
- 8000b1c:	f000 f887 	bl	8000c2e <Error_Handler>
+ 8000b08:	f000 f887 	bl	8000c1a <Error_Handler>
 	}
 	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
- 8000b20:	2300      	movs	r3, #0
- 8000b22:	603b      	str	r3, [r7, #0]
+ 8000b0c:	2300      	movs	r3, #0
+ 8000b0e:	603b      	str	r3, [r7, #0]
 	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
- 8000b24:	2300      	movs	r3, #0
- 8000b26:	607b      	str	r3, [r7, #4]
+ 8000b10:	2300      	movs	r3, #0
+ 8000b12:	607b      	str	r3, [r7, #4]
 	if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig)
- 8000b28:	463b      	mov	r3, r7
- 8000b2a:	4619      	mov	r1, r3
- 8000b2c:	4805      	ldr	r0, [pc, #20]	@ (8000b44 <MX_TIM2_Init+0x94>)
- 8000b2e:	f001 fd75 	bl	800261c <HAL_TIMEx_MasterConfigSynchronization>
- 8000b32:	4603      	mov	r3, r0
- 8000b34:	2b00      	cmp	r3, #0
- 8000b36:	d001      	beq.n	8000b3c <MX_TIM2_Init+0x8c>
+ 8000b14:	463b      	mov	r3, r7
+ 8000b16:	4619      	mov	r1, r3
+ 8000b18:	4805      	ldr	r0, [pc, #20]	@ (8000b30 <MX_TIM2_Init+0x94>)
+ 8000b1a:	f001 fd7f 	bl	800261c <HAL_TIMEx_MasterConfigSynchronization>
+ 8000b1e:	4603      	mov	r3, r0
+ 8000b20:	2b00      	cmp	r3, #0
+ 8000b22:	d001      	beq.n	8000b28 <MX_TIM2_Init+0x8c>
 			!= HAL_OK) {
 		Error_Handler();
- 8000b38:	f000 f879 	bl	8000c2e <Error_Handler>
+ 8000b24:	f000 f879 	bl	8000c1a <Error_Handler>
 	}
 	/* USER CODE BEGIN TIM2_Init 2 */
 
 	/* USER CODE END TIM2_Init 2 */
 
 }
- 8000b3c:	bf00      	nop
- 8000b3e:	3718      	adds	r7, #24
- 8000b40:	46bd      	mov	sp, r7
- 8000b42:	bd80      	pop	{r7, pc}
- 8000b44:	200000c8 	.word	0x200000c8
+ 8000b28:	bf00      	nop
+ 8000b2a:	3718      	adds	r7, #24
+ 8000b2c:	46bd      	mov	sp, r7
+ 8000b2e:	bd80      	pop	{r7, pc}
+ 8000b30:	200000c8 	.word	0x200000c8
 
-08000b48 <MX_GPIO_Init>:
+08000b34 <MX_GPIO_Init>:
 /**
  * @brief GPIO Initialization Function
  * @param None
  * @retval None
  */
 static void MX_GPIO_Init(void) {
- 8000b48:	b580      	push	{r7, lr}
- 8000b4a:	b086      	sub	sp, #24
- 8000b4c:	af00      	add	r7, sp, #0
+ 8000b34:	b580      	push	{r7, lr}
+ 8000b36:	b086      	sub	sp, #24
+ 8000b38:	af00      	add	r7, sp, #0
 	GPIO_InitTypeDef GPIO_InitStruct = { 0 };
- 8000b4e:	f107 0308 	add.w	r3, r7, #8
- 8000b52:	2200      	movs	r2, #0
- 8000b54:	601a      	str	r2, [r3, #0]
- 8000b56:	605a      	str	r2, [r3, #4]
- 8000b58:	609a      	str	r2, [r3, #8]
- 8000b5a:	60da      	str	r2, [r3, #12]
+ 8000b3a:	f107 0308 	add.w	r3, r7, #8
+ 8000b3e:	2200      	movs	r2, #0
+ 8000b40:	601a      	str	r2, [r3, #0]
+ 8000b42:	605a      	str	r2, [r3, #4]
+ 8000b44:	609a      	str	r2, [r3, #8]
+ 8000b46:	60da      	str	r2, [r3, #12]
 	/* USER CODE BEGIN MX_GPIO_Init_1 */
 	/* USER CODE END MX_GPIO_Init_1 */
 
 	/* GPIO Ports Clock Enable */
 	__HAL_RCC_GPIOA_CLK_ENABLE();
- 8000b5c:	4b28      	ldr	r3, [pc, #160]	@ (8000c00 <MX_GPIO_Init+0xb8>)
- 8000b5e:	699b      	ldr	r3, [r3, #24]
- 8000b60:	4a27      	ldr	r2, [pc, #156]	@ (8000c00 <MX_GPIO_Init+0xb8>)
- 8000b62:	f043 0304 	orr.w	r3, r3, #4
- 8000b66:	6193      	str	r3, [r2, #24]
- 8000b68:	4b25      	ldr	r3, [pc, #148]	@ (8000c00 <MX_GPIO_Init+0xb8>)
- 8000b6a:	699b      	ldr	r3, [r3, #24]
- 8000b6c:	f003 0304 	and.w	r3, r3, #4
- 8000b70:	607b      	str	r3, [r7, #4]
- 8000b72:	687b      	ldr	r3, [r7, #4]
+ 8000b48:	4b28      	ldr	r3, [pc, #160]	@ (8000bec <MX_GPIO_Init+0xb8>)
+ 8000b4a:	699b      	ldr	r3, [r3, #24]
+ 8000b4c:	4a27      	ldr	r2, [pc, #156]	@ (8000bec <MX_GPIO_Init+0xb8>)
+ 8000b4e:	f043 0304 	orr.w	r3, r3, #4
+ 8000b52:	6193      	str	r3, [r2, #24]
+ 8000b54:	4b25      	ldr	r3, [pc, #148]	@ (8000bec <MX_GPIO_Init+0xb8>)
+ 8000b56:	699b      	ldr	r3, [r3, #24]
+ 8000b58:	f003 0304 	and.w	r3, r3, #4
+ 8000b5c:	607b      	str	r3, [r7, #4]
+ 8000b5e:	687b      	ldr	r3, [r7, #4]
 	__HAL_RCC_GPIOB_CLK_ENABLE();
- 8000b74:	4b22      	ldr	r3, [pc, #136]	@ (8000c00 <MX_GPIO_Init+0xb8>)
- 8000b76:	699b      	ldr	r3, [r3, #24]
- 8000b78:	4a21      	ldr	r2, [pc, #132]	@ (8000c00 <MX_GPIO_Init+0xb8>)
- 8000b7a:	f043 0308 	orr.w	r3, r3, #8
- 8000b7e:	6193      	str	r3, [r2, #24]
- 8000b80:	4b1f      	ldr	r3, [pc, #124]	@ (8000c00 <MX_GPIO_Init+0xb8>)
- 8000b82:	699b      	ldr	r3, [r3, #24]
- 8000b84:	f003 0308 	and.w	r3, r3, #8
- 8000b88:	603b      	str	r3, [r7, #0]
- 8000b8a:	683b      	ldr	r3, [r7, #0]
+ 8000b60:	4b22      	ldr	r3, [pc, #136]	@ (8000bec <MX_GPIO_Init+0xb8>)
+ 8000b62:	699b      	ldr	r3, [r3, #24]
+ 8000b64:	4a21      	ldr	r2, [pc, #132]	@ (8000bec <MX_GPIO_Init+0xb8>)
+ 8000b66:	f043 0308 	orr.w	r3, r3, #8
+ 8000b6a:	6193      	str	r3, [r2, #24]
+ 8000b6c:	4b1f      	ldr	r3, [pc, #124]	@ (8000bec <MX_GPIO_Init+0xb8>)
+ 8000b6e:	699b      	ldr	r3, [r3, #24]
+ 8000b70:	f003 0308 	and.w	r3, r3, #8
+ 8000b74:	603b      	str	r3, [r7, #0]
+ 8000b76:	683b      	ldr	r3, [r7, #0]
 
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(GPIOA,
- 8000b8c:	2200      	movs	r2, #0
- 8000b8e:	f64f 711e 	movw	r1, #65310	@ 0xff1e
- 8000b92:	481c      	ldr	r0, [pc, #112]	@ (8000c04 <MX_GPIO_Init+0xbc>)
- 8000b94:	f000 fdc1 	bl	800171a <HAL_GPIO_WritePin>
+ 8000b78:	2200      	movs	r2, #0
+ 8000b7a:	f64f 711e 	movw	r1, #65310	@ 0xff1e
+ 8000b7e:	481c      	ldr	r0, [pc, #112]	@ (8000bf0 <MX_GPIO_Init+0xbc>)
+ 8000b80:	f000 fdcb 	bl	800171a <HAL_GPIO_WritePin>
 			EN0_Pin | EN1_Pin | EN2_Pin | EN3_Pin | LED_RED_Pin | SEG_0_Pin
 					| SEG_1_Pin | SEG_2_Pin | SEG_3_Pin | SEG_4_Pin | SEG_5_Pin
 					| SEG_6_Pin, GPIO_PIN_RESET);
 
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(GPIOB,
- 8000b98:	2200      	movs	r2, #0
- 8000b9a:	f641 71fe 	movw	r1, #8190	@ 0x1ffe
- 8000b9e:	481a      	ldr	r0, [pc, #104]	@ (8000c08 <MX_GPIO_Init+0xc0>)
- 8000ba0:	f000 fdbb 	bl	800171a <HAL_GPIO_WritePin>
+ 8000b84:	2200      	movs	r2, #0
+ 8000b86:	f641 71fe 	movw	r1, #8190	@ 0x1ffe
+ 8000b8a:	481a      	ldr	r0, [pc, #104]	@ (8000bf4 <MX_GPIO_Init+0xc0>)
+ 8000b8c:	f000 fdc5 	bl	800171a <HAL_GPIO_WritePin>
 					| LED_GREEN_3_Pin | LED_AMBER_3_Pin, GPIO_PIN_RESET);
 
 	/*Configure GPIO pins : EN0_Pin EN1_Pin EN2_Pin EN3_Pin
 	 LED_RED_Pin SEG_0_Pin SEG_1_Pin SEG_2_Pin
 	 SEG_3_Pin SEG_4_Pin SEG_5_Pin SEG_6_Pin */
 	GPIO_InitStruct.Pin = EN0_Pin | EN1_Pin | EN2_Pin | EN3_Pin | LED_RED_Pin
- 8000ba4:	f64f 731e 	movw	r3, #65310	@ 0xff1e
- 8000ba8:	60bb      	str	r3, [r7, #8]
+ 8000b90:	f64f 731e 	movw	r3, #65310	@ 0xff1e
+ 8000b94:	60bb      	str	r3, [r7, #8]
 			| SEG_0_Pin | SEG_1_Pin | SEG_2_Pin | SEG_3_Pin | SEG_4_Pin
 			| SEG_5_Pin | SEG_6_Pin;
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
- 8000baa:	2301      	movs	r3, #1
- 8000bac:	60fb      	str	r3, [r7, #12]
+ 8000b96:	2301      	movs	r3, #1
+ 8000b98:	60fb      	str	r3, [r7, #12]
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
- 8000bae:	2300      	movs	r3, #0
- 8000bb0:	613b      	str	r3, [r7, #16]
+ 8000b9a:	2300      	movs	r3, #0
+ 8000b9c:	613b      	str	r3, [r7, #16]
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 8000bb2:	2302      	movs	r3, #2
- 8000bb4:	617b      	str	r3, [r7, #20]
+ 8000b9e:	2302      	movs	r3, #2
+ 8000ba0:	617b      	str	r3, [r7, #20]
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- 8000bb6:	f107 0308 	add.w	r3, r7, #8
- 8000bba:	4619      	mov	r1, r3
- 8000bbc:	4811      	ldr	r0, [pc, #68]	@ (8000c04 <MX_GPIO_Init+0xbc>)
- 8000bbe:	f000 fc19 	bl	80013f4 <HAL_GPIO_Init>
+ 8000ba2:	f107 0308 	add.w	r3, r7, #8
+ 8000ba6:	4619      	mov	r1, r3
+ 8000ba8:	4811      	ldr	r0, [pc, #68]	@ (8000bf0 <MX_GPIO_Init+0xbc>)
+ 8000baa:	f000 fc23 	bl	80013f4 <HAL_GPIO_Init>
 
 	/*Configure GPIO pins : BTN1_Pin BTN2_Pin BTN3_Pin */
 	GPIO_InitStruct.Pin = BTN1_Pin | BTN2_Pin | BTN3_Pin;
- 8000bc2:	23e0      	movs	r3, #224	@ 0xe0
- 8000bc4:	60bb      	str	r3, [r7, #8]
+ 8000bae:	23e0      	movs	r3, #224	@ 0xe0
+ 8000bb0:	60bb      	str	r3, [r7, #8]
 	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
- 8000bc6:	2300      	movs	r3, #0
- 8000bc8:	60fb      	str	r3, [r7, #12]
+ 8000bb2:	2300      	movs	r3, #0
+ 8000bb4:	60fb      	str	r3, [r7, #12]
 	GPIO_InitStruct.Pull = GPIO_PULLUP;
- 8000bca:	2301      	movs	r3, #1
- 8000bcc:	613b      	str	r3, [r7, #16]
+ 8000bb6:	2301      	movs	r3, #1
+ 8000bb8:	613b      	str	r3, [r7, #16]
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- 8000bce:	f107 0308 	add.w	r3, r7, #8
- 8000bd2:	4619      	mov	r1, r3
- 8000bd4:	480b      	ldr	r0, [pc, #44]	@ (8000c04 <MX_GPIO_Init+0xbc>)
- 8000bd6:	f000 fc0d 	bl	80013f4 <HAL_GPIO_Init>
+ 8000bba:	f107 0308 	add.w	r3, r7, #8
+ 8000bbe:	4619      	mov	r1, r3
+ 8000bc0:	480b      	ldr	r0, [pc, #44]	@ (8000bf0 <MX_GPIO_Init+0xbc>)
+ 8000bc2:	f000 fc17 	bl	80013f4 <HAL_GPIO_Init>
 
 	/*Configure GPIO pins : LED_RED_1_Pin LED_GREEN_1_Pin LED_RED_4_Pin LED_GREEN_4_Pin
 	 LED_AMBER_4_Pin LED_AMBER_1_Pin LED_RED_2_Pin LED_GREEN_2_Pin
 	 LED_AMBER_2_Pin LED_RED_3_Pin LED_GREEN_3_Pin LED_AMBER_3_Pin */
 	GPIO_InitStruct.Pin = LED_RED_1_Pin | LED_GREEN_1_Pin | LED_RED_4_Pin
- 8000bda:	f641 73fe 	movw	r3, #8190	@ 0x1ffe
- 8000bde:	60bb      	str	r3, [r7, #8]
+ 8000bc6:	f641 73fe 	movw	r3, #8190	@ 0x1ffe
+ 8000bca:	60bb      	str	r3, [r7, #8]
 			| LED_GREEN_4_Pin | LED_AMBER_4_Pin | LED_AMBER_1_Pin
 			| LED_RED_2_Pin | LED_GREEN_2_Pin | LED_AMBER_2_Pin | LED_RED_3_Pin
 			| LED_GREEN_3_Pin | LED_AMBER_3_Pin;
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
- 8000be0:	2301      	movs	r3, #1
- 8000be2:	60fb      	str	r3, [r7, #12]
+ 8000bcc:	2301      	movs	r3, #1
+ 8000bce:	60fb      	str	r3, [r7, #12]
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
- 8000be4:	2300      	movs	r3, #0
- 8000be6:	613b      	str	r3, [r7, #16]
+ 8000bd0:	2300      	movs	r3, #0
+ 8000bd2:	613b      	str	r3, [r7, #16]
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 8000be8:	2302      	movs	r3, #2
- 8000bea:	617b      	str	r3, [r7, #20]
+ 8000bd4:	2302      	movs	r3, #2
+ 8000bd6:	617b      	str	r3, [r7, #20]
 	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
- 8000bec:	f107 0308 	add.w	r3, r7, #8
- 8000bf0:	4619      	mov	r1, r3
- 8000bf2:	4805      	ldr	r0, [pc, #20]	@ (8000c08 <MX_GPIO_Init+0xc0>)
- 8000bf4:	f000 fbfe 	bl	80013f4 <HAL_GPIO_Init>
+ 8000bd8:	f107 0308 	add.w	r3, r7, #8
+ 8000bdc:	4619      	mov	r1, r3
+ 8000bde:	4805      	ldr	r0, [pc, #20]	@ (8000bf4 <MX_GPIO_Init+0xc0>)
+ 8000be0:	f000 fc08 	bl	80013f4 <HAL_GPIO_Init>
 
 	/* USER CODE BEGIN MX_GPIO_Init_2 */
 	/* USER CODE END MX_GPIO_Init_2 */
 }
- 8000bf8:	bf00      	nop
- 8000bfa:	3718      	adds	r7, #24
- 8000bfc:	46bd      	mov	sp, r7
- 8000bfe:	bd80      	pop	{r7, pc}
- 8000c00:	40021000 	.word	0x40021000
- 8000c04:	40010800 	.word	0x40010800
- 8000c08:	40010c00 	.word	0x40010c00
+ 8000be4:	bf00      	nop
+ 8000be6:	3718      	adds	r7, #24
+ 8000be8:	46bd      	mov	sp, r7
+ 8000bea:	bd80      	pop	{r7, pc}
+ 8000bec:	40021000 	.word	0x40021000
+ 8000bf0:	40010800 	.word	0x40010800
+ 8000bf4:	40010c00 	.word	0x40010c00
 
-08000c0c <HAL_TIM_PeriodElapsedCallback>:
+08000bf8 <HAL_TIM_PeriodElapsedCallback>:
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
- 8000c0c:	b580      	push	{r7, lr}
- 8000c0e:	b082      	sub	sp, #8
- 8000c10:	af00      	add	r7, sp, #0
- 8000c12:	6078      	str	r0, [r7, #4]
+ 8000bf8:	b580      	push	{r7, lr}
+ 8000bfa:	b082      	sub	sp, #8
+ 8000bfc:	af00      	add	r7, sp, #0
+ 8000bfe:	6078      	str	r0, [r7, #4]
 	if (htim->Instance == TIM2) {
- 8000c14:	687b      	ldr	r3, [r7, #4]
- 8000c16:	681b      	ldr	r3, [r3, #0]
- 8000c18:	f1b3 4f80 	cmp.w	r3, #1073741824	@ 0x40000000
- 8000c1c:	d103      	bne.n	8000c26 <HAL_TIM_PeriodElapsedCallback+0x1a>
+ 8000c00:	687b      	ldr	r3, [r7, #4]
+ 8000c02:	681b      	ldr	r3, [r3, #0]
+ 8000c04:	f1b3 4f80 	cmp.w	r3, #1073741824	@ 0x40000000
+ 8000c08:	d103      	bne.n	8000c12 <HAL_TIM_PeriodElapsedCallback+0x1a>
 		Scheduler_Update();
- 8000c1e:	f000 f8f5 	bl	8000e0c <Scheduler_Update>
+ 8000c0a:	f000 f907 	bl	8000e1c <Scheduler_Update>
 		button_reading();
- 8000c22:	f7ff fe35 	bl	8000890 <button_reading>
+ 8000c0e:	f7ff fe39 	bl	8000884 <button_reading>
 	}
 }
- 8000c26:	bf00      	nop
- 8000c28:	3708      	adds	r7, #8
- 8000c2a:	46bd      	mov	sp, r7
- 8000c2c:	bd80      	pop	{r7, pc}
+ 8000c12:	bf00      	nop
+ 8000c14:	3708      	adds	r7, #8
+ 8000c16:	46bd      	mov	sp, r7
+ 8000c18:	bd80      	pop	{r7, pc}
 
-08000c2e <Error_Handler>:
+08000c1a <Error_Handler>:
 
 /**
  * @brief  This function is executed in case of error occurrence.
  * @retval None
  */
 void Error_Handler(void) {
- 8000c2e:	b480      	push	{r7}
- 8000c30:	af00      	add	r7, sp, #0
+ 8000c1a:	b480      	push	{r7}
+ 8000c1c:	af00      	add	r7, sp, #0
   \details Disables IRQ interrupts by setting the I-bit in the CPSR.
            Can only be executed in Privileged modes.
  */
 __STATIC_FORCEINLINE void __disable_irq(void)
 {
   __ASM volatile ("cpsid i" : : : "memory");
- 8000c32:	b672      	cpsid	i
+ 8000c1e:	b672      	cpsid	i
 }
- 8000c34:	bf00      	nop
+ 8000c20:	bf00      	nop
 	/* USER CODE BEGIN Error_Handler_Debug */
 	/* User can add his own implementation to report the HAL error return state */
 	__disable_irq();
 	while (1) {
- 8000c36:	bf00      	nop
- 8000c38:	e7fd      	b.n	8000c36 <Error_Handler+0x8>
+ 8000c22:	bf00      	nop
+ 8000c24:	e7fd      	b.n	8000c22 <Error_Handler+0x8>
 
-08000c3a <is_avail>:
+08000c26 <is_avail>:
  *      Author: HP
  */
 #include "scheduler.h"
 Tasks_t tasks;
 
 int is_avail(TaskNode *task) {
- 8000c3a:	b480      	push	{r7}
- 8000c3c:	b083      	sub	sp, #12
- 8000c3e:	af00      	add	r7, sp, #0
- 8000c40:	6078      	str	r0, [r7, #4]
-	return (task->runMe == 1);
- 8000c42:	687b      	ldr	r3, [r7, #4]
- 8000c44:	7c1b      	ldrb	r3, [r3, #16]
- 8000c46:	2b01      	cmp	r3, #1
- 8000c48:	bf0c      	ite	eq
- 8000c4a:	2301      	moveq	r3, #1
- 8000c4c:	2300      	movne	r3, #0
- 8000c4e:	b2db      	uxtb	r3, r3
+ 8000c26:	b480      	push	{r7}
+ 8000c28:	b083      	sub	sp, #12
+ 8000c2a:	af00      	add	r7, sp, #0
+ 8000c2c:	6078      	str	r0, [r7, #4]
+	if (task->runMe == 1) {
+ 8000c2e:	687b      	ldr	r3, [r7, #4]
+ 8000c30:	7c1b      	ldrb	r3, [r3, #16]
+ 8000c32:	2b01      	cmp	r3, #1
+ 8000c34:	d104      	bne.n	8000c40 <is_avail+0x1a>
+		task->runMe = 0;
+ 8000c36:	687b      	ldr	r3, [r7, #4]
+ 8000c38:	2200      	movs	r2, #0
+ 8000c3a:	741a      	strb	r2, [r3, #16]
+		return 1;
+ 8000c3c:	2301      	movs	r3, #1
+ 8000c3e:	e000      	b.n	8000c42 <is_avail+0x1c>
+	}
+	return 0;
+ 8000c40:	2300      	movs	r3, #0
 }
- 8000c50:	4618      	mov	r0, r3
- 8000c52:	370c      	adds	r7, #12
- 8000c54:	46bd      	mov	sp, r7
- 8000c56:	bc80      	pop	{r7}
- 8000c58:	4770      	bx	lr
-	...
+ 8000c42:	4618      	mov	r0, r3
+ 8000c44:	370c      	adds	r7, #12
+ 8000c46:	46bd      	mov	sp, r7
+ 8000c48:	bc80      	pop	{r7}
+ 8000c4a:	4770      	bx	lr
 
-08000c5c <Scheduler_Init>:
+08000c4c <Scheduler_Init>:
 void Scheduler_Init(void) {
- 8000c5c:	b580      	push	{r7, lr}
- 8000c5e:	b084      	sub	sp, #16
- 8000c60:	af00      	add	r7, sp, #0
+ 8000c4c:	b580      	push	{r7, lr}
+ 8000c4e:	b084      	sub	sp, #16
+ 8000c50:	af00      	add	r7, sp, #0
 	if (!tasks.head) {
- 8000c62:	4b14      	ldr	r3, [pc, #80]	@ (8000cb4 <Scheduler_Init+0x58>)
- 8000c64:	681b      	ldr	r3, [r3, #0]
- 8000c66:	2b00      	cmp	r3, #0
- 8000c68:	d106      	bne.n	8000c78 <Scheduler_Init+0x1c>
+ 8000c52:	4b14      	ldr	r3, [pc, #80]	@ (8000ca4 <Scheduler_Init+0x58>)
+ 8000c54:	681b      	ldr	r3, [r3, #0]
+ 8000c56:	2b00      	cmp	r3, #0
+ 8000c58:	d106      	bne.n	8000c68 <Scheduler_Init+0x1c>
 		tasks.head = NULL;
- 8000c6a:	4b12      	ldr	r3, [pc, #72]	@ (8000cb4 <Scheduler_Init+0x58>)
- 8000c6c:	2200      	movs	r2, #0
- 8000c6e:	601a      	str	r2, [r3, #0]
+ 8000c5a:	4b12      	ldr	r3, [pc, #72]	@ (8000ca4 <Scheduler_Init+0x58>)
+ 8000c5c:	2200      	movs	r2, #0
+ 8000c5e:	601a      	str	r2, [r3, #0]
 		tasks.nTasks = 0;
- 8000c70:	4b10      	ldr	r3, [pc, #64]	@ (8000cb4 <Scheduler_Init+0x58>)
- 8000c72:	2200      	movs	r2, #0
- 8000c74:	605a      	str	r2, [r3, #4]
+ 8000c60:	4b10      	ldr	r3, [pc, #64]	@ (8000ca4 <Scheduler_Init+0x58>)
+ 8000c62:	2200      	movs	r2, #0
+ 8000c64:	605a      	str	r2, [r3, #4]
 			current = current->next;
 			free(tmp);
 		}
 		tasks.head = NULL;
 	}
 }
- 8000c76:	e018      	b.n	8000caa <Scheduler_Init+0x4e>
+ 8000c66:	e018      	b.n	8000c9a <Scheduler_Init+0x4e>
 		TaskNode *current = tasks.head;
- 8000c78:	4b0e      	ldr	r3, [pc, #56]	@ (8000cb4 <Scheduler_Init+0x58>)
- 8000c7a:	681b      	ldr	r3, [r3, #0]
- 8000c7c:	60fb      	str	r3, [r7, #12]
+ 8000c68:	4b0e      	ldr	r3, [pc, #56]	@ (8000ca4 <Scheduler_Init+0x58>)
+ 8000c6a:	681b      	ldr	r3, [r3, #0]
+ 8000c6c:	60fb      	str	r3, [r7, #12]
 		for (uint8_t i = 0; i < tasks.nTasks; i++) {
- 8000c7e:	2300      	movs	r3, #0
- 8000c80:	72fb      	strb	r3, [r7, #11]
- 8000c82:	e00a      	b.n	8000c9a <Scheduler_Init+0x3e>
+ 8000c6e:	2300      	movs	r3, #0
+ 8000c70:	72fb      	strb	r3, [r7, #11]
+ 8000c72:	e00a      	b.n	8000c8a <Scheduler_Init+0x3e>
 			TaskNode *tmp = current;
- 8000c84:	68fb      	ldr	r3, [r7, #12]
- 8000c86:	607b      	str	r3, [r7, #4]
+ 8000c74:	68fb      	ldr	r3, [r7, #12]
+ 8000c76:	607b      	str	r3, [r7, #4]
 			current = current->next;
- 8000c88:	68fb      	ldr	r3, [r7, #12]
- 8000c8a:	685b      	ldr	r3, [r3, #4]
- 8000c8c:	60fb      	str	r3, [r7, #12]
+ 8000c78:	68fb      	ldr	r3, [r7, #12]
+ 8000c7a:	685b      	ldr	r3, [r3, #4]
+ 8000c7c:	60fb      	str	r3, [r7, #12]
 			free(tmp);
- 8000c8e:	6878      	ldr	r0, [r7, #4]
- 8000c90:	f001 fd36 	bl	8002700 <free>
+ 8000c7e:	6878      	ldr	r0, [r7, #4]
+ 8000c80:	f001 fd3e 	bl	8002700 <free>
 		for (uint8_t i = 0; i < tasks.nTasks; i++) {
- 8000c94:	7afb      	ldrb	r3, [r7, #11]
- 8000c96:	3301      	adds	r3, #1
- 8000c98:	72fb      	strb	r3, [r7, #11]
- 8000c9a:	7afa      	ldrb	r2, [r7, #11]
- 8000c9c:	4b05      	ldr	r3, [pc, #20]	@ (8000cb4 <Scheduler_Init+0x58>)
- 8000c9e:	685b      	ldr	r3, [r3, #4]
- 8000ca0:	429a      	cmp	r2, r3
- 8000ca2:	d3ef      	bcc.n	8000c84 <Scheduler_Init+0x28>
+ 8000c84:	7afb      	ldrb	r3, [r7, #11]
+ 8000c86:	3301      	adds	r3, #1
+ 8000c88:	72fb      	strb	r3, [r7, #11]
+ 8000c8a:	7afa      	ldrb	r2, [r7, #11]
+ 8000c8c:	4b05      	ldr	r3, [pc, #20]	@ (8000ca4 <Scheduler_Init+0x58>)
+ 8000c8e:	685b      	ldr	r3, [r3, #4]
+ 8000c90:	429a      	cmp	r2, r3
+ 8000c92:	d3ef      	bcc.n	8000c74 <Scheduler_Init+0x28>
 		tasks.head = NULL;
- 8000ca4:	4b03      	ldr	r3, [pc, #12]	@ (8000cb4 <Scheduler_Init+0x58>)
- 8000ca6:	2200      	movs	r2, #0
- 8000ca8:	601a      	str	r2, [r3, #0]
+ 8000c94:	4b03      	ldr	r3, [pc, #12]	@ (8000ca4 <Scheduler_Init+0x58>)
+ 8000c96:	2200      	movs	r2, #0
+ 8000c98:	601a      	str	r2, [r3, #0]
 }
- 8000caa:	bf00      	nop
- 8000cac:	3710      	adds	r7, #16
- 8000cae:	46bd      	mov	sp, r7
- 8000cb0:	bd80      	pop	{r7, pc}
- 8000cb2:	bf00      	nop
- 8000cb4:	20000110 	.word	0x20000110
+ 8000c9a:	bf00      	nop
+ 8000c9c:	3710      	adds	r7, #16
+ 8000c9e:	46bd      	mov	sp, r7
+ 8000ca0:	bd80      	pop	{r7, pc}
+ 8000ca2:	bf00      	nop
+ 8000ca4:	20000110 	.word	0x20000110
 
-08000cb8 <Scheduler_Add_Task>:
-
-uint32_t Scheduler_Add_Task(void (*pF)(void), uint32_t taskID, uint32_t DELAY,
-		uint32_t PERIOD) {
- 8000cb8:	b580      	push	{r7, lr}
- 8000cba:	b08a      	sub	sp, #40	@ 0x28
- 8000cbc:	af00      	add	r7, sp, #0
- 8000cbe:	60f8      	str	r0, [r7, #12]
- 8000cc0:	60b9      	str	r1, [r7, #8]
- 8000cc2:	607a      	str	r2, [r7, #4]
- 8000cc4:	603b      	str	r3, [r7, #0]
-	DELAY = DELAY / TICK;
- 8000cc6:	687b      	ldr	r3, [r7, #4]
- 8000cc8:	4a4e      	ldr	r2, [pc, #312]	@ (8000e04 <Scheduler_Add_Task+0x14c>)
- 8000cca:	fba2 2303 	umull	r2, r3, r2, r3
- 8000cce:	08db      	lsrs	r3, r3, #3
- 8000cd0:	607b      	str	r3, [r7, #4]
-	PERIOD = PERIOD / TICK;
- 8000cd2:	683b      	ldr	r3, [r7, #0]
- 8000cd4:	4a4b      	ldr	r2, [pc, #300]	@ (8000e04 <Scheduler_Add_Task+0x14c>)
- 8000cd6:	fba2 2303 	umull	r2, r3, r2, r3
- 8000cda:	08db      	lsrs	r3, r3, #3
- 8000cdc:	603b      	str	r3, [r7, #0]
+08000ca8 <Scheduler_Add_Task_ID>:
+uint32_t Scheduler_Add_Task_ID(void (*pF)(void), uint32_t taskID,
+		uint32_t DELAY, uint32_t PERIOD) {
+ 8000ca8:	b580      	push	{r7, lr}
+ 8000caa:	b08a      	sub	sp, #40	@ 0x28
+ 8000cac:	af00      	add	r7, sp, #0
+ 8000cae:	60f8      	str	r0, [r7, #12]
+ 8000cb0:	60b9      	str	r1, [r7, #8]
+ 8000cb2:	607a      	str	r2, [r7, #4]
+ 8000cb4:	603b      	str	r3, [r7, #0]
 	TaskNode *newTask = (TaskNode*) malloc(sizeof(TaskNode));
- 8000cde:	2018      	movs	r0, #24
- 8000ce0:	f001 fd06 	bl	80026f0 <malloc>
- 8000ce4:	4603      	mov	r3, r0
- 8000ce6:	617b      	str	r3, [r7, #20]
+ 8000cb6:	2018      	movs	r0, #24
+ 8000cb8:	f001 fd1a 	bl	80026f0 <malloc>
+ 8000cbc:	4603      	mov	r3, r0
+ 8000cbe:	617b      	str	r3, [r7, #20]
 	if (tasks.nTasks >= MAX_TASKS || !newTask)
- 8000ce8:	4b47      	ldr	r3, [pc, #284]	@ (8000e08 <Scheduler_Add_Task+0x150>)
- 8000cea:	685b      	ldr	r3, [r3, #4]
- 8000cec:	2b09      	cmp	r3, #9
- 8000cee:	d802      	bhi.n	8000cf6 <Scheduler_Add_Task+0x3e>
- 8000cf0:	697b      	ldr	r3, [r7, #20]
- 8000cf2:	2b00      	cmp	r3, #0
- 8000cf4:	d101      	bne.n	8000cfa <Scheduler_Add_Task+0x42>
+ 8000cc0:	4b46      	ldr	r3, [pc, #280]	@ (8000ddc <Scheduler_Add_Task_ID+0x134>)
+ 8000cc2:	685b      	ldr	r3, [r3, #4]
+ 8000cc4:	2b09      	cmp	r3, #9
+ 8000cc6:	d802      	bhi.n	8000cce <Scheduler_Add_Task_ID+0x26>
+ 8000cc8:	697b      	ldr	r3, [r7, #20]
+ 8000cca:	2b00      	cmp	r3, #0
+ 8000ccc:	d101      	bne.n	8000cd2 <Scheduler_Add_Task_ID+0x2a>
 		return ADD_TASK_ERROR;
- 8000cf6:	236e      	movs	r3, #110	@ 0x6e
- 8000cf8:	e07f      	b.n	8000dfa <Scheduler_Add_Task+0x142>
+ 8000cce:	236e      	movs	r3, #110	@ 0x6e
+ 8000cd0:	e07f      	b.n	8000dd2 <Scheduler_Add_Task_ID+0x12a>
 	newTask->pTask = pF;
- 8000cfa:	697b      	ldr	r3, [r7, #20]
- 8000cfc:	68fa      	ldr	r2, [r7, #12]
- 8000cfe:	601a      	str	r2, [r3, #0]
+ 8000cd2:	697b      	ldr	r3, [r7, #20]
+ 8000cd4:	68fa      	ldr	r2, [r7, #12]
+ 8000cd6:	601a      	str	r2, [r3, #0]
 	newTask->delay = DELAY;
- 8000d00:	697b      	ldr	r3, [r7, #20]
- 8000d02:	687a      	ldr	r2, [r7, #4]
- 8000d04:	609a      	str	r2, [r3, #8]
+ 8000cd8:	697b      	ldr	r3, [r7, #20]
+ 8000cda:	687a      	ldr	r2, [r7, #4]
+ 8000cdc:	609a      	str	r2, [r3, #8]
 	newTask->period = PERIOD;
- 8000d06:	697b      	ldr	r3, [r7, #20]
- 8000d08:	683a      	ldr	r2, [r7, #0]
- 8000d0a:	60da      	str	r2, [r3, #12]
+ 8000cde:	697b      	ldr	r3, [r7, #20]
+ 8000ce0:	683a      	ldr	r2, [r7, #0]
+ 8000ce2:	60da      	str	r2, [r3, #12]
 	newTask->runMe = 0;
- 8000d0c:	697b      	ldr	r3, [r7, #20]
- 8000d0e:	2200      	movs	r2, #0
- 8000d10:	741a      	strb	r2, [r3, #16]
+ 8000ce4:	697b      	ldr	r3, [r7, #20]
+ 8000ce6:	2200      	movs	r2, #0
+ 8000ce8:	741a      	strb	r2, [r3, #16]
 	newTask->TaskID = taskID;
- 8000d12:	697b      	ldr	r3, [r7, #20]
- 8000d14:	68ba      	ldr	r2, [r7, #8]
- 8000d16:	615a      	str	r2, [r3, #20]
+ 8000cea:	697b      	ldr	r3, [r7, #20]
+ 8000cec:	68ba      	ldr	r2, [r7, #8]
+ 8000cee:	615a      	str	r2, [r3, #20]
 	newTask->next = NULL;
- 8000d18:	697b      	ldr	r3, [r7, #20]
- 8000d1a:	2200      	movs	r2, #0
- 8000d1c:	605a      	str	r2, [r3, #4]
+ 8000cf0:	697b      	ldr	r3, [r7, #20]
+ 8000cf2:	2200      	movs	r2, #0
+ 8000cf4:	605a      	str	r2, [r3, #4]
 
 	if (!tasks.head || DELAY <= tasks.head->delay) {
- 8000d1e:	4b3a      	ldr	r3, [pc, #232]	@ (8000e08 <Scheduler_Add_Task+0x150>)
- 8000d20:	681b      	ldr	r3, [r3, #0]
- 8000d22:	2b00      	cmp	r3, #0
- 8000d24:	d005      	beq.n	8000d32 <Scheduler_Add_Task+0x7a>
- 8000d26:	4b38      	ldr	r3, [pc, #224]	@ (8000e08 <Scheduler_Add_Task+0x150>)
- 8000d28:	681b      	ldr	r3, [r3, #0]
- 8000d2a:	689b      	ldr	r3, [r3, #8]
- 8000d2c:	687a      	ldr	r2, [r7, #4]
- 8000d2e:	429a      	cmp	r2, r3
- 8000d30:	d813      	bhi.n	8000d5a <Scheduler_Add_Task+0xa2>
+ 8000cf6:	4b39      	ldr	r3, [pc, #228]	@ (8000ddc <Scheduler_Add_Task_ID+0x134>)
+ 8000cf8:	681b      	ldr	r3, [r3, #0]
+ 8000cfa:	2b00      	cmp	r3, #0
+ 8000cfc:	d005      	beq.n	8000d0a <Scheduler_Add_Task_ID+0x62>
+ 8000cfe:	4b37      	ldr	r3, [pc, #220]	@ (8000ddc <Scheduler_Add_Task_ID+0x134>)
+ 8000d00:	681b      	ldr	r3, [r3, #0]
+ 8000d02:	689b      	ldr	r3, [r3, #8]
+ 8000d04:	687a      	ldr	r2, [r7, #4]
+ 8000d06:	429a      	cmp	r2, r3
+ 8000d08:	d813      	bhi.n	8000d32 <Scheduler_Add_Task_ID+0x8a>
 		// add at head
 		if (tasks.head) {
- 8000d32:	4b35      	ldr	r3, [pc, #212]	@ (8000e08 <Scheduler_Add_Task+0x150>)
- 8000d34:	681b      	ldr	r3, [r3, #0]
- 8000d36:	2b00      	cmp	r3, #0
- 8000d38:	d007      	beq.n	8000d4a <Scheduler_Add_Task+0x92>
+ 8000d0a:	4b34      	ldr	r3, [pc, #208]	@ (8000ddc <Scheduler_Add_Task_ID+0x134>)
+ 8000d0c:	681b      	ldr	r3, [r3, #0]
+ 8000d0e:	2b00      	cmp	r3, #0
+ 8000d10:	d007      	beq.n	8000d22 <Scheduler_Add_Task_ID+0x7a>
 			tasks.head->delay -= DELAY;
- 8000d3a:	4b33      	ldr	r3, [pc, #204]	@ (8000e08 <Scheduler_Add_Task+0x150>)
- 8000d3c:	681b      	ldr	r3, [r3, #0]
- 8000d3e:	6899      	ldr	r1, [r3, #8]
- 8000d40:	4b31      	ldr	r3, [pc, #196]	@ (8000e08 <Scheduler_Add_Task+0x150>)
- 8000d42:	681b      	ldr	r3, [r3, #0]
- 8000d44:	687a      	ldr	r2, [r7, #4]
- 8000d46:	1a8a      	subs	r2, r1, r2
- 8000d48:	609a      	str	r2, [r3, #8]
+ 8000d12:	4b32      	ldr	r3, [pc, #200]	@ (8000ddc <Scheduler_Add_Task_ID+0x134>)
+ 8000d14:	681b      	ldr	r3, [r3, #0]
+ 8000d16:	6899      	ldr	r1, [r3, #8]
+ 8000d18:	4b30      	ldr	r3, [pc, #192]	@ (8000ddc <Scheduler_Add_Task_ID+0x134>)
+ 8000d1a:	681b      	ldr	r3, [r3, #0]
+ 8000d1c:	687a      	ldr	r2, [r7, #4]
+ 8000d1e:	1a8a      	subs	r2, r1, r2
+ 8000d20:	609a      	str	r2, [r3, #8]
 		}
 		newTask->next = tasks.head;
- 8000d4a:	4b2f      	ldr	r3, [pc, #188]	@ (8000e08 <Scheduler_Add_Task+0x150>)
- 8000d4c:	681a      	ldr	r2, [r3, #0]
- 8000d4e:	697b      	ldr	r3, [r7, #20]
- 8000d50:	605a      	str	r2, [r3, #4]
+ 8000d22:	4b2e      	ldr	r3, [pc, #184]	@ (8000ddc <Scheduler_Add_Task_ID+0x134>)
+ 8000d24:	681a      	ldr	r2, [r3, #0]
+ 8000d26:	697b      	ldr	r3, [r7, #20]
+ 8000d28:	605a      	str	r2, [r3, #4]
 		tasks.head = newTask;
- 8000d52:	4a2d      	ldr	r2, [pc, #180]	@ (8000e08 <Scheduler_Add_Task+0x150>)
- 8000d54:	697b      	ldr	r3, [r7, #20]
- 8000d56:	6013      	str	r3, [r2, #0]
- 8000d58:	e048      	b.n	8000dec <Scheduler_Add_Task+0x134>
+ 8000d2a:	4a2c      	ldr	r2, [pc, #176]	@ (8000ddc <Scheduler_Add_Task_ID+0x134>)
+ 8000d2c:	697b      	ldr	r3, [r7, #20]
+ 8000d2e:	6013      	str	r3, [r2, #0]
+ 8000d30:	e048      	b.n	8000dc4 <Scheduler_Add_Task_ID+0x11c>
 	} else {
 		// add at middle
 		uint32_t sumDelay = 0;
- 8000d5a:	2300      	movs	r3, #0
- 8000d5c:	627b      	str	r3, [r7, #36]	@ 0x24
+ 8000d32:	2300      	movs	r3, #0
+ 8000d34:	627b      	str	r3, [r7, #36]	@ 0x24
 		TaskNode *current = tasks.head;
- 8000d5e:	4b2a      	ldr	r3, [pc, #168]	@ (8000e08 <Scheduler_Add_Task+0x150>)
- 8000d60:	681b      	ldr	r3, [r3, #0]
- 8000d62:	623b      	str	r3, [r7, #32]
+ 8000d36:	4b29      	ldr	r3, [pc, #164]	@ (8000ddc <Scheduler_Add_Task_ID+0x134>)
+ 8000d38:	681b      	ldr	r3, [r3, #0]
+ 8000d3a:	623b      	str	r3, [r7, #32]
 		TaskNode *prev = NULL;
- 8000d64:	2300      	movs	r3, #0
- 8000d66:	61fb      	str	r3, [r7, #28]
+ 8000d3c:	2300      	movs	r3, #0
+ 8000d3e:	61fb      	str	r3, [r7, #28]
 		for (int i = 0; i < tasks.nTasks; i++) {
- 8000d68:	2300      	movs	r3, #0
- 8000d6a:	61bb      	str	r3, [r7, #24]
- 8000d6c:	e029      	b.n	8000dc2 <Scheduler_Add_Task+0x10a>
+ 8000d40:	2300      	movs	r3, #0
+ 8000d42:	61bb      	str	r3, [r7, #24]
+ 8000d44:	e029      	b.n	8000d9a <Scheduler_Add_Task_ID+0xf2>
 			sumDelay += current->delay;
- 8000d6e:	6a3b      	ldr	r3, [r7, #32]
- 8000d70:	689b      	ldr	r3, [r3, #8]
- 8000d72:	6a7a      	ldr	r2, [r7, #36]	@ 0x24
- 8000d74:	4413      	add	r3, r2
- 8000d76:	627b      	str	r3, [r7, #36]	@ 0x24
+ 8000d46:	6a3b      	ldr	r3, [r7, #32]
+ 8000d48:	689b      	ldr	r3, [r3, #8]
+ 8000d4a:	6a7a      	ldr	r2, [r7, #36]	@ 0x24
+ 8000d4c:	4413      	add	r3, r2
+ 8000d4e:	627b      	str	r3, [r7, #36]	@ 0x24
 			if (sumDelay > DELAY) {
- 8000d78:	6a7a      	ldr	r2, [r7, #36]	@ 0x24
- 8000d7a:	687b      	ldr	r3, [r7, #4]
- 8000d7c:	429a      	cmp	r2, r3
- 8000d7e:	d918      	bls.n	8000db2 <Scheduler_Add_Task+0xfa>
+ 8000d50:	6a7a      	ldr	r2, [r7, #36]	@ 0x24
+ 8000d52:	687b      	ldr	r3, [r7, #4]
+ 8000d54:	429a      	cmp	r2, r3
+ 8000d56:	d918      	bls.n	8000d8a <Scheduler_Add_Task_ID+0xe2>
 				newTask->delay = DELAY - (sumDelay - current->delay);
- 8000d80:	6a3b      	ldr	r3, [r7, #32]
- 8000d82:	689a      	ldr	r2, [r3, #8]
- 8000d84:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
- 8000d86:	1ad2      	subs	r2, r2, r3
- 8000d88:	687b      	ldr	r3, [r7, #4]
- 8000d8a:	441a      	add	r2, r3
- 8000d8c:	697b      	ldr	r3, [r7, #20]
- 8000d8e:	609a      	str	r2, [r3, #8]
+ 8000d58:	6a3b      	ldr	r3, [r7, #32]
+ 8000d5a:	689a      	ldr	r2, [r3, #8]
+ 8000d5c:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+ 8000d5e:	1ad2      	subs	r2, r2, r3
+ 8000d60:	687b      	ldr	r3, [r7, #4]
+ 8000d62:	441a      	add	r2, r3
+ 8000d64:	697b      	ldr	r3, [r7, #20]
+ 8000d66:	609a      	str	r2, [r3, #8]
 				current->delay -= newTask->delay;
- 8000d90:	6a3b      	ldr	r3, [r7, #32]
- 8000d92:	689a      	ldr	r2, [r3, #8]
- 8000d94:	697b      	ldr	r3, [r7, #20]
- 8000d96:	689b      	ldr	r3, [r3, #8]
- 8000d98:	1ad2      	subs	r2, r2, r3
- 8000d9a:	6a3b      	ldr	r3, [r7, #32]
- 8000d9c:	609a      	str	r2, [r3, #8]
+ 8000d68:	6a3b      	ldr	r3, [r7, #32]
+ 8000d6a:	689a      	ldr	r2, [r3, #8]
+ 8000d6c:	697b      	ldr	r3, [r7, #20]
+ 8000d6e:	689b      	ldr	r3, [r3, #8]
+ 8000d70:	1ad2      	subs	r2, r2, r3
+ 8000d72:	6a3b      	ldr	r3, [r7, #32]
+ 8000d74:	609a      	str	r2, [r3, #8]
 				newTask->next = current;
- 8000d9e:	697b      	ldr	r3, [r7, #20]
- 8000da0:	6a3a      	ldr	r2, [r7, #32]
- 8000da2:	605a      	str	r2, [r3, #4]
+ 8000d76:	697b      	ldr	r3, [r7, #20]
+ 8000d78:	6a3a      	ldr	r2, [r7, #32]
+ 8000d7a:	605a      	str	r2, [r3, #4]
 				if (prev) {
- 8000da4:	69fb      	ldr	r3, [r7, #28]
- 8000da6:	2b00      	cmp	r3, #0
- 8000da8:	d011      	beq.n	8000dce <Scheduler_Add_Task+0x116>
+ 8000d7c:	69fb      	ldr	r3, [r7, #28]
+ 8000d7e:	2b00      	cmp	r3, #0
+ 8000d80:	d011      	beq.n	8000da6 <Scheduler_Add_Task_ID+0xfe>
 					prev->next = newTask;
- 8000daa:	69fb      	ldr	r3, [r7, #28]
- 8000dac:	697a      	ldr	r2, [r7, #20]
- 8000dae:	605a      	str	r2, [r3, #4]
+ 8000d82:	69fb      	ldr	r3, [r7, #28]
+ 8000d84:	697a      	ldr	r2, [r7, #20]
+ 8000d86:	605a      	str	r2, [r3, #4]
 				}
 				break;
- 8000db0:	e00d      	b.n	8000dce <Scheduler_Add_Task+0x116>
+ 8000d88:	e00d      	b.n	8000da6 <Scheduler_Add_Task_ID+0xfe>
 			}
 			prev = current;
- 8000db2:	6a3b      	ldr	r3, [r7, #32]
- 8000db4:	61fb      	str	r3, [r7, #28]
+ 8000d8a:	6a3b      	ldr	r3, [r7, #32]
+ 8000d8c:	61fb      	str	r3, [r7, #28]
 			current = current->next;
- 8000db6:	6a3b      	ldr	r3, [r7, #32]
- 8000db8:	685b      	ldr	r3, [r3, #4]
- 8000dba:	623b      	str	r3, [r7, #32]
+ 8000d8e:	6a3b      	ldr	r3, [r7, #32]
+ 8000d90:	685b      	ldr	r3, [r3, #4]
+ 8000d92:	623b      	str	r3, [r7, #32]
 		for (int i = 0; i < tasks.nTasks; i++) {
- 8000dbc:	69bb      	ldr	r3, [r7, #24]
- 8000dbe:	3301      	adds	r3, #1
- 8000dc0:	61bb      	str	r3, [r7, #24]
- 8000dc2:	4b11      	ldr	r3, [pc, #68]	@ (8000e08 <Scheduler_Add_Task+0x150>)
- 8000dc4:	685a      	ldr	r2, [r3, #4]
- 8000dc6:	69bb      	ldr	r3, [r7, #24]
- 8000dc8:	429a      	cmp	r2, r3
- 8000dca:	d8d0      	bhi.n	8000d6e <Scheduler_Add_Task+0xb6>
- 8000dcc:	e000      	b.n	8000dd0 <Scheduler_Add_Task+0x118>
+ 8000d94:	69bb      	ldr	r3, [r7, #24]
+ 8000d96:	3301      	adds	r3, #1
+ 8000d98:	61bb      	str	r3, [r7, #24]
+ 8000d9a:	4b10      	ldr	r3, [pc, #64]	@ (8000ddc <Scheduler_Add_Task_ID+0x134>)
+ 8000d9c:	685a      	ldr	r2, [r3, #4]
+ 8000d9e:	69bb      	ldr	r3, [r7, #24]
+ 8000da0:	429a      	cmp	r2, r3
+ 8000da2:	d8d0      	bhi.n	8000d46 <Scheduler_Add_Task_ID+0x9e>
+ 8000da4:	e000      	b.n	8000da8 <Scheduler_Add_Task_ID+0x100>
 				break;
- 8000dce:	bf00      	nop
+ 8000da6:	bf00      	nop
 		}
 		// add at bottom
 		if (!current && prev) {
- 8000dd0:	6a3b      	ldr	r3, [r7, #32]
- 8000dd2:	2b00      	cmp	r3, #0
- 8000dd4:	d10a      	bne.n	8000dec <Scheduler_Add_Task+0x134>
- 8000dd6:	69fb      	ldr	r3, [r7, #28]
- 8000dd8:	2b00      	cmp	r3, #0
- 8000dda:	d007      	beq.n	8000dec <Scheduler_Add_Task+0x134>
+ 8000da8:	6a3b      	ldr	r3, [r7, #32]
+ 8000daa:	2b00      	cmp	r3, #0
+ 8000dac:	d10a      	bne.n	8000dc4 <Scheduler_Add_Task_ID+0x11c>
+ 8000dae:	69fb      	ldr	r3, [r7, #28]
+ 8000db0:	2b00      	cmp	r3, #0
+ 8000db2:	d007      	beq.n	8000dc4 <Scheduler_Add_Task_ID+0x11c>
 			newTask->delay = DELAY - sumDelay;
- 8000ddc:	687a      	ldr	r2, [r7, #4]
- 8000dde:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
- 8000de0:	1ad2      	subs	r2, r2, r3
- 8000de2:	697b      	ldr	r3, [r7, #20]
- 8000de4:	609a      	str	r2, [r3, #8]
+ 8000db4:	687a      	ldr	r2, [r7, #4]
+ 8000db6:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+ 8000db8:	1ad2      	subs	r2, r2, r3
+ 8000dba:	697b      	ldr	r3, [r7, #20]
+ 8000dbc:	609a      	str	r2, [r3, #8]
 			prev->next = newTask;
- 8000de6:	69fb      	ldr	r3, [r7, #28]
- 8000de8:	697a      	ldr	r2, [r7, #20]
- 8000dea:	605a      	str	r2, [r3, #4]
+ 8000dbe:	69fb      	ldr	r3, [r7, #28]
+ 8000dc0:	697a      	ldr	r2, [r7, #20]
+ 8000dc2:	605a      	str	r2, [r3, #4]
 		}
 	}
 	tasks.nTasks++;
- 8000dec:	4b06      	ldr	r3, [pc, #24]	@ (8000e08 <Scheduler_Add_Task+0x150>)
- 8000dee:	685b      	ldr	r3, [r3, #4]
- 8000df0:	3301      	adds	r3, #1
- 8000df2:	4a05      	ldr	r2, [pc, #20]	@ (8000e08 <Scheduler_Add_Task+0x150>)
- 8000df4:	6053      	str	r3, [r2, #4]
+ 8000dc4:	4b05      	ldr	r3, [pc, #20]	@ (8000ddc <Scheduler_Add_Task_ID+0x134>)
+ 8000dc6:	685b      	ldr	r3, [r3, #4]
+ 8000dc8:	3301      	adds	r3, #1
+ 8000dca:	4a04      	ldr	r2, [pc, #16]	@ (8000ddc <Scheduler_Add_Task_ID+0x134>)
+ 8000dcc:	6053      	str	r3, [r2, #4]
 	return newTask->TaskID;
- 8000df6:	697b      	ldr	r3, [r7, #20]
- 8000df8:	695b      	ldr	r3, [r3, #20]
+ 8000dce:	697b      	ldr	r3, [r7, #20]
+ 8000dd0:	695b      	ldr	r3, [r3, #20]
 }
- 8000dfa:	4618      	mov	r0, r3
- 8000dfc:	3728      	adds	r7, #40	@ 0x28
- 8000dfe:	46bd      	mov	sp, r7
- 8000e00:	bd80      	pop	{r7, pc}
- 8000e02:	bf00      	nop
- 8000e04:	cccccccd 	.word	0xcccccccd
- 8000e08:	20000110 	.word	0x20000110
+ 8000dd2:	4618      	mov	r0, r3
+ 8000dd4:	3728      	adds	r7, #40	@ 0x28
+ 8000dd6:	46bd      	mov	sp, r7
+ 8000dd8:	bd80      	pop	{r7, pc}
+ 8000dda:	bf00      	nop
+ 8000ddc:	20000110 	.word	0x20000110
 
-08000e0c <Scheduler_Update>:
+08000de0 <Scheduler_Add_Task>:
+uint32_t Scheduler_Add_Task(void (*pF)(void), uint32_t DELAY, uint32_t PERIOD) {
+ 8000de0:	b580      	push	{r7, lr}
+ 8000de2:	b084      	sub	sp, #16
+ 8000de4:	af00      	add	r7, sp, #0
+ 8000de6:	60f8      	str	r0, [r7, #12]
+ 8000de8:	60b9      	str	r1, [r7, #8]
+ 8000dea:	607a      	str	r2, [r7, #4]
+	return Scheduler_Add_Task_ID(pF, tasks.nTasks, DELAY / TICK,
+ 8000dec:	4b09      	ldr	r3, [pc, #36]	@ (8000e14 <Scheduler_Add_Task+0x34>)
+ 8000dee:	6859      	ldr	r1, [r3, #4]
+ 8000df0:	68bb      	ldr	r3, [r7, #8]
+ 8000df2:	4a09      	ldr	r2, [pc, #36]	@ (8000e18 <Scheduler_Add_Task+0x38>)
+ 8000df4:	fba2 2303 	umull	r2, r3, r2, r3
+ 8000df8:	08da      	lsrs	r2, r3, #3
+ 8000dfa:	687b      	ldr	r3, [r7, #4]
+ 8000dfc:	4806      	ldr	r0, [pc, #24]	@ (8000e18 <Scheduler_Add_Task+0x38>)
+ 8000dfe:	fba0 0303 	umull	r0, r3, r0, r3
+ 8000e02:	08db      	lsrs	r3, r3, #3
+ 8000e04:	68f8      	ldr	r0, [r7, #12]
+ 8000e06:	f7ff ff4f 	bl	8000ca8 <Scheduler_Add_Task_ID>
+ 8000e0a:	4603      	mov	r3, r0
+			PERIOD / TICK);
+}
+ 8000e0c:	4618      	mov	r0, r3
+ 8000e0e:	3710      	adds	r7, #16
+ 8000e10:	46bd      	mov	sp, r7
+ 8000e12:	bd80      	pop	{r7, pc}
+ 8000e14:	20000110 	.word	0x20000110
+ 8000e18:	cccccccd 	.word	0xcccccccd
+
+08000e1c <Scheduler_Update>:
 
 void Scheduler_Update(void) {
- 8000e0c:	b480      	push	{r7}
- 8000e0e:	af00      	add	r7, sp, #0
+ 8000e1c:	b480      	push	{r7}
+ 8000e1e:	af00      	add	r7, sp, #0
 	if (!tasks.head)
- 8000e10:	4b0b      	ldr	r3, [pc, #44]	@ (8000e40 <Scheduler_Update+0x34>)
- 8000e12:	681b      	ldr	r3, [r3, #0]
- 8000e14:	2b00      	cmp	r3, #0
- 8000e16:	d00f      	beq.n	8000e38 <Scheduler_Update+0x2c>
+ 8000e20:	4b0b      	ldr	r3, [pc, #44]	@ (8000e50 <Scheduler_Update+0x34>)
+ 8000e22:	681b      	ldr	r3, [r3, #0]
+ 8000e24:	2b00      	cmp	r3, #0
+ 8000e26:	d00f      	beq.n	8000e48 <Scheduler_Update+0x2c>
 		return;
 	if (tasks.head->delay <= 0) {
- 8000e18:	4b09      	ldr	r3, [pc, #36]	@ (8000e40 <Scheduler_Update+0x34>)
- 8000e1a:	681b      	ldr	r3, [r3, #0]
- 8000e1c:	689b      	ldr	r3, [r3, #8]
- 8000e1e:	2b00      	cmp	r3, #0
- 8000e20:	d104      	bne.n	8000e2c <Scheduler_Update+0x20>
+ 8000e28:	4b09      	ldr	r3, [pc, #36]	@ (8000e50 <Scheduler_Update+0x34>)
+ 8000e2a:	681b      	ldr	r3, [r3, #0]
+ 8000e2c:	689b      	ldr	r3, [r3, #8]
+ 8000e2e:	2b00      	cmp	r3, #0
+ 8000e30:	d104      	bne.n	8000e3c <Scheduler_Update+0x20>
 		tasks.head->runMe = 1;
- 8000e22:	4b07      	ldr	r3, [pc, #28]	@ (8000e40 <Scheduler_Update+0x34>)
- 8000e24:	681b      	ldr	r3, [r3, #0]
- 8000e26:	2201      	movs	r2, #1
- 8000e28:	741a      	strb	r2, [r3, #16]
- 8000e2a:	e006      	b.n	8000e3a <Scheduler_Update+0x2e>
+ 8000e32:	4b07      	ldr	r3, [pc, #28]	@ (8000e50 <Scheduler_Update+0x34>)
+ 8000e34:	681b      	ldr	r3, [r3, #0]
+ 8000e36:	2201      	movs	r2, #1
+ 8000e38:	741a      	strb	r2, [r3, #16]
+ 8000e3a:	e006      	b.n	8000e4a <Scheduler_Update+0x2e>
 	} else
 		tasks.head->delay--;
- 8000e2c:	4b04      	ldr	r3, [pc, #16]	@ (8000e40 <Scheduler_Update+0x34>)
- 8000e2e:	681b      	ldr	r3, [r3, #0]
- 8000e30:	689a      	ldr	r2, [r3, #8]
- 8000e32:	3a01      	subs	r2, #1
- 8000e34:	609a      	str	r2, [r3, #8]
- 8000e36:	e000      	b.n	8000e3a <Scheduler_Update+0x2e>
+ 8000e3c:	4b04      	ldr	r3, [pc, #16]	@ (8000e50 <Scheduler_Update+0x34>)
+ 8000e3e:	681b      	ldr	r3, [r3, #0]
+ 8000e40:	689a      	ldr	r2, [r3, #8]
+ 8000e42:	3a01      	subs	r2, #1
+ 8000e44:	609a      	str	r2, [r3, #8]
+ 8000e46:	e000      	b.n	8000e4a <Scheduler_Update+0x2e>
 		return;
- 8000e38:	bf00      	nop
+ 8000e48:	bf00      	nop
 }
- 8000e3a:	46bd      	mov	sp, r7
- 8000e3c:	bc80      	pop	{r7}
- 8000e3e:	4770      	bx	lr
- 8000e40:	20000110 	.word	0x20000110
+ 8000e4a:	46bd      	mov	sp, r7
+ 8000e4c:	bc80      	pop	{r7}
+ 8000e4e:	4770      	bx	lr
+ 8000e50:	20000110 	.word	0x20000110
 
-08000e44 <Scheduler_Dispatch_Tasks>:
+08000e54 <Scheduler_Dispatch_Tasks>:
 
 void Scheduler_Dispatch_Tasks(void) {
- 8000e44:	b590      	push	{r4, r7, lr}
- 8000e46:	b083      	sub	sp, #12
- 8000e48:	af00      	add	r7, sp, #0
+ 8000e54:	b580      	push	{r7, lr}
+ 8000e56:	b082      	sub	sp, #8
+ 8000e58:	af00      	add	r7, sp, #0
 	if (!tasks.head)
- 8000e4a:	4b19      	ldr	r3, [pc, #100]	@ (8000eb0 <Scheduler_Dispatch_Tasks+0x6c>)
- 8000e4c:	681b      	ldr	r3, [r3, #0]
- 8000e4e:	2b00      	cmp	r3, #0
- 8000e50:	d029      	beq.n	8000ea6 <Scheduler_Dispatch_Tasks+0x62>
+ 8000e5a:	4b15      	ldr	r3, [pc, #84]	@ (8000eb0 <Scheduler_Dispatch_Tasks+0x5c>)
+ 8000e5c:	681b      	ldr	r3, [r3, #0]
+ 8000e5e:	2b00      	cmp	r3, #0
+ 8000e60:	d022      	beq.n	8000ea8 <Scheduler_Dispatch_Tasks+0x54>
 		return;
 	TaskNode *task = tasks.head;
- 8000e52:	4b17      	ldr	r3, [pc, #92]	@ (8000eb0 <Scheduler_Dispatch_Tasks+0x6c>)
- 8000e54:	681b      	ldr	r3, [r3, #0]
- 8000e56:	607b      	str	r3, [r7, #4]
+ 8000e62:	4b13      	ldr	r3, [pc, #76]	@ (8000eb0 <Scheduler_Dispatch_Tasks+0x5c>)
+ 8000e64:	681b      	ldr	r3, [r3, #0]
+ 8000e66:	607b      	str	r3, [r7, #4]
 	if (is_avail(task)) {
- 8000e58:	6878      	ldr	r0, [r7, #4]
- 8000e5a:	f7ff feee 	bl	8000c3a <is_avail>
- 8000e5e:	4603      	mov	r3, r0
- 8000e60:	2b00      	cmp	r3, #0
- 8000e62:	d021      	beq.n	8000ea8 <Scheduler_Dispatch_Tasks+0x64>
+ 8000e68:	6878      	ldr	r0, [r7, #4]
+ 8000e6a:	f7ff fedc 	bl	8000c26 <is_avail>
+ 8000e6e:	4603      	mov	r3, r0
+ 8000e70:	2b00      	cmp	r3, #0
+ 8000e72:	d01a      	beq.n	8000eaa <Scheduler_Dispatch_Tasks+0x56>
 		task->pTask();
- 8000e64:	687b      	ldr	r3, [r7, #4]
- 8000e66:	681b      	ldr	r3, [r3, #0]
- 8000e68:	4798      	blx	r3
-		if (task->period > 0) {
- 8000e6a:	687b      	ldr	r3, [r7, #4]
- 8000e6c:	68db      	ldr	r3, [r3, #12]
- 8000e6e:	2b00      	cmp	r3, #0
- 8000e70:	d013      	beq.n	8000e9a <Scheduler_Dispatch_Tasks+0x56>
-			Scheduler_Add_Task(task->pTask, task->TaskID, task->period * TICK,
- 8000e72:	687b      	ldr	r3, [r7, #4]
- 8000e74:	6818      	ldr	r0, [r3, #0]
- 8000e76:	687b      	ldr	r3, [r7, #4]
- 8000e78:	6959      	ldr	r1, [r3, #20]
+ 8000e74:	687b      	ldr	r3, [r7, #4]
+ 8000e76:	681b      	ldr	r3, [r3, #0]
+ 8000e78:	4798      	blx	r3
+		if (Scheduler_Remove_Task(task->TaskID) && task->period > 0) {
  8000e7a:	687b      	ldr	r3, [r7, #4]
- 8000e7c:	68da      	ldr	r2, [r3, #12]
- 8000e7e:	4613      	mov	r3, r2
- 8000e80:	009b      	lsls	r3, r3, #2
- 8000e82:	4413      	add	r3, r2
- 8000e84:	005b      	lsls	r3, r3, #1
- 8000e86:	461c      	mov	r4, r3
-					task->period * TICK);
- 8000e88:	687b      	ldr	r3, [r7, #4]
- 8000e8a:	68da      	ldr	r2, [r3, #12]
-			Scheduler_Add_Task(task->pTask, task->TaskID, task->period * TICK,
- 8000e8c:	4613      	mov	r3, r2
- 8000e8e:	009b      	lsls	r3, r3, #2
- 8000e90:	4413      	add	r3, r2
- 8000e92:	005b      	lsls	r3, r3, #1
- 8000e94:	4622      	mov	r2, r4
- 8000e96:	f7ff ff0f 	bl	8000cb8 <Scheduler_Add_Task>
-		}
-//		tasks.head = task->next;
-//		free(task);
-		Scheduler_Remove_Task(task->TaskID);
+ 8000e7c:	695b      	ldr	r3, [r3, #20]
+ 8000e7e:	4618      	mov	r0, r3
+ 8000e80:	f000 f818 	bl	8000eb4 <Scheduler_Remove_Task>
+ 8000e84:	4603      	mov	r3, r0
+ 8000e86:	2b00      	cmp	r3, #0
+ 8000e88:	d00f      	beq.n	8000eaa <Scheduler_Dispatch_Tasks+0x56>
+ 8000e8a:	687b      	ldr	r3, [r7, #4]
+ 8000e8c:	68db      	ldr	r3, [r3, #12]
+ 8000e8e:	2b00      	cmp	r3, #0
+ 8000e90:	d00b      	beq.n	8000eaa <Scheduler_Dispatch_Tasks+0x56>
+			Scheduler_Add_Task_ID(task->pTask, task->TaskID, task->period, task->period);
+ 8000e92:	687b      	ldr	r3, [r7, #4]
+ 8000e94:	6818      	ldr	r0, [r3, #0]
+ 8000e96:	687b      	ldr	r3, [r7, #4]
+ 8000e98:	6959      	ldr	r1, [r3, #20]
  8000e9a:	687b      	ldr	r3, [r7, #4]
- 8000e9c:	695b      	ldr	r3, [r3, #20]
- 8000e9e:	4618      	mov	r0, r3
- 8000ea0:	f000 f808 	bl	8000eb4 <Scheduler_Remove_Task>
- 8000ea4:	e000      	b.n	8000ea8 <Scheduler_Dispatch_Tasks+0x64>
+ 8000e9c:	68da      	ldr	r2, [r3, #12]
+ 8000e9e:	687b      	ldr	r3, [r7, #4]
+ 8000ea0:	68db      	ldr	r3, [r3, #12]
+ 8000ea2:	f7ff ff01 	bl	8000ca8 <Scheduler_Add_Task_ID>
+ 8000ea6:	e000      	b.n	8000eaa <Scheduler_Dispatch_Tasks+0x56>
 		return;
- 8000ea6:	bf00      	nop
+ 8000ea8:	bf00      	nop
+		}
 	}
 }
- 8000ea8:	370c      	adds	r7, #12
- 8000eaa:	46bd      	mov	sp, r7
- 8000eac:	bd90      	pop	{r4, r7, pc}
- 8000eae:	bf00      	nop
+ 8000eaa:	3708      	adds	r7, #8
+ 8000eac:	46bd      	mov	sp, r7
+ 8000eae:	bd80      	pop	{r7, pc}
  8000eb0:	20000110 	.word	0x20000110
 
 08000eb4 <Scheduler_Remove_Task>:
@@ -2803,7 +2804,7 @@ LoopFillZerobss:
  80010f2:	f001 fbd9 	bl	80028a8 <__libc_init_array>
 /* Call the application's entry point.*/
   bl main
- 80010f6:	f7ff fc73 	bl	80009e0 <main>
+ 80010f6:	f7ff fc6d 	bl	80009d4 <main>
   bx lr
  80010fa:	4770      	bx	lr
   ldr r0, =_sdata
@@ -5884,7 +5885,7 @@ void HAL_TIM_IRQHandler(TIM_HandleTypeDef *htim)
 #else
       HAL_TIM_PeriodElapsedCallback(htim);
  80021d6:	6878      	ldr	r0, [r7, #4]
- 80021d8:	f7fe fd18 	bl	8000c0c <HAL_TIM_PeriodElapsedCallback>
+ 80021d8:	f7fe fd0e 	bl	8000bf8 <HAL_TIM_PeriodElapsedCallback>
 #endif /* USE_HAL_TIM_REGISTER_CALLBACKS */
     }
   }
