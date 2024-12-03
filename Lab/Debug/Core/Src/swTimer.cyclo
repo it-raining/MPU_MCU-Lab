@@ -1,0 +1,3 @@
+../Core/Src/swTimer.c:11:6:setTimer	1
+../Core/Src/swTimer.c:16:6:timerRun	4
+../Core/Src/swTimer.c:26:5:is_avail	2
