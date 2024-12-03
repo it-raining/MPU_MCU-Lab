@@ -11,6 +11,7 @@
 
 #define NO_OF_TIMER 	1
 #define TIMER_CYCLE 	10 //ms
+#define BLINKY			0
 typedef struct {
   uint8_t flag;
   uint16_t counter;

@@ -22,7 +22,7 @@ void User_Init(UART_HandleTypeDef *UART_pointer, ADC_HandleTypeDef *ADC_pointer)
 	hadc = ADC_pointer;
 	HAL_UART_Receive_IT(huart, &temp, 1);
 	HAL_ADC_Start(hadc);
-	setTimer(0, CALLBACK_PERIOD);
+	setTimer(BLINKY, CALLBACK_PERIOD);
 }
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM2) {
@@ -42,7 +42,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 		} else {
 			index_buffer = 0;
 			buffer_flag = 1;
-			HAL_UART_Transmit(huart, "\n\r", 2, 100);
 		}
 		HAL_UART_Receive_IT(huart, &temp, 1);
 		HAL_UART_Transmit(huart, &temp, 1, 100);
@@ -69,9 +68,9 @@ void send_data(void) {
 void uart_communiation_fsm(void) {
 	switch (command_flag) {
 	case START:
-		if (is_avail(0)) {
+		if (is_avail(BLINKY)) {
 			send_data();
-			setTimer(0, CALLBACK_PERIOD);
+			setTimer(BLINKY, CALLBACK_PERIOD);
 		}
 		break;
 	case STOP:
