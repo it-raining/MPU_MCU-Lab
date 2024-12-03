@@ -35,29 +35,37 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 			for (int i = 0; i < MAX_BUFFER_SIZE; i++)
 				buffer[i] = 0;
 
-		if (temp != 13) {	// enter key
-			buffer[index_buffer++] = temp;
-			if (index_buffer >= MAX_BUFFER_SIZE)
-				index_buffer = 0;
-		} else {
-			index_buffer = 0;
-			buffer_flag = 1;
-		}
+		buffer_flag = 1;
 		HAL_UART_Receive_IT(huart, &temp, 1);
 		HAL_UART_Transmit(huart, &temp, 1, 100);
 	}
 }
 
 void command_parser_fsm(void) {
-	if (!strcmp(buffer, "!RST#")) {
-		HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-		command_flag = START;
-		command_data = HAL_ADC_GetValue(hadc);
-	}
-	if (!strcmp(buffer, "!OK#")) {
-		HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-		command_flag = STOP;
-		command_data = 0; //reset value
+	if (buffer_flag == 1) {
+		buffer_flag = 0;
+		switch (temp) {
+		case 8: // backspace
+			buffer[index_buffer--] = 0;
+			break;
+		case 13: // enter
+			index_buffer = 0;
+			if (!strcmp(buffer, "!RST#")) {
+				HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
+				command_flag = START;
+				command_data = HAL_ADC_GetValue(hadc);
+			}
+			if (!strcmp(buffer, "!OK#")) {
+				HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
+				command_flag = STOP;
+				command_data = 0; //reset value
+			}
+			break;
+		default:
+			buffer[index_buffer++] = temp;
+			if (index_buffer >= MAX_BUFFER_SIZE)
+				index_buffer = 0;
+		}
 	}
 }
 
